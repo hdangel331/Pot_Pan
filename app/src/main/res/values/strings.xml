@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">PotPan</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="spingarr">
+        <item>Pepper</item>
+        <item>Salt</item>
+        <item>Aginomoto</item>
+        <item>Chillies</item>
+    </string-array>
+    <string-array name="foodMaterial">
+        <item>Beef</item>
+        <item>Pork</item>
+        <item>Chicken</item>
+        <item>Fish</item>
+        <item>Vegetable</item>
+    </string-array>
+    <string-array name="weight">
+        <item>1g</item>
+        <item>2g</item>
+        <item>3g</item>
+        <item>5g</item>
+        <item>10g</item>
+        <item>20g</item>
+        <item>50g</item>
+        <item>100g</item>
+    </string-array>
+    <string-array name="tools">
+        <item>Knife</item>
+        <item>Griddle</item>
+        <item>Fruit knife</item>
+        <item>Parer</item>
+        <item>Pot</item>
+        <item>Oven</item>
+        <item>fryer</item>
+    </string-array>
+</resources>
