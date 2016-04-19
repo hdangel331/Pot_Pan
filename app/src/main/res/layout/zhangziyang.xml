@@ -1,185 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pan"
-    tools:context="com.example.administrator.ppmainmenu001.CreateMenuMainActivity">
+    android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/foodMaterial"
-        android:layout_width="wrap_content"
+    <!--<TextView-->
+    <!--android:id="@+id/foodMaterial"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:text="Food Material" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/seasoning"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_below="@+id/hsv1"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:text="Seasoning" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/tool"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/hsv3"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:text="Tools" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/button"-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_above="@+id/tool"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/button" />-->
+
+    <ListView
+        android:id="@+id/listview1"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Food Material" />
+        android:layout_gravity="left"
+        android:divider="#00000000"
+        android:dividerHeight="10dp" />
 
-    <TextView
-        android:id="@+id/seasoning"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listview2"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/hsv1"
-        android:layout_centerHorizontal="true"
-        android:text="Seasoning" />
+        android:layout_gravity="right"
+        android:divider="#00000000"
+        android:dividerHeight="10dp" />
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:src="@drawable/pot"
+        />
 
-    <TextView
-        android:id="@+id/tool"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/hsv3"
-        android:layout_centerHorizontal="true"
-        android:text="Tools" />
-
-    <HorizontalScrollView
-        android:id="@+id/hsv1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foodMaterial"
-        android:layout_centerHorizontal="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!--食材-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
-
-            <ImageButton
-                android:id="@+id/egg"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/egg" />
-
-            <ImageButton
-                android:id="@+id/meet"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/egg"
-                android:scaleType="fitXY"
-                android:src="@drawable/meet" />
-
-            <ImageButton
-                android:id="@+id/mashroom"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/meet"
-                android:scaleType="fitXY"
-                android:src="@drawable/mashroom" />
-
-            <ImageButton
-                android:id="@+id/onion"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/mashroom"
-                android:scaleType="fitXY"
-                android:src="@drawable/onion" />
-
-            <ImageButton
-                android:id="@+id/tomato"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/onion"
-                android:scaleType="fitXY"
-                android:src="@drawable/tomato" />
-
-            <ImageButton
-                android:id="@+id/vegetable"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/tomato"
-                android:scaleType="fitXY"
-                android:src="@drawable/vegetable" />
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-
-    <HorizontalScrollView
-        android:id="@+id/hsv2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/seasoning"
-        android:layout_centerHorizontal="true"
-        android:fillViewport="false">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <!--调料-->
-            <ImageButton
-                android:id="@+id/sauce"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/sauce" />
-
-            <ImageButton
-                android:id="@+id/oil"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/sauce"
-                android:scaleType="fitXY"
-                android:src="@drawable/oil" />
-        </LinearLayout>
-    </HorizontalScrollView>
-
-
-    <HorizontalScrollView
-        android:id="@+id/hsv3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:fillViewport="false">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/spatula"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/spatula" />
-
-            <ImageButton
-                android:id="@+id/knife1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/spatula"
-                android:scaleType="fitXY"
-                android:src="@drawable/knife1" />
-
-            <ImageButton
-                android:id="@+id/knife2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@id/knife1"
-                android:scaleType="fitXY"
-                android:src="@drawable/knife2" />
-
-
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
-
-
-    <ImageButton
-        android:id="@+id/button"
+    <ImageView
+        android:id="@+id/invisible"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_above="@+id/tool"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/button" />
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="290dp"
+        android:src="@drawable/meet"
+        android:visibility="invisible" />
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="370dp"
+        android:background="@drawable/button"/>
 
-</RelativeLayout>
+</FrameLayout>
