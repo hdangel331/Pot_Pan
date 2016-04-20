@@ -1,10 +1,16 @@
 package com.example.ziyang.potpan;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ziyang on 2016/4/15.
@@ -47,6 +53,9 @@ public class WangxiaoxuanFragment extends Fragment {
 
 
 
+
         return wangxiaoxuan;
     }
+
+
 }
