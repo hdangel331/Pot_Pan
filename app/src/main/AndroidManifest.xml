@@ -9,15 +9,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".cll_main"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".hjy_main"
+            android:label="hongjingye">
+        </activity>
+
+        <activity
+            android:name=".wxx_main"
+            android:label="wangxiaoxuan">
+        </activity>
+
+        <activity
+            android:name=".zzy_main"
+            android:label="zhangziyang">
+        </activity>
+
+
     </application>
 
 </manifest>

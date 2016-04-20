@@ -45,7 +45,7 @@ public class MaterialDB extends SQLiteOpenHelper {
     }
 //
 //    private void initDatabase(SQLiteDatabase db,Context context){
-//        Drawable drawable = context.getResources().getDrawable(R.drawable.egg);
+//        Drawable drawable = context.getResources().getDrawable(R.drawable.zzy_egg);
 //        ContentValues cv =new ContentValues();
 //        cv.put(MATERIALICON, getPicture(drawable));
 //        db.insert(TABLE_NAME, null, cv);
