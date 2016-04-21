@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/cll_bg1"
+    android:gravity="center_vertical"
+    android:stretchColumns="0,3"
+    android:id="@+id/container"
+  >
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Reset your Password"
+            android:gravity="center"
+
+            android:textSize="70px"
+            android:id="@+id/resetT"
+            android:layout_column="0"
+            android:layout_span="4"
+            android:textStyle="bold|italic"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="60px">
+
+        <AutoCompleteTextView
+            android:id="@+id/User"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="30px"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_column="0"
+            android:layout_span="4" />
+
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <AutoCompleteTextView
+            android:id="@+id/ResetP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="30px"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_column="0"
+            android:layout_span="4" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <AutoCompleteTextView
+            android:id="@+id/RetypeP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Retype New Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="30px"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_column="0"
+            android:layout_span="4" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="50px">
+
+        <TextView />
+
+        <Button
+            android:id="@+id/complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="onClick1"
+            android:text="Complete"
+            android:textSize="40px"
+            android:textStyle="bold" />
+
+        <TextView android:layout_column="4" />
+
+    </TableRow>
+    </TableLayout>

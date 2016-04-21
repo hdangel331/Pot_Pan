@@ -32,7 +32,26 @@
             android:name=".zzy_main"
             android:label="zhangziyang">
         </activity>
-
+        <activity
+            android:name=".cll_cp"
+            android:label="cll">
+        </activity>
+        <activity
+            android:name=".cll_cp2"
+            android:label="cll">
+        </activity>
+        <activity
+            android:name=".cll_cu"
+            android:label="cll">
+        </activity>
+        <activity
+            android:name=".cll_reset"
+            android:label="cll">
+        </activity>
+        <activity
+            android:name=".cll_retrieve"
+            android:label="cll">
+        </activity>
 
     </application>
 
