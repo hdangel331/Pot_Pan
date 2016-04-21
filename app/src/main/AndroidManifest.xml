@@ -22,7 +22,10 @@
             android:name=".hjy_main"
             android:label="hongjingye">
         </activity>
-
+        <activity
+            android:name=".hjy_lib"
+            android:label="hongjingye">
+        </activity>
         <activity
             android:name=".wxx_main"
             android:label="wangxiaoxuan">
