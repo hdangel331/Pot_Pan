@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/cll_bg1"
+    android:gravity="center_vertical"
+    android:stretchColumns="0,3"
+    android:id="@+id/container"
+    >
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Create your account!"
+            android:gravity="center"
+            android:textSize="70px"
+            android:id="@+id/textView4"
+            android:layout_column="0"
+            android:layout_span="4"
+            android:textStyle="bold|italic"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="60px">
+
+        <AutoCompleteTextView
+            android:id="@+id/CreateUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="30px"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_column="0"
+            android:layout_span="4" />
+
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <AutoCompleteTextView
+            android:id="@+id/CreatePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="30px"
+            android:layout_column="0"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_span="4" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="20px">
+
+        <AutoCompleteTextView
+            android:id="@+id/RetypeP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Retype your Password"
+            android:inputType="textPassword"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="25px"
+            android:layout_column="0"
+            android:layout_span="4" />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+
+    <TableRow android:layout_marginTop="20px">
+        <AutoCompleteTextView
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail (For password retrieve)"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:singleLine="true"
+            android:textSize="25px"
+            android:layout_column="0"
+            android:layout_span="5" />
+    </TableRow>
+
+    <TableRow android:layout_marginTop="50px">
+
+        <TextView />
+
+        <Button
+            android:id="@+id/complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick1"
+            android:text="Complete"
+            android:textSize="40px"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/back2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_marginLeft="40dp"
+            android:textSize="40px"
+            android:textStyle="bold" />
+
+        <TextView android:layout_column="4" />
+
+    </TableRow>
+
+
+</TableLayout>
