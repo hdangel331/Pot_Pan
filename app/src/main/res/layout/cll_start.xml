@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/cll_start"
+    android:stretchColumns="0,3">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Welcome"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="100px"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff"/>
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffffff"
+        android:text="Chef!"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="100px"
+        android:textStyle="bold|italic"
+        android:layout_marginTop="280dp"
+        android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
