@@ -20,18 +20,59 @@ public class cll_main extends AppCompatActivity {
     private TextView create;
     private TextView retrive;
 
+//    private TextView username;
+//    private TextView password;
+//    private int x = 1;
+//    private ArrayList<String> list1 = new ArrayList<String>();
+//    private ArrayList<String> list2 = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_main);
 
+//        username = (TextView) findViewById(R.id.UserName);
+//        password = (TextView) findViewById(R.id.Password);
+//        UserDB userdb = new UserDB(this);
+//        final SQLiteDatabase dbread = userdb.getReadableDatabase();
+//        Cursor c = dbread.query("UserDB", new String[]{"account", "password"}, null, null, null, null, null);
+//        while (c.moveToNext()) {
+//            String a = c.getString(c.getColumnIndex("account"));
+//            String p = c.getString(c.getColumnIndex("password"));
+//            list1.add(a);
+//            list2.add(p);
+//        }
+
+
+
         loginbutton = (Button) findViewById(R.id.login);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                String UserAccount = username.getText().toString();
+//                String UserPassword = password.getText().toString();
+
+//                System.out.println(UserAccount);
+//                System.out.println(UserPassword);
+//                for (int i = 0; i < list1.size(); i++) {
+//                    String l1 = list1.get(i).toString();
+//                    String l2 = list2.get(i).toString();
+//                    System.out.println(l1);
+//                    System.out.println(l2);
+//                    if (UserAccount.equals(l1)) {
+//                        if (UserPassword.equals(l2)) {
+//                            x = 2;
+//                        }
+//                    }
+//                }
+//
+//                if (x == 2) {
+//
                 Intent intent = new Intent();
                 intent.setClass(cll_main.this, wxx_main.class);
                 startActivity(intent);
+//                    x = 1;
+//                }
             }
         });
 
