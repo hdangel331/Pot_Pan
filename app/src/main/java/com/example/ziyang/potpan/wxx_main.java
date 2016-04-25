@@ -4,35 +4,25 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-
-import java.util.ArrayList;
 
 /**
  * Created by Ziyang on 2016/4/15.
@@ -117,7 +107,7 @@ public class wxx_main extends Activity {
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] Recipes = constants.RECIPE;
+        private static final String[] Recipes = zzy_constants.RECIPE;
         private LayoutInflater inflater;
         private DisplayImageOptions options;
 

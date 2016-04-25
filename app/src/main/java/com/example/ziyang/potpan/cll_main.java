@@ -22,9 +22,9 @@ public class cll_main extends Activity {
     private TextView create;
     private TextView retrive;
 
-    private static final String[] MATERIAL_URLS = constants.MATERIAL;
+    private static final String[] MATERIAL_URLS = zzy_constants.MATERIAL;
     private static final String[] MATERIAL_NAMES = new String[]{"1","2","3","4","5","6","7","8","9","10"};
-    private static final String[] SEASONING_URLS = constants.SEASONING;
+    private static final String[] SEASONING_URLS = zzy_constants.SEASONING;
     private static final String[] SEASONING_NAMES = new String[]{"1","2","3","4","5"};
 
 //    private TextView username;
