@@ -7,15 +7,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -23,6 +26,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by Ziyang on 2016/4/15.
@@ -33,7 +38,11 @@ public class wxx_main extends Activity {
     private Button buttonlast;
     private Context mContext = null;
 
-
+    //侧滑变量
+    private DrawerLayout drawerlayout;
+    private ListView listview;
+    private ArrayList<String> menulist;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +55,32 @@ public class wxx_main extends Activity {
             @Override
             public void onClick(View view) {
                 showPopupWindow(view);
+            }
+        });
+
+        //策划界面布局填充
+        drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        listview = (ListView) findViewById(R.id.left_drawer);
+        menulist = new ArrayList<String>();
+        menulist.add("1");
+        menulist.add("2");
+        menulist.add("3");
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menulist);
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        Intent intent = new Intent();
+                        intent.setClass(wxx_main.this, wxx_example.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
             }
         });
 

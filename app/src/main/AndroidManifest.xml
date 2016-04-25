@@ -36,9 +36,13 @@
 
         <activity
             android:name=".wxx_main"
-            android:label="wangxiaoxuan"
+            android:label="wangxiaoxuan1"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         </activity>
+
+        <activity android:name=".wxx_example"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".zzy_main"
