@@ -1,107 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/drawer_layout">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container1"
+
+    <GridView
+        android:id="@+id/gridview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/mainmenubackground"
-        android:gravity="center_vertical"
-        android:stretchColumns="0,3"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ButtonLast"
+        android:columnWidth="200dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="5dp"></GridView>
 
-       >
+    <TextView
+        android:id="@+id/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Click here to add recipe "
+        android:textSize="30dp"
+        android:textColor="@color/black"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-
-
-
-        <TextView
-            android:id="@id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_span="4"
-            android:text="Please choose recipes to cook"
-            android:layout_gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000"
-            android:textSize="26sp"
-            android:textStyle="bold|italic" />
+    <Button
+        android:id="@+id/ButtonLast"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@+id/Text"
+        android:background="@drawable/plus"></Button>
 
 
-        <TableRow android:layout_marginTop="20px">
-            <Button
-                android:id="@+id/Button1"
-
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_below="@id/textView1"
-                android:background="@drawable/eggandtomatoes"
-                android:layout_marginLeft="40dp"
-                android:onClick="onclickegg"
-                android:text="fried eggs with tomatoes"
-                android:textColor="#ffffffff" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/button_bg"
-                android:onClick="onClick2"
-                android:text="Sweet and sour mandarin fish"
-                android:textColor="#ffffffff" />
-        </TableRow>
-        <TableRow android:layout_marginTop="20px">
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="130dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="40dp"
-                android:background="@drawable/fishandslice_bg"
-                android:onClick="onClick3"
-                android:text="Fish flavored pork slices"
-                android:textColor="#ffffffff" />
-
-
-
-            <ImageButton
-                android:id="@+id/imageButtonLast"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-
-                android:layout_marginRight="30dp"
-
-                android:onClick="onClicLast"
-                android:background="@drawable/plus" />
-        </TableRow>
-
-
-    </TableLayout>
-    <!--侧滑页面-->
-    <ListView
-        android:id="@+id/right_drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:choiceMode="singleChoice"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0dp"
-        android:layout_gravity="end" />
-</android.support.v4.widget.DrawerLayout>
-
-
-
-
-
-
-
-
+</RelativeLayout>

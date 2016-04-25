@@ -12,9 +12,7 @@ public class SeasoningDB extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "SeasoningDB";
     public static final String ID = "_id";
     public static final String SEASONINGNAME = "seasoningname";
-    public static final String SEASONINGICON = "seasoningicon";
-    public static final String SEASONINGID = "seasoningid";
-
+    public static final String SEASONINGURL = "seasoningurl";
 
     public SeasoningDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "SeasoningDB", null, 1);
@@ -25,10 +23,8 @@ public class SeasoningDB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" +
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         SEASONINGNAME + " VARCHAR(20) NOT NULL, " +
-                        SEASONINGID + " INTEGER AUTOINCREMENT, " +
-                        SEASONINGICON + " BLOB NOT NULL)"
+                        SEASONINGURL + " STRING NOT NULL)"
         );
-
     }
 
     @Override

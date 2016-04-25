@@ -11,22 +11,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
         android:text="Welcome"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffffff"
         android:textSize="100px"
-        android:textStyle="bold|italic"
-        android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"/>
+        android:textStyle="bold|italic" />
+
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
         android:text="Chef!"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffffff"
         android:textSize="100px"
-        android:textStyle="bold|italic"
-        android:layout_marginTop="280dp"
-        android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
+        android:textStyle="bold|italic" />
+</RelativeLayout>

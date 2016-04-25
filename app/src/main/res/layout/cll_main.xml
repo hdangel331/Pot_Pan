@@ -6,107 +6,107 @@
     android:background="@drawable/cll_bg1"
     android:stretchColumns="0,3">
 
-    <RelativeLayout
-            android:id="@+id/login_div"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cll_bg"
-            android:layout_marginTop="150dp"
-            android:layout_marginRight="15dip"
-            android:layout_marginLeft="25dip"
-            android:padding="10dp"
-
-        >
-
-        <AutoCompleteTextView
-        android:id="@+id/UserName"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-
-        android:hint="User Name"
-        android:inputType="text"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="40px"
-
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="0dp"
-
-        />
-
-
-    <AutoCompleteTextView
-        android:id="@+id/Password"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_span="2"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="40px"
-
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="35dp"
-
-
-        />
-        <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick1"
-        android:text=" Login  "
-        android:textSize="40px"
-        android:textStyle="bold"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="120dp"
-            android:background="@drawable/cll_bg3"/>
-
-        <Button
-            android:id="@+id/Quit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quit"
-            android:textSize="40px"
-            android:textStyle="bold"
-            android:layout_marginLeft="190dp"
-            android:layout_marginTop="120dp"
-            android:background="@drawable/cll_bg3"/>
-
-        </RelativeLayout>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#ffff4081"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
         android:text="LOGIN"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffff4081"
         android:textSize="70px"
-        android:textStyle="bold"
-        android:layout_marginTop="70dp"
-        android:layout_centerHorizontal="true"/>
+        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/create"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/login_div"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Create new account."
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/cll_bg"
+        android:padding="10dp"
 
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="340dp"/>
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/UserName"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:hint="User Name"
+            android:inputType="text"
+            android:maxLines="1"
+
+            android:singleLine="true"
+            android:textSize="40px" />
 
 
-    <TextView
-        android:id="@+id/retrieve"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forget password?"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginLeft="230dp"
-        android:layout_marginTop="340dp" />
+        <AutoCompleteTextView
+            android:id="@+id/Password"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
 
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_span="2"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+
+            android:singleLine="true"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="110dp"
+
+            android:text="Create new account."
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+        <TextView
+            android:id="@+id/retrieve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="110dp"
+
+            android:text="Forget password?"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/cll_bg3"
+        android:onClick="onClick1"
+        android:text="Login"
+        android:textSize="40px"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Quit"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/cll_bg3"
+        android:text="Quit"
+        android:textSize="40px"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

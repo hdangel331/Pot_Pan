@@ -11,12 +11,9 @@ public class RecipeDB extends SQLiteOpenHelper {
 
     public static final String TABLE_NAME = "RecipeDB";
     public static final String ID = "_id";
-    public static final String RECIPEID = "recipeid";
     public static final String RECIPENAME = "recipename";
-    public static final String MATERIALID = "materialid";
-    public static final String SEASONINGID = "seasoningid";
-    public static final String TOOLID = "toolid";
-
+    public static final String MATERIALNAME = "materialname";
+    public static final String SEASONINGNAME = "seasoningname";
 
     public RecipeDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "RecipeDB", null, 1);
@@ -26,11 +23,9 @@ public class RecipeDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                RECIPEID + " INTERGER AUTOINCREMENT, " +
                 RECIPENAME + " VARCHAR(20) NOT NULL, " +
-                MATERIALID + " INTEGER NOT NULL, " +
-                SEASONINGID + " INTEGER NOT NULL, " +
-                TOOLID + " INTEGER NOT NULL)"
+                MATERIALNAME + " STRING NOT NULL, " +
+                SEASONINGNAME + " STRING NOT NULL)"
         );
 
     }

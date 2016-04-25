@@ -20,15 +20,10 @@ public class MaterialDB extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "MaterialDB";
     public static final String ID = "_id";
     public static final String MATERIALNAME = "materialname";
-    public static final String MATERIALICON = "materialicon";
-    public static final String MATERIALID = "materialid";
-
-//    private Context mContext;
-
+    public static final String MATERIALURL = "materialurl";
 
     public MaterialDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "MaterialDB", null, 1);
-//        this.mContext = context;
     }
 
     @Override
@@ -36,31 +31,9 @@ public class MaterialDB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" +
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         MATERIALNAME + " VARCHAR(20) NOT NULL, " +
-                        MATERIALID + " INTEGER AUTOINCREMENT, " +
-                        MATERIALICON + " BLOB NOT NULL)"
+                        MATERIALURL + " STRING NOT NULL)"
         );
-
-//        initDatabase(db,mContext);
-
     }
-//
-//    private void initDatabase(SQLiteDatabase db,Context context){
-//        Drawable drawable = context.getResources().getDrawable(R.drawable.zzy_egg);
-//        ContentValues cv =new ContentValues();
-//        cv.put(MATERIALICON, getPicture(drawable));
-//        db.insert(TABLE_NAME, null, cv);
-//    }
-//
-//    private  byte[] getPicture(Drawable drawable){
-//        if (drawable == null){
-//            return null;
-//        }
-//        BitmapDrawable bd = (BitmapDrawable) drawable;
-//        Bitmap bitmap = bd.getBitmap();
-//        ByteArrayOutputStream os = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG,100,os);
-//        return os.toByteArray();
-//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

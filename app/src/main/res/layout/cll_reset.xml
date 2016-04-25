@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/cll_bg1"
     android:gravity="center_vertical"
-    android:stretchColumns="0,3"
-    android:id="@+id/container"
-  >
+    android:stretchColumns="0,3">
 
 
     <TableRow
@@ -15,71 +14,72 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/resetT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Reset your Password"
-            android:textColor="#ffff4081"
-            android:gravity="center"
-
-            android:textSize="70px"
-            android:id="@+id/resetT"
             android:layout_column="0"
             android:layout_span="4"
-            android:textStyle="bold"/>
+            android:gravity="center"
+
+            android:text="Reset your Password"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffff4081"
+            android:textSize="70px"
+            android:textStyle="bold" />
     </TableRow>
+
     <RelativeLayout
         android:id="@+id/login_div"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/cll_bg"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="15dip"
         android:layout_marginLeft="25dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/cll_bg"
         android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        >
+        android:paddingTop="20dp">
 
         <AutoCompleteTextView
             android:id="@+id/User"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="0dp"
             android:hint="User Name"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="0dp" />
+            android:textSize="40px" />
 
         <AutoCompleteTextView
             android:id="@+id/ResetP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
             android:hint="New Password"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="50dp" />
+            android:textSize="40px" />
 
         <AutoCompleteTextView
             android:id="@+id/RetypeP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="100dp"
             android:hint="Retype New Password"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="100dp"/>
+            android:textSize="40px" />
 
-</RelativeLayout>>
+    </RelativeLayout>
+    >
 
 
     <TableRow android:layout_marginTop="50px">
@@ -88,16 +88,16 @@
 
         <Button
             android:id="@+id/complete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/cll_bg3"
             android:gravity="center"
             android:onClick="onClick1"
-            android:text="   Complete   "
+            android:text="Complete"
             android:textSize="40px"
-            android:textStyle="bold"
-            android:background="@drawable/cll_bg3"/>
+            android:textStyle="bold" />
 
         <TextView android:layout_column="4" />
 
     </TableRow>
-    </TableLayout>
+</TableLayout>

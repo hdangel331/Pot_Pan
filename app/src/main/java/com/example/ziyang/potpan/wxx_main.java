@@ -4,18 +4,33 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -24,15 +39,11 @@ import java.util.ArrayList;
  */
 public class wxx_main extends Activity {
 
-    private Button button2;
-    private ImageButton imageButtonlast;
-    private Button Button1;
-    private Button button3;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ArrayList<String> menuLists;
-    private ArrayAdapter<String> adapter;
+    private GridView gridview;
+    private Button buttonlast;
     private Context mContext = null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,61 +51,39 @@ public class wxx_main extends Activity {
 
         setContentView(R.layout.wxx_main);
         mContext = this;
-        ImageButton button = (ImageButton) findViewById(R.id.imageButtonLast);
-        button.setOnClickListener(new View.OnClickListener(){
+        buttonlast = (Button) findViewById(R.id.ButtonLast);
+        buttonlast.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 showPopupWindow(view);
             }
         });
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.right_drawer);
 
+        //初始化
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
 
-        Button1 = (Button) findViewById(R.id.Button1);
-        Button1.setOnClickListener(new View.OnClickListener() {
+        gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
                 intent.setClass(wxx_main.this, zzy_main.class);
                 startActivity(intent);
             }
         });
 
-
-        button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        //在这里写长按事件
+        gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(wxx_main.this, zzy_main.class);
-                startActivity(intent);
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
             }
         });
-
-        button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(wxx_main.this, zzy_main.class);
-                startActivity(intent);
-            }
-        });
-
-//
-//        imageButtonlast = (ImageButton) findViewById(R.id.imageButtonLast);
-//        imageButtonlast.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.setClass(wxx_main.this, hjy_main.class);
-//                startActivity(intent);
-//            }
-//        });
-
 
     }
+
     private void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.hjy_popuplayout, null);
         Button button = (Button) contentView.findViewById(R.id.edt);
@@ -115,12 +104,70 @@ public class wxx_main extends Activity {
                 startActivity(intent);
             }
         });
-        final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT,true);
+        final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setTouchable(true);
 
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
         popupWindow.setOutsideTouchable(true);
 
-        popupWindow.showAtLocation(view, Gravity.CENTER,0 ,0);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
+
+
+    //GridView适配器
+    private static class ImageAdapter extends BaseAdapter {
+
+        private static final String[] Recipes = constants.RECIPE;
+        private LayoutInflater inflater;
+        private DisplayImageOptions options;
+
+        ImageAdapter(Context context) {
+            inflater = LayoutInflater.from(context);
+            options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.drawable.zzy_loading)
+                    .showImageForEmptyUri(R.drawable.zzy_empty)
+                    .showImageOnFail(R.drawable.zzy_fail)
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .considerExifParams(true)
+                    .displayer(new CircleBitmapDisplayer(Color.WHITE, 5))
+                    .build();
+        }
+
+        @Override
+        public int getCount() {
+            return Recipes.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return position;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+            View view = convertView;
+            if (view == null) {
+                view = inflater.inflate(R.layout.wxx_gridview, parent, false);
+                holder = new ViewHolder();
+                assert view != null;
+                holder.imageview = (ImageView) view.findViewById(R.id.recipe);
+                view.setTag(holder);
+            } else {
+                holder = (ViewHolder) view.getTag();
+            }
+            ImageLoader.getInstance().displayImage(Recipes[position], holder.imageview, options, new SimpleImageLoadingListener());
+            return view;
+        }
+    }
+
+    static class ViewHolder {
+        ImageView imageview;
     }
 }

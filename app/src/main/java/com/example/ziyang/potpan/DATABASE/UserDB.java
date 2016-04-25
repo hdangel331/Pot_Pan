@@ -17,8 +17,7 @@ public class UserDB extends SQLiteOpenHelper {
     public static final String GENDER = "gender";
     public static final String EMAIL = "email";
     public static final String HEAD = "head";
-    public static final String RECIPEID = "recipeid";
-
+    public static final String RECIPENAME = "recipename";
 
     public UserDB(Context context) {
         super(context, "UserDB", null, 1);
@@ -30,9 +29,9 @@ public class UserDB extends SQLiteOpenHelper {
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         ACCOUNT + " VARCHAR(20) NOT NULL, " +
                         PASSWORD + " VARCHAR(60) NOT NULL, " +
-                        RECIPEID + " INTEGER DEFAULT \"\", " +
+                        RECIPENAME + " STRING DEFAULT \"\", " +
                         USERNAME + " VARCHAR(20) DEFAULT \"\", " +
-                        GENDER + " TEXT DEFAULT \"\", " +
+                        GENDER + " STRING DEFAULT \"\", " +
                         EMAIL + " VARCHAR(60) DEFAULT \"\", " +
                         HEAD + " BLOB DEFAULT \"\")"
         );

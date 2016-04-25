@@ -12,9 +12,7 @@ public class ToolDB extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "ToolDB";
     public static final String ID = "_id";
     public static final String TOOLNAME = "toolname";
-    public static final String TOOLICON = "toolicon";
-    public static final String TOOLID = "toolid";
-
+    public static final String TOOLURL = "toolurl";
 
     public ToolDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "ToolDB", null, 1);
@@ -25,10 +23,8 @@ public class ToolDB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" +
                         ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         TOOLNAME + " VARCHAR(20) NOT NULL, " +
-                        TOOLID + " INTEGER AUTOINCREMENT, " +
-                        TOOLICON + " BLOB NOT NULL)"
+                        TOOLURL + " STRING NOT NULL)"
         );
-
     }
 
     @Override
