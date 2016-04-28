@@ -5,11 +5,13 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -133,8 +135,8 @@ public class cll_main extends Activity {
 
         create = (TextView) findViewById(R.id.create);
         retrive = (TextView) findViewById(R.id.retrieve);
-        String text1 = "Create new account.";
-        String text2 = "Forget password?";
+        String text1 = "Sign up";
+        String text2 = "Forget password";
         SpannableString spannableString1 = new SpannableString(text1);
         spannableString1.setSpan(new ClickableSpan() {
             @Override
