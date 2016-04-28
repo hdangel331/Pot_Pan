@@ -41,11 +41,12 @@
         <AutoCompleteTextView
             android:id="@+id/CreateUser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="0dp"
-            android:hint="User Name"
+            android:layout_marginTop="10dp"
+            android:background="@color/fblack"
+            android:hint="User Name (Alphabet Only)"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
@@ -55,26 +56,28 @@
         <AutoCompleteTextView
             android:id="@+id/CreatePassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="75dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
 
         <AutoCompleteTextView
             android:id="@+id/RetypeP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="140dp"
             android:hint="Retype your Password"
             android:inputType="textPassword"
             android:maxLines="1"
+            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
 
@@ -82,13 +85,14 @@
         <AutoCompleteTextView
             android:id="@+id/Email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="135dp"
+            android:layout_marginTop="205dp"
             android:hint="E-mail (For password retrieve)"
             android:inputType="textEmailAddress"
             android:maxLines="1"
+            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
     </RelativeLayout>

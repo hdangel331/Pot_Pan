@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -20,7 +22,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import com.example.ziyang.potpan.DATABASE.UserDB;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -28,6 +32,7 @@ import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ziyang on 2016/4/15.
@@ -44,10 +49,12 @@ public class wxx_main extends Activity {
     private ArrayList<String> menulist;
     private ArrayAdapter<String> adapter;
 
+    //
+    private static List<String> list = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.wxx_main);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
@@ -58,13 +65,32 @@ public class wxx_main extends Activity {
             }
         });
 
+        //获取账户
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String ACCOUNT =bundle.getString("useraccount");
+
+        //读用户数据
+        UserDB userdb = new UserDB(this);
+        SQLiteDatabase userread = userdb.getReadableDatabase();
+        Cursor c = userread.query(ACCOUNT,new String[]{"recipename"},null,null,null,null,null);
+        while (c.moveToNext()){
+            String a = c.getString(c.getColumnIndex("recipename"));
+            list.add(a);
+        };
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
+
+
         //策划界面布局填充
         drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listview = (ListView) findViewById(R.id.left_drawer);
         menulist = new ArrayList<String>();
-        menulist.add("1");
-        menulist.add("2");
-        menulist.add("3");
+        menulist.add("Personal");
+        menulist.add("Help");//界面搞完截图弄上去
+        menulist.add("Volume");
+        menulist.add("EXIT");
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menulist);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -171,7 +197,8 @@ public class wxx_main extends Activity {
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] Recipes = zzy_constants.RECIPE;
+        private static final String[] Recipes = zzy_constants.START;
+        private static final String[] Name = list.toArray(new String[list.size()]);
         private LayoutInflater inflater;
         private DisplayImageOptions options;
 
@@ -211,16 +238,20 @@ public class wxx_main extends Activity {
                 holder = new ViewHolder();
                 assert view != null;
                 holder.imageview = (ImageView) view.findViewById(R.id.recipe);
+                holder.textview = (TextView) view.findViewById(R.id.recipename);
                 view.setTag(holder);
             } else {
                 holder = (ViewHolder) view.getTag();
             }
+            holder.textview.setText(Name[position]);
             ImageLoader.getInstance().displayImage(Recipes[position], holder.imageview, options, new SimpleImageLoadingListener());
+
             return view;
         }
     }
 
     static class ViewHolder {
         ImageView imageview;
+        TextView textview;
     }
 }

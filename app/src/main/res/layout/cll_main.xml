@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="130dp"
         android:text="LOGIN"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffff4081"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="220dp"
         android:background="@drawable/cll_bg"
         android:padding="10dp"
 
@@ -34,13 +34,12 @@
             android:id="@+id/UserName"
             android:layout_width="250dp"
             android:layout_height="50dp"
-
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:hint="User Name"
             android:inputType="text"
             android:maxLines="1"
-
+            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
 
@@ -49,9 +48,9 @@
             android:id="@+id/Password"
             android:layout_width="250dp"
             android:layout_height="50dp"
-
+            android:background="@color/fblack"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="80dp"
             android:layout_span="2"
             android:hint="Password"
             android:inputType="textPassword"
@@ -60,53 +59,48 @@
             android:singleLine="true"
             android:textSize="40px" />
 
-        <TextView
-            android:id="@+id/create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="110dp"
+        <Button
+            android:id="@+id/login"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="145dp"
+            android:background="@drawable/cll_bg3"
+            android:onClick="onClick1"
+            android:text="Login"
+            android:textSize="40px"
+            android:textStyle="bold" />
 
-            android:text="Create new account."
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-
-        <TextView
-            android:id="@+id/retrieve"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="110dp"
-
-            android:text="Forget password?"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <Button
+            android:id="@+id/Quit"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="145dp"
+            android:background="@drawable/cll_bg3"
+            android:text="Quit"
+            android:textSize="40px"
+            android:textStyle="bold" />
 
 
     </RelativeLayout>
+    <TextView
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="450dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/cll_bg3"
-        android:onClick="onClick1"
-        android:text="Login"
-        android:textSize="40px"
-        android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/Quit"
-        android:layout_width="60dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/cll_bg3"
-        android:text="Quit"
-        android:textSize="40px"
-        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/retrieve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="450dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-
+            android:textColor="#ffff4081"
             android:layout_span="4"
             android:gravity="center"
             android:text="Password Retrieve"
@@ -28,47 +28,50 @@
     </TableRow>
 
 
-    <TableRow android:layout_marginTop="20px">
+    <RelativeLayout
+        android:id="@+id/login_div"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/cll_bg"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
 
         <AutoCompleteTextView
             android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
+            android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_span="4"
-            android:background="@drawable/cll_bg2"
+            android:background="@color/fblack"
             android:hint="Enter your User Name"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="50px" />
+            android:textSize="40px" />
 
-
-    </TableRow>
-
-    <TableRow android:layout_marginTop="20px">
 
         <AutoCompleteTextView
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
+            android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="80dp"
             android:layout_span="4"
-            android:background="@drawable/cll_bg2"
+            android:background="@color/fblack"
             android:hint="Enter your E-mail"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="50px" />
+            android:textSize="40px" />
 
 
-    </TableRow>
+  </RelativeLayout>>
 
     <TableRow android:layout_marginTop="70px">
 
