@@ -87,9 +87,10 @@ public class wxx_main extends Activity {
         drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listview = (ListView) findViewById(R.id.left_drawer);
         menulist = new ArrayList<String>();
-        menulist.add("1");
-        menulist.add("2");
-        menulist.add("3");
+        menulist.add("Personal");
+        menulist.add("Help");//界面搞完截图弄上去
+        menulist.add("Volume");
+        menulist.add("EXIT");
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menulist);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

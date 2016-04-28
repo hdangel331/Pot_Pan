@@ -58,8 +58,8 @@ public class cll_cu extends Activity {
                 dbwrite.execSQL("CREATE TABLE " + Account + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, recipename STRING)");
                 ContentValues usercv = new ContentValues();
                 //放入初始菜谱
-                String[] recipelist = new String[]{"AAA","BBB","CCC","DDD"};
-                for (int i = 0; i < 4; i++) {
+                String[] recipelist = new String[]{"Eggs with tomatoes","Steak","Squirrel-shaped mandarin fish",};
+                for (int i = 0; i < 3; i++) {
                     usercv.put("recipename", recipelist[i]);
                     dbwrite.insert(Account, null, usercv);
                 }
