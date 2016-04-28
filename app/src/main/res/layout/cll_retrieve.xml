@@ -52,7 +52,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="50px" />
+            android:textSize="40px" />
 
 
         <AutoCompleteTextView
@@ -68,7 +68,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="50px" />
+            android:textSize="40px" />
 
 
   </RelativeLayout>>

@@ -7,6 +7,6 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="me">#813f3f</color>
-    <color name="fblack">#11000000</color>
     <color name="wxx">#4b000000</color>
+    <color name="fblack">#3efcfbfb</color>
 </resources>
