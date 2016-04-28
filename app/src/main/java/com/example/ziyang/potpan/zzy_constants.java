@@ -8,10 +8,10 @@ import java.security.PublicKey;
 public final class zzy_constants {
 
     public static final String[] START = new String[]{
-            "http://tupian.enterdesk.com/2013/xll/003/0312/aodaliya/1.jpg",
-            "http://img.tuku.cn/file_big/201504/024448d7ae994d4d9273ea5f3c199a5a.jpg",
-            "http://p2.image.hiapk.com/uploads/allimg/130702/23-130F2135J5.jpg",
-            "http://img.taopic.com/uploads/allimg/140720/240467-140H00K62786.jpg"
+            "http://www.scnjnews.com/ms/image/attachement/jpg/site2/20091228/00241dd8ce9b0ca29ea93b.jpg",//egg
+            "http://guangdong.sinaimg.cn/2014/0723/U11198P693DT20140723102505.jpg",//beef
+            "http://www.qnong.com.cn/uploadfile/2015/0808/20150808083827991.jpg",//fish
+
     };
 
     public static final String[] RECIPE = new String[]{
