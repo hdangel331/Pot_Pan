@@ -3,14 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#ffffff"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Library"
         android:gravity="center"
+        android:text="Library"
         android:textColor="#fc570a"
-        android:textSize="40dp"/>
+        android:textSize="40dp" />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="fill_parent"
@@ -20,7 +22,6 @@
         android:divider="#ffffff"
         android:dividerHeight="4dp"
         android:drawSelectorOnTop="false"
-        android:listSelector="#ffffff" >
-    </ListView>
+        android:listSelector="#ffffff"></ListView>
 
 </LinearLayout>

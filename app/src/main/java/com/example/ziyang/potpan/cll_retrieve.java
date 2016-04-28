@@ -15,19 +15,20 @@ import android.widget.Button;
 public class cll_retrieve extends Activity {
     private Button confirmbutton;
     private Button backbutton3;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_retrieve);
 
-       confirmbutton = (Button) findViewById(R.id.confirm);
-       confirmbutton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent intent = new Intent();
-               intent.setClass(cll_retrieve.this, cll_reset.class);
-               startActivity(intent);
-           }
-       });
+        confirmbutton = (Button) findViewById(R.id.confirm);
+        confirmbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(cll_retrieve.this, cll_reset.class);
+                startActivity(intent);
+            }
+        });
         backbutton3 = (Button) findViewById(R.id.back3);
         backbutton3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,4 +38,5 @@ public class cll_retrieve extends Activity {
                 startActivity(intent);
             }
         });
-}}
+    }
+}

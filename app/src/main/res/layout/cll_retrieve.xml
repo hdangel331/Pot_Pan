@@ -18,11 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:textColor="#ffff4081"
             android:layout_span="4"
             android:gravity="center"
             android:text="Password Retrieve"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffff4081"
             android:textSize="70px"
             android:textStyle="bold" />
     </TableRow>
@@ -71,7 +71,8 @@
             android:textSize="40px" />
 
 
-  </RelativeLayout>>
+    </RelativeLayout>
+    >
 
     <TableRow android:layout_marginTop="70px">
 

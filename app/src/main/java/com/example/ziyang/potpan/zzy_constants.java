@@ -15,7 +15,7 @@ public final class zzy_constants {
     };
 
 
-    public static  final String[] library = new String[]{
+    public static final String[] library = new String[]{
             "http://pic3.nipic.com/20090623/2743956_192919027_2.jpg",
             "http://file2.zhituad.com/thumb/201201/13/201201130300339473kNpfJ_priv.jpg",
             "http://img4.duitang.com/uploads/blog/201403/18/20140318120254_LXV4P.thumb.600_0.jpeg",
@@ -49,7 +49,6 @@ public final class zzy_constants {
             "http://image.tianjimedia.com/uploadImages/2013/304/Y83292KWIFAT_1920x1200.jpg",
             "http://tupian.enterdesk.com/2013/xll/003/0312/aodaliya/1.jpg",
             "http://img.tuku.cn/file_big/201504/024448d7ae994d4d9273ea5f3c199a5a.jpg",
-            "http://p2.image.hiapk.com/uploads/allimg/130702/23-130F2135J5.jpg"
     };
 
     public static final String[] SEASONING = new String[]{
@@ -61,8 +60,7 @@ public final class zzy_constants {
     };
 
 
-
-    private zzy_constants(){
+    private zzy_constants() {
 
     }
 
@@ -70,6 +68,7 @@ public final class zzy_constants {
     public static class Config {
 //        public static final boolean DEVELOPER_MODE = false;
     }
+
     public static class Extra {
 //        public static final String FRAGMENT_INDEX = "com.nostra13.example.universalimageloader.FRAGMENT_INDEX";
 //        public static final String IMAGE_POSITION = "com.nostra13.example.universalimageloader.IMAGE_POSITION";

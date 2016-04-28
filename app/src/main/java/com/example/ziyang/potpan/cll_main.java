@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ziyang.potpan.DATABASE.MaterialDB;
+import com.example.ziyang.potpan.DATABASE.RecipeDB;
 import com.example.ziyang.potpan.DATABASE.SeasoningDB;
 import com.example.ziyang.potpan.DATABASE.UserDB;
 
@@ -30,7 +31,7 @@ public class cll_main extends Activity {
     private TextView retrive;
 
     private static final String[] MATERIAL_URLS = zzy_constants.MATERIAL;
-    private static final String[] MATERIAL_NAMES = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    private static final String[] MATERIAL_NAMES = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
     private static final String[] SEASONING_URLS = zzy_constants.SEASONING;
     private static final String[] SEASONING_NAMES = new String[]{"1", "2", "3", "4", "5"};
 
@@ -48,15 +49,16 @@ public class cll_main extends Activity {
         //MaterialDB 获取
         MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
         SQLiteDatabase materialwrite = materialdb.getWritableDatabase();
-        SQLiteDatabase materialread = materialdb.getReadableDatabase();
+        SQLiteDatabase materialread1 = materialdb.getReadableDatabase();
         //SeasoningDB 获取
         SeasoningDB seasoningdb = new SeasoningDB(this, "seasoningdb", null, 1);
         SQLiteDatabase seasoningwrite = seasoningdb.getWritableDatabase();
-        SQLiteDatabase seasoningread = seasoningdb.getReadableDatabase();
+        SQLiteDatabase seasoningread1 = seasoningdb.getReadableDatabase();
+
 
         //MaterialDB 先判断再写入
         final List<String> list3 = new ArrayList<String>();
-        Cursor c1 = materialread.query("MaterialDB", new String[]{"materialurl"}, null, null, null, null, null);
+        Cursor c1 = materialread1.query("MaterialDB", new String[]{"materialurl"}, null, null, null, null, null);
         while (c1.moveToNext()) {
             String a = c1.getString(c1.getColumnIndex("materialurl"));
             list3.add(a);
@@ -73,7 +75,7 @@ public class cll_main extends Activity {
         materialwrite.close();
         //SeasoningDB 先判断再写入
         final List<String> list4 = new ArrayList<String>();
-        Cursor c2 = seasoningread.query("SeasoningDB", new String[]{"seasoningurl"}, null, null, null, null, null);
+        Cursor c2 = seasoningread1.query("SeasoningDB", new String[]{"seasoningurl"}, null, null, null, null, null);
         while (c2.moveToNext()) {
             String b = c2.getString(c2.getColumnIndex("seasoningurl"));
             list4.add(b);
@@ -88,6 +90,46 @@ public class cll_main extends Activity {
         }
         c2.close();
         seasoningwrite.close();
+//
+//        //再定义read
+//        SQLiteDatabase materialread2 = materialdb.getReadableDatabase();
+//        SQLiteDatabase seasoningread2 = seasoningdb.getReadableDatabase();
+//        //ReceipeDB 获取并创建一个表
+//        RecipeDB recipedb = new RecipeDB(this, "recipedb", null, 1);
+//        SQLiteDatabase recipewrite = recipedb.getWritableDatabase();
+//        recipewrite.execSQL("CREATE TABLE IF NOT EXISTS Eggswithtomatoes(_id INTEGER PRIMARY KEY AUTOINCREMENT, material STRING, seasoning STRING)");
+//
+//        //从数据库中导出一些material
+//        List<String> materiallist = new ArrayList<String>();
+//        Cursor c3 = materialread2.query("MaterialDB", new String[]{"materialurl"}, "materialname>=? AND materialname<=?", new String[]{"1", "5"}, null, null, null);
+//        while (c3.moveToNext()) {
+//            String material = c3.getString(c3.getColumnIndex("materialurl"));
+//            materiallist.add(material);
+//        }
+//        String[] MATERIAL = materiallist.toArray(new String[materiallist.size()]);
+//        //从数据库中导出一些seasoning
+//        List<String> seasoninglist = new ArrayList<String>();
+//        Cursor c4 = seasoningread2.query("SeasoningDB", new String[]{"seasoningurl"}, "seasoningname>=? AND seasoningname<=?", new String[]{"1", "5"}, null, null, null);
+//        while (c4.moveToNext()) {
+//            String seasoning = c4.getString(c4.getColumnIndex("seasoningurl"));
+//            seasoninglist.add(seasoning);
+//        }
+//        String[] SEASONING = seasoninglist.toArray(new String[seasoninglist.size()]);
+//
+//        //放入RecipeDB的表中
+//        ContentValues cv3 = new ContentValues();
+//        for (int i = 0; i < MATERIAL.length; i++) {
+//            cv3.put("material", MATERIAL[i]);
+//            recipewrite.insert("Eggswithtomatoes", null, cv3);
+//            System.out.println(MATERIAL[i]);//ssss
+//        }
+//        for (int i = 0; i < SEASONING.length; i++) {
+//            cv3.put("seasoning", SEASONING[i]);
+//            recipewrite.insert("Eggswithtomatoes", null, cv3);
+//            System.out.println(SEASONING[i]);//ssss
+//        }
+//        c3.close();
+
 
         //绑定
         username = (TextView) findViewById(R.id.UserName);
@@ -126,7 +168,7 @@ public class cll_main extends Activity {
                 if (x == 2) {
                     Intent intent = new Intent();
                     intent.setClass(cll_main.this, wxx_main.class);
-                    intent.putExtra("useraccount",UserAccount);
+                    intent.putExtra("useraccount", UserAccount);
                     startActivity(intent);
                     x = 1;
                 }

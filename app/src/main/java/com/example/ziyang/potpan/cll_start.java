@@ -8,14 +8,16 @@ import android.os.Handler;
 /**
  * Created by CandiesCLL on 2016/4/24.
  */
-public class cll_start extends Activity{
+public class cll_start extends Activity {
     private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_start);
         startMainAvtivity();
     }
+
     private void startMainAvtivity() {
         new Handler().postDelayed(new Runnable() {
             public void run() {

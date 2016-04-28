@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="#ffffff"
-    >
+    android:orientation="vertical">
+
     <Button
+        android:id="@+id/del"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/del"
-        android:text="Delete the Recipe"
+        android:background="#ffffff"
         android:gravity="center"
-        android:background="#ffffff"/>
+        android:text="Delete the Recipe" />
+
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="#f3ff22"
-        />
+        android:background="#f3ff22" />
+
     <Button
+        android:id="@+id/edtExist"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/edtExist"
-        android:text="Edit the Recipe"
+        android:background="#ffffff"
         android:gravity="center"
-        android:background="#ffffff"/>
+        android:text="Edit the Recipe" />
 </LinearLayout>

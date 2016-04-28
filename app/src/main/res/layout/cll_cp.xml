@@ -22,9 +22,9 @@
             android:gravity="center"
             android:text="Register Successfully!"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
             android:textSize="65px"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textStyle="bold" />
     </TableRow>
 
     <TableRow android:layout_marginTop="50px">
@@ -39,9 +39,9 @@
             android:gravity="center"
             android:text="Welcome to the Pot&amp;Pan World! "
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
             android:textSize="70px"
-            android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textStyle="bold" />
     </TableRow>
 
     <TableRow android:layout_marginTop="50px">
