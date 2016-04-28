@@ -8,8 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/colorPrimary"
-    tools:context="com.example.again.ppcooking.MainActivity">
+    android:background="@color/colorPrimary">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -212,4 +211,15 @@
 
         </TableLayout>
     </ScrollView>
+    <Button
+        android:id="@+id/createRecipe"
+        android:layout_alignParentBottom="true"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/cll_bg3"
+        android:gravity="center"
+        android:text="Create!"
+        android:textSize="40px"
+        android:textStyle="bold" />
 </RelativeLayout>
