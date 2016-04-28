@@ -46,7 +46,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:background="@color/fblack"
-            android:hint="User Name"
+            android:hint="User Name (Alphabet Only)"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
