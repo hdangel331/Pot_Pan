@@ -7,6 +7,13 @@ import java.security.PublicKey;
  */
 public final class zzy_constants {
 
+    public static final String[] START = new String[]{
+            "http://tupian.enterdesk.com/2013/xll/003/0312/aodaliya/1.jpg",
+            "http://img.tuku.cn/file_big/201504/024448d7ae994d4d9273ea5f3c199a5a.jpg",
+            "http://p2.image.hiapk.com/uploads/allimg/130702/23-130F2135J5.jpg",
+            "http://img.taopic.com/uploads/allimg/140720/240467-140H00K62786.jpg"
+    };
+
     public static final String[] RECIPE = new String[]{
             "http://img.taopic.com/uploads/allimg/140720/240467-140H00K62786.jpg",
             "http://image.tianjimedia.com/uploadImages/2012/345/44R6RY4Q0219_1680x1050.jpg",

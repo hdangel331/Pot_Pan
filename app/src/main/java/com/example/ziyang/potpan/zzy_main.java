@@ -61,6 +61,7 @@ public class zzy_main extends Activity {
             list1.add(a);
         }
         Material = list1.toArray(new String[list1.size()]);
+        c1.close();
 
         //Material 读取
         List<String> list2 = new ArrayList<String>();
@@ -70,6 +71,7 @@ public class zzy_main extends Activity {
             list2.add(b);
         }
         Seasoning = list2.toArray(new String[list2.size()]);
+        c2.close();
 
         //初始化
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
