@@ -42,41 +42,46 @@
         <AutoCompleteTextView
             android:id="@+id/User"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="10dp"
             android:hint="User Name"
             android:inputType="text"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px" />
+            android:textSize="40px"
+            android:background="@color/fblack"
+            />
 
         <AutoCompleteTextView
             android:id="@+id/ResetP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="75dp"
             android:hint="New Password"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px" />
+            android:textSize="40px"
+            android:background="@color/fblack"
+            android:layout_height="50dp"/>
 
         <AutoCompleteTextView
             android:id="@+id/RetypeP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="140dp"
             android:hint="Retype New Password"
             android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="40px" />
+            android:textSize="40px"
+            android:background="@color/fblack"/>
 
     </RelativeLayout>
     >
