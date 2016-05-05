@@ -140,10 +140,11 @@ public class wxx_main extends Activity {
         });
 
         //在这里写长按事件
-        gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                return false;
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
+                showLongPopupWindow(view);
+                return true;
             }
         });
 
@@ -151,7 +152,7 @@ public class wxx_main extends Activity {
 
     private void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.hjy_popuplayout, null);
-        Button button = (Button) contentView.findViewById(R.id.edt);
+        Button button = (Button) contentView.findViewById(R.id.deg);
         Button thebutton = (Button) contentView.findViewById(R.id.lib);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +179,34 @@ public class wxx_main extends Activity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
+    private void showLongPopupWindow(View view) {
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.hjy_longpopuplayout, null);
+        Button button = (Button) contentView.findViewById(R.id.edtExist);
+        Button thebutton = (Button) contentView.findViewById(R.id.del);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(wxx_main.this, hjy_main.class);
+                startActivity(intent);
+            }
+        });
+        thebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(wxx_main.this, hjy_lib.class);
+                startActivity(intent);
+            }
+        });
+        final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setTouchable(true);
+
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        popupWindow.setOutsideTouchable(true);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
 
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
@@ -219,8 +248,7 @@ public class wxx_main extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
             View view = convertView;
-            if (view == null) {
-                view = inflater.inflate(R.layout.wxx_gridview, parent, false);
+            if (view == null) {                view = inflater.inflate(R.layout.wxx_gridview, parent, false);
                 holder = new ViewHolder();
                 assert view != null;
                 holder.imageview = (ImageView) view.findViewById(R.id.recipe);

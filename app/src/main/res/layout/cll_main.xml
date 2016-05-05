@@ -26,9 +26,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="220dp"
         android:background="@drawable/cll_bg"
-        android:padding="10dp"
-
-        >
+        android:padding="10dp">
 
         <AutoCompleteTextView
             android:id="@+id/UserName"
@@ -36,22 +34,21 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:background="@color/fblack"
             android:hint="User Name"
             android:inputType="text"
             android:maxLines="1"
-            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
-
 
         <AutoCompleteTextView
             android:id="@+id/Password"
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:background="@color/fblack"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
             android:layout_span="2"
+            android:background="@color/fblack"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -82,8 +79,8 @@
             android:textSize="40px"
             android:textStyle="bold" />
 
-
     </RelativeLayout>
+
     <TextView
         android:id="@+id/create"
         android:layout_width="wrap_content"
@@ -92,7 +89,6 @@
         android:layout_marginTop="450dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-
     <TextView
         android:id="@+id/retrieve"
         android:layout_width="wrap_content"
@@ -100,7 +96,5 @@
         android:layout_marginLeft="220dp"
         android:layout_marginTop="450dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
-
 
 </RelativeLayout>

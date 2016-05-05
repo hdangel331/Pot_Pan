@@ -24,7 +24,7 @@ public class cll_cu extends Activity {
 
     private TextView createuser;
     private TextView createpassword1;
-    private TextView createpassword2;
+    private TextView retypeP;
     private TextView createemail;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class cll_cu extends Activity {
         //绑定
         createuser = (TextView) findViewById(R.id.CreateUser);
         createpassword1 = (TextView) findViewById(R.id.CreatePassword);
-        createpassword2 = (TextView) findViewById(R.id.RetypeP);
+        retypeP = (TextView) findViewById(R.id.RetypeP);
         createemail = (TextView) findViewById(R.id.Email);
 
         //complete点击事件
@@ -48,9 +48,10 @@ public class cll_cu extends Activity {
                 //获得输入信息
                 String Account = createuser.getText().toString();
                 String Password = createpassword1.getText().toString();
+                String RetypeP = retypeP.getText().toString();
                 String Email = createemail.getText().toString();
 
-                if (Password != createpassword2.getText().toString()) {
+                if (Password != RetypeP) {
                     //在这里写上下密码不一样的情况
                 }
 

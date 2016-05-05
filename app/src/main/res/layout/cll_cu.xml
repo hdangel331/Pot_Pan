@@ -60,10 +60,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="75dp"
+            android:background="@color/fblack"
             android:hint="Password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
 
@@ -74,10 +74,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="140dp"
+            android:background="@color/fblack"
             android:hint="Retype your Password"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
 
@@ -89,10 +89,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="205dp"
+            android:background="@color/fblack"
             android:hint="E-mail (For password retrieve)"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@color/fblack"
             android:singleLine="true"
             android:textSize="40px" />
     </RelativeLayout>
