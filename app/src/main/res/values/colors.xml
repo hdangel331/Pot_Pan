@@ -9,4 +9,7 @@
     <color name="me">#813f3f</color>
     <color name="wxx">#4b000000</color>
     <color name="fblack">#3efcfbfb</color>
+    <color name="feedback">#e64a1a</color>
+    <color name="feedback_title">#1233c6</color>
+    <color name="bgbule">#31ceed</color>
 </resources>

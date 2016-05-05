@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="feedback_type">feedback
+        <item>Too less recipes</item>
+        <item>Report bug </item>
+
+    </string-array>
+</resources>

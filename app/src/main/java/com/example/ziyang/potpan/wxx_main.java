@@ -65,47 +65,61 @@ public class wxx_main extends Activity {
             }
         });
 
-        //获取账户
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        String ACCOUNT =bundle.getString("useraccount");
-
-        //读用户数据
-        UserDB userdb = new UserDB(this);
-        SQLiteDatabase userread = userdb.getReadableDatabase();
-        Cursor c = userread.query(ACCOUNT,new String[]{"recipename"},null,null,null,null,null);
-        while (c.moveToNext()){
-            String a = c.getString(c.getColumnIndex("recipename"));
-            list.add(a);
-        };
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-        System.out.println(list.get(2));
+//        //获取账户
+//        Intent intent = getIntent();
+//        Bundle bundle = intent.getExtras();
+//        String ACCOUNT =bundle.getString("useraccount");
+//
+//        //读用户数据
+//        UserDB userdb = new UserDB(this);
+//        SQLiteDatabase userread = userdb.getReadableDatabase();
+//        Cursor c = userread.query(ACCOUNT,new String[]{"recipename"},null,null,null,null,null);
+//        while (c.moveToNext()){
+//            String a = c.getString(c.getColumnIndex("recipename"));
+//            list.add(a);
+//        };
+//        System.out.println(list.get(0));
+//        System.out.println(list.get(1));
+//        System.out.println(list.get(2));
+        list.add("Eggs and Tomatoes");
+        list.add("Steak");
+        list.add("Squirrel-shaped Mandarin Fish");
 
 
         //策划界面布局填充
         drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listview = (ListView) findViewById(R.id.left_drawer);
         menulist = new ArrayList<String>();
-        menulist.add("Personal");
-        menulist.add("Help");//界面搞完截图弄上去
-        menulist.add("Volume");
-        menulist.add("EXIT");
+        menulist.add("About Pot&Pan");//Functions
+        menulist.add("Help");//界面搞完截图弄上去,how to use this app
+        menulist.add("Feedback");
+        menulist.add("Log out");
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menulist);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0:
-                        Intent intent = new Intent();
-                        intent.setClass(wxx_main.this, wxx_example.class);
+                    case 0:Intent intent = new Intent();
+                        intent.setClass(wxx_main.this, wxx_AboutUsActivity.class);
                         startActivity(intent);
                         break;
                     case 1:
+                        Intent intent1 = new Intent();
+                        intent1.setClass(wxx_main.this, wxx_example.class);
+                        startActivity(intent1);
                         break;
                     case 2:
+                        Intent intent2 = new Intent();
+                        intent2.setClass(wxx_main.this, wxx_feedback.class);
+                        startActivity(intent2);
                         break;
+                    case 3:
+                        Intent intent3 = new Intent();
+                        intent3.setClass(wxx_main.this, cll_main.class);
+                        startActivity(intent3);
+                        break;
+
                 }
             }
         });
