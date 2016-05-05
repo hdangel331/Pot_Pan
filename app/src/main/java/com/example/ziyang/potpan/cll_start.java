@@ -16,6 +16,7 @@ public class cll_start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_start);
         startMainAvtivity();
+        cll_exit.getInstance().addActivity(this);
     }
 
     private void startMainAvtivity() {

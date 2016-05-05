@@ -1,7 +1,9 @@
 package com.example.ziyang.potpan;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +29,7 @@ import java.util.List;
 public class cll_main extends Activity {
 
     private Button loginbutton;
+    private Button Quit;
     private TextView create;
     private TextView retrive;
 
@@ -45,7 +48,7 @@ public class cll_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_main);
-
+        cll_exit.getInstance().addActivity(this);
         //MaterialDB 获取
         MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
         SQLiteDatabase materialwrite = materialdb.getWritableDatabase();
@@ -172,6 +175,23 @@ public class cll_main extends Activity {
                     startActivity(intent);
                     x = 1;
                 }
+            }
+        });
+
+        Quit = (Button) findViewById(R.id.Quit);
+        Quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(cll_main.this)
+                        .setMessage("Are you sure you want to quit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        cll_exit.getInstance().exit();
+                                    } }
+                        )
+
+                        .setNegativeButton("No", null)
+                        .show();
             }
         });
 

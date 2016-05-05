@@ -30,6 +30,7 @@ public class hjy_lib extends Activity {
         ImageLoader.getInstance().init(config);
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(new ListViewAdapter(this));
+        cll_exit.getInstance().addActivity(this);
     }
 
     private static class ListViewAdapter extends BaseAdapter {

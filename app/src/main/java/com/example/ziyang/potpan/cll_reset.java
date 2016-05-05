@@ -18,7 +18,7 @@ public class cll_reset extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_reset);
-
+        cll_exit.getInstance().addActivity(this);
         completebutton = (Button) findViewById(R.id.complete);
         completebutton.setOnClickListener(new View.OnClickListener() {
             @Override

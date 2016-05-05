@@ -19,7 +19,7 @@ public class cll_retrieve extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_retrieve);
-
+        cll_exit.getInstance().addActivity(this);
         confirmbutton = (Button) findViewById(R.id.confirm);
         confirmbutton.setOnClickListener(new View.OnClickListener() {
             @Override

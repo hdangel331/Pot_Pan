@@ -11,5 +11,6 @@ public class wxx_example extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_example);
+        cll_exit.getInstance().addActivity(this);
     }
 }

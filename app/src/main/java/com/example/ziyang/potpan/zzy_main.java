@@ -44,6 +44,7 @@ public class zzy_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zzy_main);
+        cll_exit.getInstance().addActivity(this);
 
         //MaterialDB 获取
         MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
