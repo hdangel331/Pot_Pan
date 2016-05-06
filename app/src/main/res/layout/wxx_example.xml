@@ -1,13 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/wxx_helppage"
+    android:stretchColumns="0,3">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/wxx_11"
-        android:text="This is example!" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:text="    This page is waited until all pages finished "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffff4081"
+        android:textSize="50px"
+        android:textStyle="bold" />
 
-</LinearLayout>
+
+
+</RelativeLayout>
