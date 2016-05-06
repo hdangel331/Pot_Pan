@@ -49,6 +49,9 @@ public class cll_cu extends Activity {
         completebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 //获得输入信息
                 String Account = createuser.getText().toString();
                 String Password = createpassword1.getText().toString();
