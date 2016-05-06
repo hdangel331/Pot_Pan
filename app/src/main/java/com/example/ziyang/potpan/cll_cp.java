@@ -21,7 +21,7 @@ public class cll_cp extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_cp);
-
+        cll_exit.getInstance().addActivity(this);
         backbutton1 = (Button) findViewById(R.id.back1);
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -12,5 +12,6 @@ public class hjy_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hjy_main);
+        cll_exit.getInstance().addActivity(this);
     }
 }

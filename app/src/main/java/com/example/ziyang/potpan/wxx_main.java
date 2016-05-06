@@ -64,6 +64,7 @@ public class wxx_main extends Activity {
                 showPopupWindow(view);
             }
         });
+        cll_exit.getInstance().addActivity(this);
 
 //        //获取账户
 //        Intent intent = getIntent();
