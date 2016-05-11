@@ -2,6 +2,7 @@ package com.example.ziyang.potpan;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -29,13 +30,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * Created by Ziyang on 2016/4/15.
  */
 public class zzy_main extends Activity {
 
     private ListView listView1, listView2;
-    private ImageButton imageButton1;
+    private ImageButton gifStart;
+    private ImageButton deleteAll;
+    private GifImageView gifimageview;
 
     private static String[] Material = new String[]{};
     private static String[] Seasoning = new String[]{};
@@ -44,6 +49,7 @@ public class zzy_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zzy_main);
+        cll_exit.getInstance().addActivity(this);
 
         //MaterialDB 获取
         MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
@@ -85,16 +91,33 @@ public class zzy_main extends Activity {
         listView2 = (ListView) findViewById(R.id.listview2);
         listView2.setAdapter(new ImageAdapter2(this));
 
-
-        //zzy_button
-        imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
-        imageButton1.setOnClickListener(new View.OnClickListener() {
+        gifimageview = (GifImageView) findViewById(R.id.eggs);
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        gifimageview.setVisibility(View.VISIBLE);
+                        break;
+                }
             }
         });
 
+        //zzy_start
+        gifStart = (ImageButton) findViewById(R.id.gifstart);
+        gifStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        //zzy_delete
+        deleteAll = (ImageButton) findViewById(R.id.deleteall);
+        deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
 
     }
 
