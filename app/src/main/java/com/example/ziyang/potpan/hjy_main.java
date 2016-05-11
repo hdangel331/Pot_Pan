@@ -15,6 +15,7 @@ public class hjy_main extends Activity implements OnItemClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        cll_exit.getInstance().addActivity(this);
         super .onCreate(savedInstanceState);
         setContentView(R.layout.hjy_main );
         // 创建一个 ImageAdapter 对象

@@ -49,6 +49,7 @@ public class wxx_AboutUsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_vp);
+        cll_exit.getInstance().addActivity(this);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         LayoutInflater inflater=getLayoutInflater();
