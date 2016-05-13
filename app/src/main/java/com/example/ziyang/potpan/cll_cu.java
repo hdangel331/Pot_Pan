@@ -47,7 +47,14 @@ public class cll_cu extends Activity {
         //complete点击事件
         completebutton = (Button) findViewById(R.id.complete);
         completebutton.setOnClickListener(new View.OnClickListener() {
-            @Override
+            String CEmail =
+                    "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                            +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                            +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                            +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                            +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                            +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
             public void onClick(View v) {
 
 
@@ -56,18 +63,53 @@ public class cll_cu extends Activity {
                 String Account = createuser.getText().toString();
                 String Password = createpassword1.getText().toString();
                 String RetypeP = retypeP.getText().toString();
-                String Email = createemail.getText().toString();
+                String Email = createemail.getText().toString().trim();
 
-                if (Password.equals( RetypeP)) {
-                    x = 1;
-                }else {
+                Matcher matcherObj = Pattern.compile(CEmail).matcher(Email);
 
-               x=2;}
-                if (x==2){
-                   Toast.makeText(getApplicationContext(), "Wrong Retype Password",
-                            Toast.LENGTH_SHORT).show();
-              }
-                   if (x==1){
+                if(Account==null || Account.trim().equals("")) {
+                                    createuser.setError("Please enter your account");
+                    x=1;
+                    return;
+                    }else {x=2;}
+
+                if(Password==null || Password.trim().equals("")) {
+                    createpassword1.setError("Please enter your password");
+                    x=1;
+                    return;
+                    }else {x=2;}
+                if(RetypeP==null || RetypeP.trim().equals("")) {
+                    retypeP.setError("Please enter your password");
+                    x=1;
+                    return;
+                }else {x=2;}
+
+                    if (Password.equals(RetypeP)) {
+                        x = 2;
+                    } else {
+                        retypeP.setError("Incorrect password");
+                        x = 1;
+                        return;
+                    }
+
+
+
+                if (matcherObj.matches())
+                {
+                    x=2;
+                         }
+                    else
+                    {
+                        createemail.setError("Your Email is invalid");
+                        x=1;
+                        return;
+                          }
+
+
+
+
+
+                   if (x==2){
                    //以账户为名创建用户自己的表
                    dbwrite.execSQL("CREATE TABLE " + Account + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, recipename STRING)");
                    ContentValues usercv = new ContentValues();
@@ -91,6 +133,8 @@ public class cll_cu extends Activity {
                        startActivity(intent);
 
                }
+                if(x==1) {Toast.makeText(getApplicationContext(), "Please enter correct information",
+                           Toast.LENGTH_SHORT).show(); }
             }
 
         });

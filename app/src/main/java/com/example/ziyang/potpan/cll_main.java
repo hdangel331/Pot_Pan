@@ -17,6 +17,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ziyang.potpan.DATABASE.MaterialDB;
 import com.example.ziyang.potpan.DATABASE.RecipeDB;
@@ -40,7 +41,7 @@ public class cll_main extends Activity {
 
     private TextView username;
     private TextView password;
-    private int x = 1;
+    private int x;
     private ArrayList<String> list1 = new ArrayList<String>();
     private ArrayList<String> list2 = new ArrayList<String>();
 
@@ -173,8 +174,9 @@ public class cll_main extends Activity {
                     intent.setClass(cll_main.this, wxx_main.class);
                     intent.putExtra("useraccount", UserAccount);
                     startActivity(intent);
-                    x = 1;
-                }
+                }else {
+                    Toast.makeText(getApplicationContext(), "Wrong Account or Password",
+                            Toast.LENGTH_SHORT).show();}
             }
         });
 
