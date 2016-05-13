@@ -16,6 +16,7 @@ public class wxx_feedback extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_feedback);
+    cll_exit.getInstance().addActivity(this);
 
         feedback_submit = (Button) findViewById(R.id.feedback_submit);
         feedback_submit.setOnClickListener(new View.OnClickListener() {
