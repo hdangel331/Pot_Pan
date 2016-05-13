@@ -1,11 +1,18 @@
 package com.example.ziyang.potpan;
 
-import java.security.PublicKey;
 
 /**
  * Created by Ziyang on 2016/4/24.
  */
 public final class zzy_constants {
+
+    public static final String SOCKET_ERROR = "0";
+    public static final String SOCKET_IOERROR = "1";
+    public final static String IP = "10.8.50.75";//获取当前ip
+    public final static int POINT = 9999;//定义piont为9999
+
+    public static final String ADD_USERINFO = "ADD_USERINFO";
+
 
     public static final String[] START = new String[]{
             "http://www.scnjnews.com/ms/image/attachement/jpg/site2/20091228/00241dd8ce9b0ca29ea93b.jpg",//egg
