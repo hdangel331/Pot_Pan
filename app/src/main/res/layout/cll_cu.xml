@@ -47,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/fblack"
             android:hint="User Name (Alphabet Only)"
-            android:inputType="text"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="40px" />
