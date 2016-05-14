@@ -51,7 +51,7 @@
         </LinearLayout>
         <RelativeLayout android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-            <EditText android:id="@+id/feedback_content"
+            <EditText android:id="@+id/Feedback_content"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:maxEms="10"

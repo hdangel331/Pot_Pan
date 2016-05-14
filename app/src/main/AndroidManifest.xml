@@ -43,6 +43,20 @@
         <activity android:name=".wxx_example"
             android:label="wangxiaoxuan2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".wxx_feedback"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".wxx_AboutUsActivity"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity android:name=".wxx_AboutUs22"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".wxx_submitsuccess"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
 
         <activity
             android:name=".zzy_main"
