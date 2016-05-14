@@ -22,7 +22,7 @@ public class wxx_feedback extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_feedback);
     cll_exit.getInstance().addActivity(this);
-
+    Feedbackcontent = (TextView) findViewById(R.id.Feedback_content);
         feedback_submit = (Button) findViewById(R.id.feedback_submit);
         feedback_submit.setOnClickListener(new View.OnClickListener() {
             @Override
