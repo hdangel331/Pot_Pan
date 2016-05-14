@@ -16,6 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.example.ziyang.potpan.zzy_constants.*;
+
 /**
  * Created by CandiesCLL on 2016/4/18.
  */
@@ -40,9 +41,7 @@ public class cll_cu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_cu);
         cll_exit.getInstance().addActivity(this);
-        //获得数据库
-        UserDB userdb = new UserDB(this);
-        final SQLiteDatabase dbwrite = userdb.getWritableDatabase();
+
         //绑定
         createuser = (TextView) findViewById(R.id.CreateUser);
         createpassword1 = (TextView) findViewById(R.id.CreatePassword);
@@ -95,27 +94,30 @@ public class cll_cu extends Activity {
                 }
 
                 if (x == 2) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            StringBuffer submitContent = new StringBuffer();//定义服务器
-                            for (int i = 0; i < value.length; i++) {
-                                submitContent.append(ADD_USERINFO + value[i]);//将员工信息添加到字符串中
-                            }
-                            SocketClient.ConnectSevert(submitContent.toString());//将员工信息传给服务器
-                            String readinfo = SocketClient.readinfo;
-                            System.out.println(readinfo);
-                            if (readinfo.equals("ok"))//如果返回“ok”
-                            {
-                                //跳转
-                                Intent intent = new Intent();
-                                intent.setClass(cll_cu.this, cll_cp.class);
-                                startActivity(intent);
-                            }else {
-                                System.out.print("false");
-                            }
-                        }
-                    }).start();
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            StringBuffer submitContent = new StringBuffer();//定义服务器
+//                            for (int i = 0; i < value.length; i++) {
+//                                submitContent.append(ADD_USERINFO + value[i]);//将员工信息添加到字符串中
+//                            }
+//                            SocketClient.ConnectSevert(submitContent.toString());//将员工信息传给服务器
+//                            String readinfo = SocketClient.readinfo;
+//                            System.out.println(readinfo);
+//                            if (readinfo.equals("ok"))//如果返回“ok”
+//                            {
+//                                //跳转
+//                                Intent intent = new Intent();
+//                                intent.setClass(cll_cu.this, cll_cp.class);
+//                                startActivity(intent);
+//                            }else {
+//                                System.out.print("false");
+//                            }
+//                        }
+//                    }).start();
+                    Intent intent = new Intent();
+                    intent.setClass(cll_cu.this, cll_cp.class);
+                    startActivity(intent);
                 }
                 if (x == 1) {
                     Toast.makeText(getApplicationContext(), "Please enter correct information",
