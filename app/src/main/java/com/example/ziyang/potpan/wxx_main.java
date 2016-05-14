@@ -102,7 +102,7 @@ public class wxx_main extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:Intent intent = new Intent();
-                        intent.setClass(wxx_main.this, wxx_AboutUsActivity.class);
+                        intent.setClass(wxx_main.this, wxx_AboutUs22.class);
                         startActivity(intent);
                         break;
                     case 1:

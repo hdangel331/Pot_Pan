@@ -137,17 +137,6 @@ public class cll_main extends Activity {
         //绑定
         username = (TextView) findViewById(R.id.UserName);
         password = (TextView) findViewById(R.id.Password);
-        //获得数据库
-        UserDB userdb = new UserDB(this);
-        final SQLiteDatabase dbread = userdb.getReadableDatabase();
-        //查询并添加到list
-        Cursor c = dbread.query("UserDB", new String[]{"account", "password"}, null, null, null, null, null);
-        while (c.moveToNext()) {
-            String a = c.getString(c.getColumnIndex("account"));
-            String b = c.getString(c.getColumnIndex("password"));
-            list1.add(a);
-            list2.add(b);
-        }
 
         //login点击事件
         loginbutton = (Button) findViewById(R.id.login);
@@ -157,18 +146,7 @@ public class cll_main extends Activity {
                 //获得输入信息
                 String UserAccount = username.getText().toString();
                 String UserPassword = password.getText().toString();
-                //验证是否在数据库中存在
-                for (int i = 0; i < list1.size(); i++) {
-                    String l1 = list1.get(i).toString();
-                    String l2 = list2.get(i).toString();
-                    if (UserAccount.equals(l1)) {
-                        if (UserPassword.equals(l2)) {
-                            x = 2;
-                        }
-                    }
-                }
-                //存在则进入
-                if (x == 2) {
+                if(true){
                     Intent intent = new Intent();
                     intent.setClass(cll_main.this, wxx_main.class);
                     intent.putExtra("useraccount", UserAccount);

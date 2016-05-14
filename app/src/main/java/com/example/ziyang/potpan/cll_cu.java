@@ -3,7 +3,6 @@ package com.example.ziyang.potpan;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.example.ziyang.potpan.DATABASE.UserDB;
 import com.example.ziyang.potpan.R;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,8 +30,6 @@ public class cll_cu extends Activity {
     private TextView createpassword1;
     private TextView retypeP;
     private TextView createemail;
-    private ArrayList<String> list1 = new ArrayList<String>();
-    private ArrayList<String> list2 = new ArrayList<String>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +38,11 @@ public class cll_cu extends Activity {
         //获得数据库
         UserDB userdb = new UserDB(this);
         final SQLiteDatabase dbwrite = userdb.getWritableDatabase();
-        final SQLiteDatabase dbread = userdb.getReadableDatabase();
         //绑定
         createuser = (TextView) findViewById(R.id.CreateUser);
         createpassword1 = (TextView) findViewById(R.id.CreatePassword);
         retypeP = (TextView) findViewById(R.id.RetypeP);
         createemail = (TextView) findViewById(R.id.Email);
-
-        Cursor c = dbread.query("UserDB", new String[]{"account","email"}, null, null, null, null, null);
-        while (c.moveToNext()) {
-            String a = c.getString(c.getColumnIndex("account"));
-            String b = c.getString(c.getColumnIndex("email"));
-            list1.add(a);
-            list2.add(b);
-        }
 
         //complete点击事件
         completebutton = (Button) findViewById(R.id.complete);
@@ -71,6 +58,7 @@ public class cll_cu extends Activity {
             public void onClick(View v) {
 
 
+
                 //获得输入信息
                 String Account = createuser.getText().toString();
                 String Password = createpassword1.getText().toString();
@@ -79,24 +67,11 @@ public class cll_cu extends Activity {
 
                 Matcher matcherObj = Pattern.compile(CEmail).matcher(Email);
 
-                if (Account == null || Account.trim().equals("")) {
-                    createuser.setError("Please enter your account");
-                    x = 1;
+                if(Account==null || Account.trim().equals("")) {
+                                    createuser.setError("Please enter your account");
+                    x=1;
                     return;
-                } else {//验证是否在数据库中存在
-                    for (int i = 0; i < list1.size(); i++) {
-                        String l1 = list1.get(i).toString();
-                        if (Account.equals(l1)) {
-                            Toast.makeText(getApplicationContext(), "Account existed",
-                                    Toast.LENGTH_SHORT).show();
-                                x = 1;
-                            return;
-                            }else {
-                            x = 2;
-                    }
-
-
-                }}
+                    }else {x=2;}
 
                 if(Password==null || Password.trim().equals("")) {
                     createpassword1.setError("Please enter your password");
@@ -120,16 +95,9 @@ public class cll_cu extends Activity {
 
 
                 if (matcherObj.matches())
-                {//验证是否在数据库中存在
-                    for (int i = 0; i < list1.size(); i++) {
-                        String l2 = list2.get(i).toString();
-                        if (Email.equals(l2)) {
-                            Toast.makeText(getApplicationContext(), "Email existed",
-                                    Toast.LENGTH_SHORT).show();
-                            x = 1;
-                            return;}else{
+                {
                     x=2;
-                         }}}
+                         }
                     else
                     {
                         createemail.setError("Your Email is invalid");
@@ -142,35 +110,32 @@ public class cll_cu extends Activity {
 
 
                    if (x==2){
+                   //以账户为名创建用户自己的表
+                   dbwrite.execSQL("CREATE TABLE " + Account + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, recipename STRING)");
+                   ContentValues usercv = new ContentValues();
+                   //放入初始菜谱
+                   String[] recipelist = new String[]{"Eggs with tomatoes", "Steak", "Squirrel-shaped mandarin fish",};
+                   for (int i = 0; i < 3; i++) {
+                       usercv.put("recipename", recipelist[i]);
+                       dbwrite.insert(Account, null, usercv);
+                   }
+                   //把用户信息放入主用户表
+                   ContentValues cv = new ContentValues();
+                   cv.put("account", Account);
+                   cv.put("password", Password);
+                   cv.put("email", Email);
+                   dbwrite.insert("UserDB", null, cv);
+                   dbwrite.close();
 
-                                   //以账户为名创建用户自己的表
-                                   dbwrite.execSQL("CREATE TABLE " + Account + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, recipename STRING)");
-                                   ContentValues usercv = new ContentValues();
-                                   //放入初始菜谱
-                                   String[] recipelist = new String[]{"Eggs with tomatoes", "Steak", "Squirrel-shaped mandarin fish",};
-                                   for (int n = 0; n < 3; n++) {
-                                       usercv.put("recipename", recipelist[n]);
-                                       dbwrite.insert(Account, null, usercv);
-                                   }
-                                   //把用户信息放入主用户表
-                                   ContentValues cv = new ContentValues();
-                                   cv.put("account", Account);
-                                   cv.put("password", Password);
-                                   cv.put("email", Email);
-                                   dbwrite.insert("UserDB", null, cv);
-                                   dbwrite.close();
+                   //跳转
+                       Intent intent = new Intent();
+                       intent.setClass(cll_cu.this, cll_cp.class);
+                       startActivity(intent);
 
-                                   //跳转
-                                   Intent intent = new Intent();
-                                   intent.setClass(cll_cu.this, cll_cp.class);
-                                   startActivity(intent);
-
-                               }
-                               if (x == 1) {
-                                   Toast.makeText(getApplicationContext(), "Please enter correct information",
-                                           Toast.LENGTH_SHORT).show();
-                               }
-                           }
+               }
+                if(x==1) {Toast.makeText(getApplicationContext(), "Please enter correct information",
+                           Toast.LENGTH_SHORT).show(); }
+            }
 
         });
 
