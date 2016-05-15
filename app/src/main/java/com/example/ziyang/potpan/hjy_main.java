@@ -36,7 +36,9 @@ public class hjy_main extends Activity  {
                 "bacon","balsam pear","beef","carrot","celery","checken","checken breast",
                 "chinese cabbage","corn","drumstick","egg","eggplant","fish","leek",
                 "lettuce","tomato","mushroom","potapo","pumpkin","rice","shrimp",};
-        final String seasons[] = {"diyigeX","diergeX","disangeX","disigeX","diwugeX","diliugeX","diqigeX","dibageX","dijiugeX"};
+        final String seasons[] = {
+                "chilli","cinnamon","cumin","curry","garlic","ginger","onion",
+                "rosemary","salt","shallot","soy sauce","star anise","sugar","tsaoko"};
         recipeName = (EditText) findViewById(R.id.editRecipeName);
         outputRecipeName = (TextView) findViewById(R.id.outputName);
         outputMaterials = (TextView) findViewById(R.id.outputMaterials);
