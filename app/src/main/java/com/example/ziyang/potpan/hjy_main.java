@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,11 +46,23 @@ public class hjy_main extends Activity  {
         outputRecipeName = (TextView) findViewById(R.id.outputName);
         outputMaterials = (TextView) findViewById(R.id.outputMaterials);
         outputSeasons = (TextView) findViewById(R.id.outputSeasons);
-        recipeName.setOnKeyListener(new EditText.OnKeyListener(){
+//        recipeName.setOnKeyListener(new EditText.OnKeyListener(){
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event){
+//                outputRecipeName.setText(recipeName.getText().toString());
+//                return false;
+//            }
+//        });
+        recipeName.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event){
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 outputRecipeName.setText(recipeName.getText().toString());
-                return false;
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
         galleryM = (Gallery) this .findViewById(R.id.galleryM );

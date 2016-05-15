@@ -6,8 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,11 +30,12 @@
 
 
     <EditText
+        android:id="@+id/editRecipeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editRecipeName"
-
-        android:textColor="#cec1c1" />
+        android:hint="Input recipe name"
+        android:textColor="#000000"
+        android:textColorHint="#cec1c1" />
 
     <TextView
         android:id="@+id/textView1"
@@ -68,35 +74,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Recipe name: "
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="50px" />
 
     <TextView
+        android:id="@+id/outputName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/outputName"/>
+        android:textColor="#000000"
+        android:textSize="50px" />
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You chose these materials: "
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="50px" />
 
     <TextView
         android:id="@+id/outputMaterials"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="50px" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="You chose these seasoners: "
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="50px" />
 
     <TextView
         android:id="@+id/outputSeasons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="50px" />
 
     <TableRow
         android:layout_width="match_parent"
@@ -128,5 +143,6 @@
 
 
     </TableRow>
-
+</LinearLayout>
+</ScrollView>
 </LinearLayout>
