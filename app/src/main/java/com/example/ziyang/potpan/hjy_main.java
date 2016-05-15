@@ -2,6 +2,7 @@ package com.example.ziyang.potpan;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -58,18 +59,34 @@ public class hjy_main extends Activity  {
         galleryS.setAdapter(adapters);
         galleryM.setSelection(4);
         galleryS.setSelection(4);
+
+
         galleryM.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText ( mContext , "Position = " + position, Toast. LENGTH_SHORT ).show();
-                outputMaterials.append(materials[position]+"; ");
+                String test = outputMaterials.getText().toString();
+                int result = test.indexOf(materials[position]);
+                if(result>=0){
+                    String delted = test.replace(materials[position]+"; ","");
+                    outputMaterials.setText(delted);
+                }else{
+                    outputMaterials.append(materials[position]+"; ");
+                }
             }
         });
         galleryS.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                outputSeasons.append(seasons[position]+"; ");
+                String test = outputSeasons.getText().toString();
+                int result = test.indexOf(seasons[position]);
+                if(result>=0){
+                    String delted = test.replace(seasons[position]+"; ","");
+                    outputSeasons.setText(delted);
+                }else{
+                    outputSeasons.append(seasons[position]+"; ");
+                }
             }
         });
         cancelRecipe = (Button) findViewById(R.id.cancelRecipe);
