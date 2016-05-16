@@ -15,55 +15,56 @@ import android.widget.ImageView;
 public class hjy_adapter extends BaseAdapter {
     private Context ctx;
     private int[] images = {
-            R.drawable.hjy_1,
-            R.drawable.hjy_2,
-            R.drawable.hjy_3,
-            R.drawable.hjy_4,
-            R.drawable.hjy_5,
-            R.drawable.hjy_6,
-            R.drawable.hjy_7,
-            R.drawable.hjy_8,
-            R.drawable.hjy_9,};
+            R.drawable.hjy_bacon,
+            R.drawable.hjy_balsampear,
+            R.drawable.hjy_beef,
+            R.drawable.hjy_carrot,
+            R.drawable.hjy_celery,
+            R.drawable.hjy_checken,
+            R.drawable.hjy_checkenbreast,
+            R.drawable.hjy_chinesecabbage,
+            R.drawable.hjy_corn,
+            R.drawable.hjy_drumstick,
+            R.drawable.hjy_egg,
+            R.drawable.hjy_eggplant,
+            R.drawable.hjy_fish,
+            R.drawable.hjy_leek,
+            R.drawable.hjy_lettuce,
+            R.drawable.hjy_loveapple,
+            R.drawable.hjy_mushroom,
+            R.drawable.hjy_potapo,
+            R.drawable.hjy_pumpkin,
+            R.drawable.hjy_rice,
+            R.drawable.hjy_shrimp, };
 
-    public hjy_adapter(Context ctx)
-    {
+    public hjy_adapter(Context ctx) {
         this.ctx = ctx;
     }
+
     @Override
-    public int getCount()
-    {
-        return images . length ;
+    public int getCount() {
+        return images.length;
     }
+
     @Override
-    public Object getItem( int position)
-    {
-        return images [position];
+    public Object getItem(int position) {
+        return images[position];
     }
+
     @Override
-    public long getItemId( int position)
-    {
-        return images [position];
+    public long getItemId(int position) {
+        return images[position];
     }
+
     @Override
-    public View getView( int position, View convertView, ViewGroup parent)
-    {
-        // 将 convertView 赋给 view
+    public View getView(int position, View convertView, ViewGroup parent) {
         ImageView view = (ImageView) convertView;
-        if (view == null )                             // 如果 view 为空
-        {
-            view = new ImageView( ctx );     // 就新建一个
+        if (view == null) {
+            view = new ImageView(ctx);
         }
-        // 否则就是用已经存在的 convertView 。
-        // 上面做法可以大幅度提高程序运行性能 ， 也可以减少内存的使用 ， 尤其在 Gallery 对象
-        // 中有很多 item 的时候
-        // 设定显示图片
-        view.setImageResource( images [position]);
-        // 设定每个图片的显示大小
-        view.setLayoutParams( new Gallery.LayoutParams(160, 160));
-        //view.setScaleType(ImageView.ScaleType.FIT_XY);
-        // 这个是维持图片原始大小
-        // 设定图片缩放：即在上面规定的大小中进行显示，并且居中
-        view.setScaleType(ImageView.ScaleType. CENTER_INSIDE );
+        view.setImageResource(images[position]);
+        view.setLayoutParams(new Gallery.LayoutParams(300, 300));
+        view.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         return view;
     }
 }

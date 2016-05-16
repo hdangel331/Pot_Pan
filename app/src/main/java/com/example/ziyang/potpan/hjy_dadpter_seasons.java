@@ -15,15 +15,20 @@ import android.widget.ImageView;
 public class hjy_dadpter_seasons extends BaseAdapter {
     private Context ctx;
     private int[] images = {
-            R.drawable.hjy_x1,
-            R.drawable.hjy_x2,
-            R.drawable.hjy_x3,
-            R.drawable.hjy_x4,
-            R.drawable.hjy_x5,
-            R.drawable.hjy_x6,
-            R.drawable.hjy_x7,
-            R.drawable.hjy_x8,
-            R.drawable.hjy_x9,};
+            R.drawable.hjy_s_chilli,
+            R.drawable.hjy_s_cinnamon,
+            R.drawable.hjy_s_cumin,
+            R.drawable.hjy_s_curry,
+            R.drawable.hjy_s_garlic,
+            R.drawable.hjy_s_ginger,
+            R.drawable.hjy_s_onion,
+            R.drawable.hjy_s_rosemary,
+            R.drawable.hjy_s_salt,
+            R.drawable.hjy_s_shallot,
+            R.drawable.hjy_s_soysauce,
+            R.drawable.hjy_s_staranise,
+            R.drawable.hjy_s_sugar,
+            R.drawable.hjy_s_tsaoko,};
 
     public hjy_dadpter_seasons(Context ctx)
     {
@@ -47,22 +52,16 @@ public class hjy_dadpter_seasons extends BaseAdapter {
     @Override
     public View getView( int position, View convertView, ViewGroup parent)
     {
-        // 将 convertView 赋给 view
+
         ImageView view = (ImageView) convertView;
-        if (view == null )                             // 如果 view 为空
+        if (view == null )
         {
-            view = new ImageView( ctx );     // 就新建一个
+            view = new ImageView( ctx );
         }
-        // 否则就是用已经存在的 convertView 。
-        // 上面做法可以大幅度提高程序运行性能 ， 也可以减少内存的使用 ， 尤其在 Gallery 对象
-        // 中有很多 item 的时候
-        // 设定显示图片
         view.setImageResource( images [position]);
-        // 设定每个图片的显示大小
-        view.setLayoutParams( new Gallery.LayoutParams(160, 160));
-        //view.setScaleType(ImageView.ScaleType.FIT_XY);
-        // 这个是维持图片原始大小
-        // 设定图片缩放：即在上面规定的大小中进行显示，并且居中
+
+        view.setLayoutParams( new Gallery.LayoutParams(300, 300));
+
         view.setScaleType(ImageView.ScaleType. CENTER_INSIDE );
         return view;
     }
