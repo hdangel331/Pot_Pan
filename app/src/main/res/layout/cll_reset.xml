@@ -21,7 +21,7 @@
             android:layout_span="4"
             android:gravity="center"
 
-            android:text="Reset your Password"
+            android:text="Reset your Account"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#ffff4081"
             android:textSize="70px"
