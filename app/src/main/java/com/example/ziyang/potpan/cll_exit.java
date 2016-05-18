@@ -1,9 +1,10 @@
 package com.example.ziyang.potpan;
-import java.util.LinkedList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.Application;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by CandiesCLL on 2016/5/5.

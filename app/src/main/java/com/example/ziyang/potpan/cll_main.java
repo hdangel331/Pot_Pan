@@ -8,23 +8,29 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ziyang.potpan.DATABASE.MaterialDB;
-import com.example.ziyang.potpan.DATABASE.RecipeDB;
 import com.example.ziyang.potpan.DATABASE.SeasoningDB;
-import com.example.ziyang.potpan.DATABASE.UserDB;
+import com.example.ziyang.potpan.util.SocketClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.ziyang.potpan.zzy_constants.GET_PASSWORDBYACCOUNT;
+import static com.example.ziyang.potpan.zzy_constants.MATERIAL;
+import static com.example.ziyang.potpan.zzy_constants.MATERIALNAME;
+import static com.example.ziyang.potpan.zzy_constants.SEASONING;
+import static com.example.ziyang.potpan.zzy_constants.SEASONINGNAME;
 
 public class cll_main extends Activity {
 
@@ -33,16 +39,15 @@ public class cll_main extends Activity {
     private TextView create;
     private TextView retrive;
 
-    private static final String[] MATERIAL_URLS = zzy_constants.MATERIAL;
-    private static final String[] MATERIAL_NAMES = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-    private static final String[] SEASONING_URLS = zzy_constants.SEASONING;
-    private static final String[] SEASONING_NAMES = new String[]{"1", "2", "3", "4", "5"};
+    private static final String[] MATERIAL_URLS = MATERIAL;
+    private static final String[] MATERIAL_NAMES = MATERIALNAME;
+    private static final String[] SEASONING_URLS = SEASONING;
+    private static final String[] SEASONING_NAMES = SEASONINGNAME;
 
     private TextView username;
     private TextView password;
-    private int x;
-    private ArrayList<String> list1 = new ArrayList<String>();
-    private ArrayList<String> list2 = new ArrayList<String>();
+
+    private Handler myHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,46 +98,6 @@ public class cll_main extends Activity {
         }
         c2.close();
         seasoningwrite.close();
-//
-//        //再定义read
-//        SQLiteDatabase materialread2 = materialdb.getReadableDatabase();
-//        SQLiteDatabase seasoningread2 = seasoningdb.getReadableDatabase();
-//        //ReceipeDB 获取并创建一个表
-//        RecipeDB recipedb = new RecipeDB(this, "recipedb", null, 1);
-//        SQLiteDatabase recipewrite = recipedb.getWritableDatabase();
-//        recipewrite.execSQL("CREATE TABLE IF NOT EXISTS Eggswithtomatoes(_id INTEGER PRIMARY KEY AUTOINCREMENT, material STRING, seasoning STRING)");
-//
-//        //从数据库中导出一些material
-//        List<String> materiallist = new ArrayList<String>();
-//        Cursor c3 = materialread2.query("MaterialDB", new String[]{"materialurl"}, "materialname>=? AND materialname<=?", new String[]{"1", "5"}, null, null, null);
-//        while (c3.moveToNext()) {
-//            String material = c3.getString(c3.getColumnIndex("materialurl"));
-//            materiallist.add(material);
-//        }
-//        String[] MATERIAL = materiallist.toArray(new String[materiallist.size()]);
-//        //从数据库中导出一些seasoning
-//        List<String> seasoninglist = new ArrayList<String>();
-//        Cursor c4 = seasoningread2.query("SeasoningDB", new String[]{"seasoningurl"}, "seasoningname>=? AND seasoningname<=?", new String[]{"1", "5"}, null, null, null);
-//        while (c4.moveToNext()) {
-//            String seasoning = c4.getString(c4.getColumnIndex("seasoningurl"));
-//            seasoninglist.add(seasoning);
-//        }
-//        String[] SEASONING = seasoninglist.toArray(new String[seasoninglist.size()]);
-//
-//        //放入RecipeDB的表中
-//        ContentValues cv3 = new ContentValues();
-//        for (int i = 0; i < MATERIAL.length; i++) {
-//            cv3.put("material", MATERIAL[i]);
-//            recipewrite.insert("Eggswithtomatoes", null, cv3);
-//            System.out.println(MATERIAL[i]);//ssss
-//        }
-//        for (int i = 0; i < SEASONING.length; i++) {
-//            cv3.put("seasoning", SEASONING[i]);
-//            recipewrite.insert("Eggswithtomatoes", null, cv3);
-//            System.out.println(SEASONING[i]);//ssss
-//        }
-//        c3.close();
-
 
         //绑定
         username = (TextView) findViewById(R.id.UserName);
@@ -144,16 +109,44 @@ public class cll_main extends Activity {
             @Override
             public void onClick(View v) {
                 //获得输入信息
-                String UserAccount = username.getText().toString();
-                String UserPassword = password.getText().toString();
-                if(true){
-                    Intent intent = new Intent();
-                    intent.setClass(cll_main.this, wxx_main.class);
-                    intent.putExtra("useraccount", UserAccount);
-                    startActivity(intent);
-                }else {
-                    Toast.makeText(getApplicationContext(), "Wrong Account or Password",
-                            Toast.LENGTH_SHORT).show();}
+                final String UserAccount = username.getText().toString();
+                final String UserPassword = password.getText().toString();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        StringBuffer submitContent = new StringBuffer();//定义服务器
+                        submitContent.append(GET_PASSWORDBYACCOUNT + UserAccount);//将员工信息添加到字符串中
+                        SocketClient.ConnectSevert(submitContent.toString());//将员工信息传给服务器
+                        String readinfo = SocketClient.readinfo;
+                        if (readinfo.equals(UserPassword)) {
+                            Message message = new Message();
+                            message.what = 1;
+                            myHandler.sendMessage(message);
+                        } else {
+                            Message message = new Message();
+                            message.what = 2;
+                            myHandler.sendMessage(message);
+                        }
+                    }
+                }).start();
+
+                myHandler = new Handler() {
+                    public void handleMessage(Message msg) {
+                        switch (msg.what) {
+                            case 1:
+                                Intent intent = new Intent();
+                                intent.setClass(cll_main.this, wxx_main.class);
+                                intent.putExtra("useraccount", UserAccount);
+                                startActivity(intent);
+                                break;
+                            case 2:
+                                Toast.makeText(getApplicationContext(), "Wrong Account or Password",
+                                        Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                        super.handleMessage(msg);
+                    }
+                };
             }
         });
 
@@ -166,7 +159,8 @@ public class cll_main extends Activity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         cll_exit.getInstance().exit();
-                                    } }
+                                    }
+                                }
                         )
 
                         .setNegativeButton("No", null)
@@ -200,7 +194,6 @@ public class cll_main extends Activity {
         create.setMovementMethod(LinkMovementMethod.getInstance());
         retrive.setText(spannableString2);
         retrive.setMovementMethod(LinkMovementMethod.getInstance());
-
 
     }
 }

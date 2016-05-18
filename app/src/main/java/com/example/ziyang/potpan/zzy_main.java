@@ -7,40 +7,42 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.os.Handler;
+import android.os.Message;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.RelativeLayout;
 
 import com.example.ziyang.potpan.DATABASE.MaterialDB;
 import com.example.ziyang.potpan.DATABASE.SeasoningDB;
+import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import pl.droidsonroids.gif.GifImageView;
+import static com.example.ziyang.potpan.zzy_constants.GET_CONTENTBYNAME;
 
 /**
  * Created by Ziyang on 2016/4/15.
  */
-public class zzy_main extends Activity {
+public class zzy_main extends Activity implements View.OnTouchListener {
 
     private ListView listView1, listView2;
-    private ImageButton gifStart;
-    private ImageButton deleteAll;
-    private GifImageView gifimageview;
+    private Handler myHandler;
+    int screenWidth, screenHeight;
+    int lastX, lastY;
+    private ImageView image;
 
     private static String[] Material = new String[]{};
     private static String[] Seasoning = new String[]{};
@@ -50,75 +52,161 @@ public class zzy_main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zzy_main);
         cll_exit.getInstance().addActivity(this);
-
-        //MaterialDB 获取
-        MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
-        SQLiteDatabase materialread = materialdb.getReadableDatabase();
-
-        //SeasoningDB 获取
-        SeasoningDB seasoningdb = new SeasoningDB(this, "seasoningdb", null, 1);
-        SQLiteDatabase seasoningread = seasoningdb.getReadableDatabase();
-
-        //Material 读取
-        List<String> list1 = new ArrayList<String>();
-        Cursor c1 = materialread.query("MaterialDB", new String[]{"materialurl"}, null, null, null, null, null);
-        while (c1.moveToNext()) {
-            String a = c1.getString(c1.getColumnIndex("materialurl"));
-            list1.add(a);
-        }
-        Material = list1.toArray(new String[list1.size()]);
-        c1.close();
-
-        //Material 读取
-        List<String> list2 = new ArrayList<String>();
-        Cursor c2 = seasoningread.query("SeasoningDB", new String[]{"seasoningurl"}, null, null, null, null, null);
-        while (c2.moveToNext()) {
-            String b = c2.getString(c2.getColumnIndex("seasoningurl"));
-            list2.add(b);
-        }
-        Seasoning = list2.toArray(new String[list2.size()]);
-        c2.close();
-
-        //初始化
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
-
-        //放入ListView1
         listView1 = (ListView) findViewById(R.id.listview1);
-        listView1.setAdapter(new ImageAdapter1(this));
-
-        //放入ListView1
         listView2 = (ListView) findViewById(R.id.listview2);
-        listView2.setAdapter(new ImageAdapter2(this));
 
-        gifimageview = (GifImageView) findViewById(R.id.eggs);
+        Display dis = this.getWindowManager().getDefaultDisplay();
+        screenWidth = dis.getWidth();
+        screenHeight = dis.getHeight();
+
+        //获取账户
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String RecipeName = bundle.getString("recipename");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuffer submitContent = new StringBuffer();//定义服务器
+                submitContent.append(GET_CONTENTBYNAME + RecipeName);//将信息添加到字符串中
+                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                String readinfo = SocketClient.readinfo;
+                Message message = new Message();
+                message.obj = readinfo;
+                message.what = 1;
+                myHandler.sendMessage(message);
+            }
+        }).start();
+
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        gifimageview.setVisibility(View.VISIBLE);
+                RelativeLayout processLayout = (RelativeLayout) findViewById(R.id.processLayout);
+                image = new ImageView(zzy_main.this);
+                ImageLoader imageLoader = ImageLoader.getInstance();
+                imageLoader.displayImage("http://i2.buimg.com/ccebf2760ee5ec39.png", image);
+                RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                image.setOnTouchListener(zzy_main.this);
+                lp1.leftMargin = 100;
+                lp1.topMargin = 100;
+                processLayout.addView(image,lp1);
+            }
+        });
+
+        myHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        List<String[]> list = new ArrayList<String[]>();
+                        String info = (String) msg.obj;
+                        String[] str1 = info.split("#");
+                        for (int i = 0; i < str1.length; i++) {
+                            if (str1[i].length() > 0) {
+                                list.add(str1[i].split("η"));
+                            }
+                        }
+                        String[] material = new String[list.size()];
+                        String[] seasoning = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            String[] str = list.get(i);
+                            material[i] = str[0];
+                            seasoning[i] = str[1];
+                        }
+                        zzy_data.setD(material);
+                        zzy_data.setE(seasoning);
+                        String[] materiallist = zzy_data.getD();
+                        String[] seasoninglist = zzy_data.getE();
+
+                        //MaterialDB 获取
+                        MaterialDB materialdb = new MaterialDB(zzy_main.this, "materialdb", null, 1);
+                        SQLiteDatabase materialread = materialdb.getReadableDatabase();
+
+                        //SeasoningDB 获取
+                        SeasoningDB seasoningdb = new SeasoningDB(zzy_main.this, "seasoningdb", null, 1);
+                        SQLiteDatabase seasoningread = seasoningdb.getReadableDatabase();
+
+                        //Material 读取
+                        List<String> list1 = new ArrayList<String>();
+                        for (int i = 0; i < materiallist.length; i++) {
+                            Cursor c1 = materialread.query("MaterialDB", new String[]{"materialurl"}, "materialname=?", new String[]{materiallist[i]}, null, null, null);
+                            while (c1.moveToNext()) {
+                                String a = c1.getString(c1.getColumnIndex("materialurl"));
+                                list1.add(a);
+                            }
+                            c1.close();
+                        }
+                        Material = list1.toArray(new String[list1.size()]);
+
+                        //Material 读取
+                        List<String> list2 = new ArrayList<String>();
+                        for (int i = 0; i < seasoninglist.length; i++) {
+                            Cursor c2 = seasoningread.query("SeasoningDB", new String[]{"seasoningurl"}, "seasoningname=?", new String[]{seasoninglist[i]}, null, null, null);
+                            while (c2.moveToNext()) {
+                                String b = c2.getString(c2.getColumnIndex("seasoningurl"));
+                                list2.add(b);
+                            }
+                            c2.close();
+                        }
+                        Seasoning = list2.toArray(new String[list2.size()]);
+
+                        //初始化
+                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(zzy_main.this).build();
+                        ImageLoader.getInstance().init(config);
+                        listView1.setAdapter(new ImageAdapter1(zzy_main.this));
+                        listView2.setAdapter(new ImageAdapter2(zzy_main.this));
+
                         break;
                 }
+                super.handleMessage(msg);
             }
-        });
+        };
+    }
 
-        //zzy_start
-        gifStart = (ImageButton) findViewById(R.id.gifstart);
-        gifStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                lastX = (int) event.getRawX();
+                lastY = (int) event.getRawY();
 
-        //zzy_delete
-        deleteAll = (ImageButton) findViewById(R.id.deleteall);
-        deleteAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+                break;
 
+            case MotionEvent.ACTION_MOVE:
+                int dx = (int) event.getRawX() - lastX;
+                int dy = (int) event.getRawY() - lastY;
+
+                int top = v.getTop() + dy;
+
+                int left = v.getLeft() + dx;
+
+
+                if (top <= 0) {
+                    top = 0;
+                }
+                if (top >= screenHeight - image.getHeight()) {
+                    top = screenHeight - image.getHeight();
+                }
+                if (left >= screenWidth - image.getWidth()) {
+                    left = screenWidth - image.getWidth();
+                }
+
+                if (left <= 0) {
+                    left = 0;
+                }
+
+
+                v.layout(left, top, left + image.getWidth(), top + image.getHeight());
+                lastX = (int) event.getRawX();
+                lastY = (int) event.getRawY();
+
+                break;
+            case MotionEvent.ACTION_UP:
+
+                break;
+
+
+        }
+        return false;
     }
 
 
@@ -181,29 +269,10 @@ public class zzy_main extends Activity {
         ImageView imageview;
     }
 
-//    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
-//
-//        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
-//
-//        @Override
-//        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//            if (loadedImage != null) {
-//                ImageView imageView = (ImageView) view;
-//                boolean firstDisplay = !displayedImages.contains(imageUri);
-//                if (firstDisplay) {
-//                    FadeInBitmapDisplayer.animate(imageView, 500);
-//                    displayedImages.add(imageUri);
-//                }
-//            }
-//        }
-//    }
-
-
     //第二个适配器！！！
     private static class ImageAdapter2 extends BaseAdapter {
 
         private LayoutInflater inflater;
-//        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
 
         private DisplayImageOptions options;
 

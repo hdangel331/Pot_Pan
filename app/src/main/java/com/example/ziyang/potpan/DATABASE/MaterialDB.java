@@ -1,16 +1,8 @@
 package com.example.ziyang.potpan.DATABASE;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-
-import com.example.ziyang.potpan.R;
-
-import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Ziyang on 2016/4/13.

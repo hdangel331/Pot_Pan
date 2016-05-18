@@ -2,8 +2,11 @@ package com.example.ziyang.potpan;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,35 +17,126 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.ziyang.potpan.zzy_constants.ADD_RECIPEFROMLIB;
+import static com.example.ziyang.potpan.zzy_constants.GET_LIB;
+
 public class hjy_lib extends Activity {
+
+    private Handler myHandler;
+    ListView listView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hjy_fromlib);
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
-        ListView listView = (ListView) findViewById(R.id.list);
-        listView.setAdapter(new ListViewAdapter(this));
+        listView = (ListView) findViewById(R.id.list);
         cll_exit.getInstance().addActivity(this);
+
+        //获取账户
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String ACCOUNT = bundle.getString("account");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuffer submitContent = new StringBuffer();//定义服务器
+                submitContent.append(GET_LIB);//将信息添加到字符串中
+                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                String readinfo = SocketClient.readinfo;
+                Message message = new Message();
+                message.obj = readinfo;
+                message.what = 1;
+                myHandler.sendMessage(message);
+            }
+        }).start();
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText ( hjy_lib.this , "Position = " + position, Toast. LENGTH_SHORT ).show();
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] Name = zzy_data.getF();
+                        String[] Url = zzy_data.getG();
+
+                        StringBuffer submitContent = new StringBuffer();//定义服务器
+                        submitContent.append(ADD_RECIPEFROMLIB + ACCOUNT + ADD_RECIPEFROMLIB + Name[position] + ADD_RECIPEFROMLIB + Url[position]);//将信息添加到字符串中
+                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                        String readinfo = SocketClient.readinfo;
+                        if (readinfo.equals("ok")) {
+                            Message message = new Message();
+                            message.what = 2;
+                            myHandler.sendMessage(message);
+                        } else {
+                            Message message = new Message();
+                            message.what = 3;
+                            myHandler.sendMessage(message);
+                        }
+                    }
+                }).start();
             }
         });
+
+        myHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        List<String[]> list = new ArrayList<String[]>();
+                        String info = (String) msg.obj;
+                        String[] str1 = info.split("#");
+                        for (int i = 0; i < str1.length; i++) {
+                            if (str1[i].length() > 0) {
+                                list.add(str1[i].split("η"));
+                            }
+                        }
+                        String[] name = new String[list.size()];
+                        String[] url = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            String[] str = list.get(i);
+                            name[i] = str[0];
+                            url[i] = str[1];
+                        }
+                        zzy_data.setF(name);
+                        zzy_data.setG(url);
+
+                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(hjy_lib.this).build();
+                        ImageLoader.getInstance().init(config);
+                        listView.setAdapter(new ListViewAdapter(hjy_lib.this));
+                        break;
+                    case 2:
+                        Intent intent = new Intent();
+                        intent.putExtra("useraccount", ACCOUNT);
+                        intent.setClass(hjy_lib.this, wxx_main.class);
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        Toast.makeText(getApplicationContext(), "This recipe already exists.",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+        };
+
     }
 
     private static class ListViewAdapter extends BaseAdapter {
 
         private LayoutInflater inflater;
-        private static final String[] library = zzy_constants.library;
-        private static final String[] name = new String[]{"diyige","dierge","disange","disige","diwuge","diliuge","diqige","dibage"};
+        private static String[] library = zzy_data.getG();
+        private static String[] name = zzy_data.getF();
+//        private static final String[] library = zzy_constants.library;
+//        private static final String[] name = new String[]{"diyige","dierge","disange","disige","diwuge","diliuge","diqige","dibage"};
         private DisplayImageOptions options;
 
 
