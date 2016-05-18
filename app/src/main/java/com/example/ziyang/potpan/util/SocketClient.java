@@ -3,11 +3,15 @@ package com.example.ziyang.potpan.util;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-import static com.example.ziyang.potpan.zzy_constants.*;
+import static com.example.ziyang.potpan.zzy_constants.IP;
+import static com.example.ziyang.potpan.zzy_constants.POINT;
+import static com.example.ziyang.potpan.zzy_constants.SOCKET_ERROR;
+import static com.example.ziyang.potpan.zzy_constants.SOCKET_IOERROR;
+
 /**
  * Created by Ziyang on 2016/5/11.
  */
@@ -22,8 +26,9 @@ public class SocketClient {
     //发送字符串
     public static void ConnectSevert(String info) {
         try {
-            s = new Socket();
-            s.connect(new InetSocketAddress(IP, POINT), 5000);
+            InetAddress serverAddr = InetAddress.getByName(IP);
+            s = new Socket(serverAddr,9999);
+//            s.connect(new InetSocketAddress(IP, POINT), 5000);
         } catch (SocketTimeoutException e) {
             if (!s.isConnected()) {
                 readinfo = SOCKET_ERROR;

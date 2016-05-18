@@ -1,33 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container2"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_gravity="center"
-        android:src="@drawable/zzy_pot" />
+    <RelativeLayout
+        android:id="@+id/processLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:text="P&amp;P"
-        android:textColor="@color/name"
-        android:textSize="100sp"
-        android:textStyle="bold|italic"
-        android:typeface="serif" />
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/listview1"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="5dp"
+        android:layout_gravity="start"
         android:divider="#00000000"
         android:dividerHeight="10dp"
         android:scrollbars="none" />
@@ -36,36 +24,26 @@
         android:id="@+id/listview2"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="5dp"
+
+        android:layout_gravity="end"
         android:divider="#00000000"
         android:dividerHeight="10dp"
         android:scrollbars="none" />
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/eggs"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <!--<ImageButton-->
+        <!--android:id="@+id/gifstart"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginLeft="240dp"-->
+        <!--android:layout_marginTop="400dp"-->
+        <!--android:background="@drawable/zzy_start" />-->
 
-        android:layout_marginTop="230dp"
-        android:layout_marginLeft="140dp"
-        android:src="@drawable/eggs"
-        android:visibility="invisible"/>
+    <!--<ImageButton-->
+        <!--android:id="@+id/deleteall"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginLeft="80dp"-->
+        <!--android:layout_marginTop="400dp"-->
+        <!--android:background="@drawable/zzy_delete" />-->
 
-    <ImageButton
-        android:id="@+id/gifstart"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/zzy_start" />
-
-    <ImageButton
-        android:id="@+id/deleteall"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="400dp"
-        android:background="@drawable/zzy_delete" />
-
-</FrameLayout>
+</android.support.v4.widget.DrawerLayout>

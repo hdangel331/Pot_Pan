@@ -3,14 +3,8 @@ package com.example.ziyang.potpan;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.example.ziyang.potpan.R;
 
 /**
  * Created by CandiesCLL on 2016/4/19.

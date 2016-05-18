@@ -6,143 +6,177 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Self Design"
-        android:textColor="#fc570a"
-        android:textSize="40dp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/recipename"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recipe name:"
-        android:textColor="#000000" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Self Design"
+                android:textColor="#fc570a"
+                android:textSize="40dp" />
 
-    <EditText
-        android:id="@+id/editRecipeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Input recipe name"
-        android:textColor="#000000"
-        android:textColorHint="#cec1c1" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Food material"
-        android:textColor="#000000" />
-
-    <Gallery
-        android:id="@+id/galleryM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Seasoner"
-        android:textColor="#000000" />
-
-    <Gallery
-        android:id="@+id/galleryS"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This is your recipe: "
-        android:textColor="#000000" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recipe name: "
-        android:textColor="#000000"
-        android:textSize="50px" />
-
-    <TextView
-        android:id="@+id/outputName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="50px" />
+            <TextView
+                android:id="@+id/recipename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe name:"
+                android:textColor="#000000" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="You chose these materials: "
-        android:textColor="#000000"
-        android:textSize="50px" />
+            <EditText
+                android:id="@+id/editRecipeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Input recipe name"
+                android:textColor="#000000"
+                android:textColorHint="#cec1c1" />
 
-    <TextView
-        android:id="@+id/outputMaterials"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="50px" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food material"
+                android:textColor="#000000" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="You chose these seasoners: "
-        android:textColor="#000000"
-        android:textSize="50px" />
+            <Gallery
+                android:id="@+id/galleryM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/outputSeasons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="50px" />
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Seasoner"
+                android:textColor="#000000" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <Gallery
+                android:id="@+id/galleryS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/cancelRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_weight="1"
-            android:background="@drawable/cll_bg3"
-            android:text="Cancel."
-            android:textAlignment="center"
-            android:textSize="40px"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is your recipe: "
+                android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/createRecipe"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:layout_weight="1"
-            android:background="@drawable/cll_bg3"
-            android:text="Create!"
-            android:textAlignment="center"
-            android:textSize="40px"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recipe name: "
+                android:textColor="#000000"
+                android:textSize="50px" />
+
+            <TextView
+                android:id="@+id/outputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="50px" />
 
 
-    </TableRow>
-</LinearLayout>
-</ScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You chose these materials: "
+                android:textColor="#000000"
+                android:textSize="50px" />
+
+            <TextView
+                android:id="@+id/outputMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="50px" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You chose these seasoners: "
+                android:textColor="#000000"
+                android:textSize="50px" />
+
+            <TextView
+                android:id="@+id/outputSeasons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="50px" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/cancelRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/cll_bg3"
+                    android:text="Cancel."
+                    android:textAlignment="center"
+                    android:textSize="40px"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/createRecipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/cll_bg3"
+                    android:text="Finish"
+                    android:textAlignment="center"
+                    android:textSize="40px"
+                    android:textStyle="bold" />
+
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/changeMaterial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/cll_bg3"
+                    android:text="changeMaterial"
+                    android:textAlignment="center"
+                    android:textSize="40px"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/changeSeasoning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/cll_bg3"
+                    android:text="changeSeasoning"
+                    android:textAlignment="center"
+                    android:textSize="40px"
+                    android:textStyle="bold" />
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

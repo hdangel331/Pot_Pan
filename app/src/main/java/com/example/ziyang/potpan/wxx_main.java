@@ -4,12 +4,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
+import android.os.Handler;
+import android.os.Message;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +22,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.ziyang.potpan.DATABASE.UserDB;
+import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -34,9 +34,9 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Ziyang on 2016/4/15.
- */
+import static com.example.ziyang.potpan.zzy_constants.DELETE_RECIPE;
+import static com.example.ziyang.potpan.zzy_constants.GET_RECIPEBYACCOUNT;
+
 public class wxx_main extends Activity {
 
     private GridView gridview;
@@ -44,18 +44,20 @@ public class wxx_main extends Activity {
     private Context mContext = null;
 
     //侧滑变量
-    private DrawerLayout drawerlayout;
     private ListView listview;
     private ArrayList<String> menulist;
     private ArrayAdapter<String> adapter;
 
-    //
-    private static List<String> list = new ArrayList<String>();
+    private Handler myHandler;
+    private Thread thread1;
+    private Thread thread2;
+    private ImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_main);
+        gridview = (GridView) findViewById(R.id.gridview);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
         buttonlast.setOnClickListener(new View.OnClickListener() {
@@ -66,42 +68,43 @@ public class wxx_main extends Activity {
         });
         cll_exit.getInstance().addActivity(this);
 
-//        //获取账户
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//        String ACCOUNT =bundle.getString("useraccount");
-//
-//        //读用户数据
-//        UserDB userdb = new UserDB(this);
-//        SQLiteDatabase userread = userdb.getReadableDatabase();
-//        Cursor c = userread.query(ACCOUNT,new String[]{"recipename"},null,null,null,null,null);
-//        while (c.moveToNext()){
-//            String a = c.getString(c.getColumnIndex("recipename"));
-//            list.add(a);
-//        };
-//        System.out.println(list.get(0));
-//        System.out.println(list.get(1));
-//        System.out.println(list.get(2));
-        list.add("Eggs and Tomatoes");
-        list.add("Steak");
-        list.add("Squirrel-shaped Mandarin Fish");
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String[] Name = zzy_data.getB();
+                Intent intent = new Intent();
+                intent.putExtra("recipename", Name[position]);
+                intent.setClass(wxx_main.this, zzy_main.class);
+                startActivity(intent);
+            }
+        });
+
+        //在这里写长按事件
+        gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                showLongPopupWindow(view, position);
+                return true;
+            }
+        });
 
 
         //策划界面布局填充
-        drawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listview = (ListView) findViewById(R.id.left_drawer);
         menulist = new ArrayList<String>();
         menulist.add("About Pot&Pan");//Functions
         menulist.add("Help");//界面搞完截图弄上去,how to use this app
         menulist.add("Feedback");
         menulist.add("Log out");
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,menulist);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menulist);
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0:Intent intent = new Intent();
+                    case 0:
+                        Intent intent = new Intent();
                         intent.setClass(wxx_main.this, wxx_AboutUs22.class);
                         startActivity(intent);
                         break;
@@ -120,53 +123,74 @@ public class wxx_main extends Activity {
                         intent3.setClass(wxx_main.this, cll_main.class);
                         startActivity(intent3);
                         break;
-
                 }
             }
         });
 
-        //初始化
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
-        ImageLoader.getInstance().init(config);
+        myHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        List<String[]> list = new ArrayList<String[]>();
+                        String info = (String) msg.obj;
+                        String[] str1 = info.split("#");
+                        for (int i = 0; i < str1.length; i++) {
+                            if (str1[i].length() > 0) {
+                                list.add(str1[i].split("η"));
+                            }
+                        }
+                        String[] name = new String[list.size()];
+                        String[] url = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            String[] str = list.get(i);
+                            name[i] = str[0];
+                            url[i] = str[1];
+                        }
+                        zzy_data.setB(name);
+                        zzy_data.setC(url);
 
-        gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setClass(wxx_main.this, zzy_main.class);
-                startActivity(intent);
+                        String[] a = zzy_data.getC();
+                        String[] b = zzy_data.getB();
+
+                        //初始化
+                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
+                        ImageLoader.getInstance().init(config);
+                        imageAdapter = new ImageAdapter(wxx_main.this);
+                        gridview.setAdapter(imageAdapter);
+                        break;
+                    case 2:
+                        Toast.makeText(getApplicationContext(), "Delete Success",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(getApplicationContext(), "Delete Fail",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                super.handleMessage(msg);
             }
-        });
-
-        //在这里写长按事件
-        gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-                showLongPopupWindow(view);
-                return true;
-            }
-        });
-
+        };
     }
 
     private void showPopupWindow(View view) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.hjy_popuplayout, null);
-        Button button = (Button) contentView.findViewById(R.id.deg);
-        Button thebutton = (Button) contentView.findViewById(R.id.lib);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button designRecipe = (Button) contentView.findViewById(R.id.deg);
+        Button addRecipe = (Button) contentView.findViewById(R.id.lib);
+        designRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra("recipename", "");
+                intent.putExtra("accountname", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_main.class);
                 startActivity(intent);
             }
         });
-        thebutton.setOnClickListener(new View.OnClickListener() {
+        addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra("account", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_lib.class);
                 startActivity(intent);
             }
@@ -180,24 +204,44 @@ public class wxx_main extends Activity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
-    private void showLongPopupWindow(View view) {
+    private void showLongPopupWindow(View view, final int position) {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.hjy_longpopuplayout, null);
-        Button button = (Button) contentView.findViewById(R.id.edtExist);
-        Button thebutton = (Button) contentView.findViewById(R.id.del);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button editRecipe = (Button) contentView.findViewById(R.id.edtExist);
+        Button deleteRecipe = (Button) contentView.findViewById(R.id.del);
+        editRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
+                intent.putExtra("recipename", Name[position]);
+                intent.putExtra("accountname", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_main.class);
                 startActivity(intent);
             }
         });
-        thebutton.setOnClickListener(new View.OnClickListener() {
+        deleteRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(wxx_main.this, hjy_lib.class);
-                startActivity(intent);
+                thread2 = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] Name = zzy_data.getB();
+                        StringBuffer submitContent = new StringBuffer();//定义服务器
+                        submitContent.append(DELETE_RECIPE + zzy_data.getA() + DELETE_RECIPE + Name[position]);//将信息添加到字符串中
+                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                        String readinfo = SocketClient.readinfo;
+                        if (readinfo.equals("ok")) {
+                            Message message = new Message();
+                            message.what = 2;
+                            myHandler.sendMessage(message);
+                        } else {
+                            Message message = new Message();
+                            message.what = 3;
+                            myHandler.sendMessage(message);
+                        }
+                    }
+                });
+                thread2.start();
             }
         });
         final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
@@ -212,8 +256,8 @@ public class wxx_main extends Activity {
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
 
-        private static final String[] Recipes = zzy_constants.START;
-        private static final String[] Name = list.toArray(new String[list.size()]);
+        private static String[] Recipes = zzy_data.getC();
+        private static String[] Name = zzy_data.getB();
         private LayoutInflater inflater;
         private DisplayImageOptions options;
 
@@ -249,7 +293,8 @@ public class wxx_main extends Activity {
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewHolder holder;
             View view = convertView;
-            if (view == null) {                view = inflater.inflate(R.layout.wxx_gridview, parent, false);
+            if (view == null) {
+                view = inflater.inflate(R.layout.wxx_gridview, parent, false);
                 holder = new ViewHolder();
                 assert view != null;
                 holder.imageview = (ImageView) view.findViewById(R.id.recipe);
@@ -268,5 +313,44 @@ public class wxx_main extends Activity {
     static class ViewHolder {
         ImageView imageview;
         TextView textview;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //获取账户
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String ACCOUNT = bundle.getString("useraccount");
+        zzy_data.setA(ACCOUNT);
+
+        thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuffer submitContent = new StringBuffer();//定义服务器
+                submitContent.append(GET_RECIPEBYACCOUNT + ACCOUNT);//将信息添加到字符串中
+                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                String readinfo = SocketClient.readinfo;
+                Message message = new Message();
+                message.obj = readinfo;
+                message.what = 1;
+                myHandler.sendMessage(message);
+            }
+        });
+        thread1.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (thread1 != null) {
+            thread1.interrupt();// 中断线程
+            thread1 = null;
+        }
+        if (thread2 != null) {
+            thread2.interrupt();// 中断线程
+            thread2 = null;
+        }
+        super.onDestroy();
     }
 }
