@@ -31,11 +31,10 @@ import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ziyang.potpan.zzy_constants.GET_CONTENTBYNAME;
+import pl.droidsonroids.gif.GifImageView;
 
-/**
- * Created by Ziyang on 2016/4/15.
- */
+import static com.example.ziyang.potpan.zzy_constants.*;
+
 public class zzy_main extends Activity implements View.OnTouchListener {
 
     private ListView listView1, listView2;
@@ -43,6 +42,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
     int screenWidth, screenHeight;
     int lastX, lastY;
     private ImageView image;
+    private GifImageView white;
 
     private static String[] Material = new String[]{};
     private static String[] Seasoning = new String[]{};
@@ -86,10 +86,20 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                 ImageLoader imageLoader = ImageLoader.getInstance();
                 imageLoader.displayImage("http://i2.buimg.com/ccebf2760ee5ec39.png", image);
                 RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                lp1.leftMargin = 400;
+                lp1.topMargin = 600;
+                processLayout.addView(image, lp1);
+                image.setClickable(true);
                 image.setOnTouchListener(zzy_main.this);
-                lp1.leftMargin = 100;
-                lp1.topMargin = 100;
-                processLayout.addView(image,lp1);
+            }
+        });
+
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                white = (GifImageView) findViewById(R.id.white);
+                white.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -174,11 +184,8 @@ public class zzy_main extends Activity implements View.OnTouchListener {
             case MotionEvent.ACTION_MOVE:
                 int dx = (int) event.getRawX() - lastX;
                 int dy = (int) event.getRawY() - lastY;
-
                 int top = v.getTop() + dy;
-
                 int left = v.getLeft() + dx;
-
 
                 if (top <= 0) {
                     top = 0;
@@ -193,7 +200,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                 if (left <= 0) {
                     left = 0;
                 }
-
 
                 v.layout(left, top, left + image.getWidth(), top + image.getHeight());
                 lastX = (int) event.getRawX();

@@ -21,7 +21,6 @@ public class cll_reset extends Activity {
     private Button completebutton;
     private TextView account;
     private TextView Npassword;
-    private TextView Rpassword;
     private Handler myHandler;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,6 @@ public class cll_reset extends Activity {
         //绑定
         account = (TextView) findViewById(R.id.User);
         Npassword = (TextView) findViewById(R.id.ResetP);
-        Rpassword = (TextView) findViewById(R.id.RetypeP);
 
         completebutton = (Button) findViewById(R.id.complete);
         completebutton.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +39,6 @@ public class cll_reset extends Activity {
                 //获得输入信息
                 String UserAccount = account.getText().toString();
                 String NewPassword = Npassword.getText().toString();
-                String RPassword = Rpassword.getText().toString();
 
                 final String value[] = new String[2];
                 value[0] = UserAccount;

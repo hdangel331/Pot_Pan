@@ -7,7 +7,17 @@
     <RelativeLayout
         android:id="@+id/processLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/pot1">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/white"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/white"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
 

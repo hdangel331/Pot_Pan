@@ -68,22 +68,8 @@
             android:singleLine="true"
             android:textSize="40px" />
 
-        <AutoCompleteTextView
-            android:id="@+id/RetypeP"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="140dp"
-            android:background="@color/fblack"
-            android:hint="Retype New Password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="40px" />
 
     </RelativeLayout>
-    >
 
 
     <TableRow android:layout_marginTop="50px">
