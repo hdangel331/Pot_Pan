@@ -7,7 +7,33 @@
     <RelativeLayout
         android:id="@+id/processLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/pot1">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/white"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/white"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:id="@+id/gifstart"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="280dp"
+            android:layout_marginTop="550dp"
+            android:background="@drawable/zzy_start" />
+
+        <ImageButton
+            android:id="@+id/deleteall"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="550dp"
+            android:background="@drawable/zzy_delete" />
 
     </RelativeLayout>
 
@@ -29,21 +55,5 @@
         android:divider="#00000000"
         android:dividerHeight="10dp"
         android:scrollbars="none" />
-
-    <!--<ImageButton-->
-        <!--android:id="@+id/gifstart"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_marginLeft="240dp"-->
-        <!--android:layout_marginTop="400dp"-->
-        <!--android:background="@drawable/zzy_start" />-->
-
-    <!--<ImageButton-->
-        <!--android:id="@+id/deleteall"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_marginLeft="80dp"-->
-        <!--android:layout_marginTop="400dp"-->
-        <!--android:background="@drawable/zzy_delete" />-->
 
 </android.support.v4.widget.DrawerLayout>

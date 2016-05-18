@@ -2,11 +2,8 @@ package com.example.ziyang.potpan;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,34 +16,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ziyang.potpan.DATABASE.MaterialDB;
-import com.example.ziyang.potpan.DATABASE.SeasoningDB;
 import com.example.ziyang.potpan.util.SocketClient;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.ziyang.potpan.zzy_constants.GET_PASSWORDBYACCOUNT;
-import static com.example.ziyang.potpan.zzy_constants.MATERIAL;
-import static com.example.ziyang.potpan.zzy_constants.MATERIALNAME;
-import static com.example.ziyang.potpan.zzy_constants.SEASONING;
-import static com.example.ziyang.potpan.zzy_constants.SEASONINGNAME;
+import static com.example.ziyang.potpan.zzy_constants.*;
 
 public class cll_main extends Activity {
 
-    private Button loginbutton;
-    private Button Quit;
-    private TextView create;
-    private TextView retrive;
-
-    private static final String[] MATERIAL_URLS = MATERIAL;
-    private static final String[] MATERIAL_NAMES = MATERIALNAME;
-    private static final String[] SEASONING_URLS = SEASONING;
-    private static final String[] SEASONING_NAMES = SEASONINGNAME;
-
-    private TextView username;
-    private TextView password;
-
+    private Button loginbutton, Quit;
+    private TextView create, retrive, username, password;
     private Handler myHandler;
 
     @Override
@@ -54,50 +31,6 @@ public class cll_main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_main);
         cll_exit.getInstance().addActivity(this);
-        //MaterialDB 获取
-        MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
-        SQLiteDatabase materialwrite = materialdb.getWritableDatabase();
-        SQLiteDatabase materialread1 = materialdb.getReadableDatabase();
-        //SeasoningDB 获取
-        SeasoningDB seasoningdb = new SeasoningDB(this, "seasoningdb", null, 1);
-        SQLiteDatabase seasoningwrite = seasoningdb.getWritableDatabase();
-        SQLiteDatabase seasoningread1 = seasoningdb.getReadableDatabase();
-
-
-        //MaterialDB 先判断再写入
-        final List<String> list3 = new ArrayList<String>();
-        Cursor c1 = materialread1.query("MaterialDB", new String[]{"materialurl"}, null, null, null, null, null);
-        while (c1.moveToNext()) {
-            String a = c1.getString(c1.getColumnIndex("materialurl"));
-            list3.add(a);
-        }
-        if (list3.size() < 1) {
-            ContentValues cv1 = new ContentValues();
-            for (int i = 0; i < MATERIAL_URLS.length; i++) {
-                cv1.put("materialname", MATERIAL_NAMES[i]);
-                cv1.put("materialurl", MATERIAL_URLS[i]);
-                materialwrite.insert("MaterialDB", null, cv1);
-            }
-        }
-        c1.close();
-        materialwrite.close();
-        //SeasoningDB 先判断再写入
-        final List<String> list4 = new ArrayList<String>();
-        Cursor c2 = seasoningread1.query("SeasoningDB", new String[]{"seasoningurl"}, null, null, null, null, null);
-        while (c2.moveToNext()) {
-            String b = c2.getString(c2.getColumnIndex("seasoningurl"));
-            list4.add(b);
-        }
-        if (list4.size() < 1) {
-            ContentValues cv2 = new ContentValues();
-            for (int i = 0; i < SEASONING_URLS.length; i++) {
-                cv2.put("seasoningname", SEASONING_NAMES[i]);
-                cv2.put("seasoningurl", SEASONING_URLS[i]);
-                seasoningwrite.insert("SeasoningDB", null, cv2);
-            }
-        }
-        c2.close();
-        seasoningwrite.close();
 
         //绑定
         username = (TextView) findViewById(R.id.UserName);
@@ -162,7 +95,6 @@ public class cll_main extends Activity {
                                     }
                                 }
                         )
-
                         .setNegativeButton("No", null)
                         .show();
             }
