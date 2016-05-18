@@ -32,6 +32,7 @@ public class hjy_main extends Activity  {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+
         cll_exit.getInstance().addActivity(this);
         super .onCreate(savedInstanceState);
         setContentView(R.layout.hjy_main );
