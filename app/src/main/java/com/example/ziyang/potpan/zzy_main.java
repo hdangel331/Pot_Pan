@@ -99,7 +99,12 @@ public class zzy_main extends Activity implements View.OnTouchListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 white = (GifImageView) findViewById(R.id.white);
                 white.setVisibility(View.VISIBLE);
-
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        white.setVisibility(View.INVISIBLE);
+                    }
+                },2500);
             }
         });
 

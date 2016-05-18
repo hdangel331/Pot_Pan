@@ -25,39 +25,41 @@ public final class zzy_constants {
     public static final String ADD_SEASONING = "ADD_SEASONING";
 
     public static final String[] MATERIAL = new String[]{
-            "http://i2.buimg.com/ccebf2760ee5ec39.png",    //egg
-            "http://i2.buimg.com/a1a733d24c87d951.png",    //tomato
-            "http://i2.buimg.com/02aececc3194a73d.png",  //carrot
-            "http://i2.buimg.com/e204c8b19e7425ad.png", //bacon
-            "http://i2.buimg.com/a4d6736c45a7ef10.png",  //balsam pear
-            "http://i2.buimg.com/7926487278c89b89.png", //beef
-            "http://i2.buimg.com/bf3cd546397eac7a.png",    //shrimp
-            "http://i2.buimg.com/996581671bc2a3af.png",    //mushroom
-            "http://i2.buimg.com/38afb5bb4f4265be.png", //celery
-            "http://i2.buimg.com/863c38cefc4ce419.png",    //rice
-            "http://i2.buimg.com/486efe144e0a1ca4.png",    //leek
-            "http://i2.buimg.com/41c062e65c5b7efe.png",    //corn
-            "http://i2.buimg.com/78184b019bc95682.png",    //eggplant
-            "http://i2.buimg.com/0475f76a8d6f7efb.png",    //checken
-            "http://i2.buimg.com/ffd65418b332237f.png",    //potapo
-            "http://i2.buimg.com/c36261535dcec739.png",    //fish
-            "http://i2.buimg.com/7e65df655ab6cdce.png",    //chinesecabbage
-            "http://i2.buimg.com/6eaa4c1c32b6181b.png",    //pumpkin
-            "http://i2.buimg.com/148fa146e92780ea.png",    //lettuce
-            "http://i2.buimg.com/25bf462a154c20cd.png"    //drumstick
+            "http://i2.buimg.com/9a2dc98717401a96.png",    //虾shrimp
+            "http://i2.buimg.com/b86da1ffbe8739c0.png",    //生菜lettuce
+            "http://i2.buimg.com/217e8e9548ecc629.png	",    //玉米corn
+            "http://i2.buimg.com/c47e649d5955bb35.jpg	",    //蛋egg
+            "http://i2.buimg.com/79f7762c317bc527.png",    //南瓜pumpkin
+            "http://i2.buimg.com/54beb337af2e4dbc.png",    //韭菜leek
+            "http://i2.buimg.com/320eb7c892960763.png",    //白菜chinese cabbage
+            "http://i2.buimg.com/3498a0e1fdf01867.png",    //芹菜celery
+            "http://i2.buimg.com/f1a2e9b97c551d2d.png",    //土豆potato
+            "http://i2.buimg.com/838a983b37b77cc2.png",    //鱼fish
+            "http://i2.buimg.com/5dda376de557115d.png",    //鸡胸肉checken breast
+            "http://i2.buimg.com/c3c8155a4eceb814.png",    //牛肉beef
+            "http://i2.buimg.com/017bb64f173cf34f.png",    //蘑菇mushroom
+            "http://i2.buimg.com/d45e2f71e117ee48.png",    //茄子eggplant
+            "http://i2.buimg.com/a8f8ccb48b421746.png",    //鸡chenken
+            "http://i2.buimg.com/bf4289726a16dddd.png",    //培根bacon
+            "http://i2.buimg.com/e02a3c309d93d349.png",    //番茄 tomato
+            "http://i2.buimg.com/80bf7f97e6412495.png",    //鸡腿drumstick
+            "http://i2.buimg.com/29dad40e36fde331.png",    //苦瓜balsam pear
+            "http://i2.buimg.com/44474c336dff7422.png",    //胡萝卜carrot
+            "http://i3.buimg.com/5e57e9ab59ac4e85.png",    //熟牛排
+            "http://i3.buimg.com/b0ef9a2297b8ea7c.png"     //生牛排
     };
 
     public static final String[] MATERIALNAME = new String[]{
-            "egg",
-            "tomato",
-            "carrot",
-            "bacon",
-            "balsam pear",
-            "beef",
             "shrimp",
-            "mushroom",
+            "lettuce",
+            "corn",
+            "egg",
+            "pumpkin",
+            "leek",
+            "chinese cabbage",
             "celery",
-            "rice",
+            "potato",
+            "fish",
             "leek",
             "corn",
             "eggplant",
