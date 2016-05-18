@@ -41,7 +41,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
     private Handler myHandler;
     int screenWidth, screenHeight;
     int lastX, lastY;
-    private ImageView image;
     private GifImageView white;
 
     private static String[] Material = new String[]{};
@@ -81,16 +80,10 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                RelativeLayout processLayout = (RelativeLayout) findViewById(R.id.processLayout);
-                image = new ImageView(zzy_main.this);
-                ImageLoader imageLoader = ImageLoader.getInstance();
-                imageLoader.displayImage("http://i2.buimg.com/ccebf2760ee5ec39.png", image);
-                RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                lp1.leftMargin = 400;
-                lp1.topMargin = 600;
-                processLayout.addView(image, lp1);
-                image.setClickable(true);
-                image.setOnTouchListener(zzy_main.this);
+                Message message = new Message();
+                message.obj = position;
+                message.what = 2;
+                myHandler.sendMessage(message);
             }
         });
 
@@ -171,6 +164,22 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                         listView2.setAdapter(new ImageAdapter2(zzy_main.this));
 
                         break;
+                    case 2:
+                        int position = (int) msg.obj;
+                        String url = Material[position];
+                        System.out.println(url);
+                        System.out.println(position);
+                        ImageView imageview = new ImageView(zzy_main.this);
+                        RelativeLayout processLayout = (RelativeLayout) findViewById(R.id.processLayout);
+                        ImageLoader imageLoader = ImageLoader.getInstance();
+                        imageLoader.displayImage("http://i2.buimg.com/c47e649d5955bb35.jpg", imageview);
+                        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        lp1.leftMargin = 400;
+                        lp1.topMargin = 600;
+                        processLayout.addView(imageview, lp1);
+                        imageview.setClickable(true);
+                        imageview.setOnTouchListener(zzy_main.this);
+                        break;
                 }
                 super.handleMessage(msg);
             }
@@ -191,31 +200,24 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                 int dy = (int) event.getRawY() - lastY;
                 int top = v.getTop() + dy;
                 int left = v.getLeft() + dx;
-
                 if (top <= 0) {
                     top = 0;
                 }
-                if (top >= screenHeight - image.getHeight()) {
-                    top = screenHeight - image.getHeight();
+                if (top >= screenHeight) {
+                    top = screenHeight;
                 }
-                if (left >= screenWidth - image.getWidth()) {
-                    left = screenWidth - image.getWidth();
+                if (left >= screenWidth) {
+                    left = screenWidth;
                 }
-
                 if (left <= 0) {
                     left = 0;
                 }
-
-                v.layout(left, top, left + image.getWidth(), top + image.getHeight());
+                v.layout(left, top, left, top);
                 lastX = (int) event.getRawX();
                 lastY = (int) event.getRawY();
-
                 break;
             case MotionEvent.ACTION_UP:
-
                 break;
-
-
         }
         return false;
     }
@@ -225,10 +227,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
     private static class ImageAdapter1 extends BaseAdapter {
 
         private LayoutInflater inflater;
-//        private ImageLoadingListener animateFirstListener = new AnimateFirstDisplayListener();
-
         private DisplayImageOptions options;
-
 
         ImageAdapter1(Context context) {
             inflater = LayoutInflater.from(context);
@@ -271,7 +270,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                 holder = (ViewHolder) view.getTag();
             }
             ImageLoader.getInstance().displayImage(Material[position], holder.imageview, options);
-//            ImageLoader.getInstance().displayImage(IMAGE_URLS[position],holder.imageview,options,animateFirstListener);
             return view;
         }
     }
@@ -329,7 +327,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                 holder = (ViewHolder) view.getTag();
             }
             ImageLoader.getInstance().displayImage(Seasoning[position], holder.imageview, options);
-//            ImageLoader.getInstance().displayImage(IMAGE_URLS[position],holder.imageview,options,animateFirstListener);
             return view;
         }
     }
