@@ -24,7 +24,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="70px"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/colorAccent"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="50px">
@@ -40,7 +40,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="70px"
             android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/colorAccent"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="50px">
