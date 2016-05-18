@@ -29,14 +29,21 @@
             android:layout_height="50dp"
             android:text="Click here to add recipe "
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:id="@+id/ButtonLast"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="@drawable/wxx_plus"
+            android:layout_alignTop="@+id/Text"
             android:layout_toRightOf="@+id/Text"
-            android:background="@drawable/plus"></Button>
+            android:layout_marginRight="5dp"
+            android:layout_toEndOf="@+id/Text"></Button>
 
     </RelativeLayout>
 
