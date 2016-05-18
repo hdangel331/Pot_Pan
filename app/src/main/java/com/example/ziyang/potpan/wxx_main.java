@@ -239,7 +239,6 @@ public class wxx_main extends Activity {
                             message.what = 3;
                             myHandler.sendMessage(message);
                         }
-                        imageAdapter.notifyDataSetChanged();
                     }
                 });
                 thread2.start();
