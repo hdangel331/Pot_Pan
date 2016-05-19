@@ -110,17 +110,7 @@ public class hjy_main extends Activity {
         galleryS.setAdapter(adapters);
         galleryM.setSelection(4);
         galleryS.setSelection(4);
-//        galleryM.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+
         galleryM.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -132,14 +122,6 @@ public class hjy_main extends Activity {
                 } else {
                     outputMaterials.append(materials[position] + "; ");
                 }
-//                for(int i=0;i<parent.getCount();i++){
-//                    View v=parent.getChildAt(i);
-//                    if (position == i) {//当前选中的Item改变背景颜色
-//                        view.setBackgroundResource();
-//                    } else {
-//                        v.setBackgroundResource();
-//                    }
-//                }
             }
         });
         galleryS.setOnItemClickListener(new OnItemClickListener() {
