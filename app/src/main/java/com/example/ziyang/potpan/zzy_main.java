@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -30,6 +32,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +43,13 @@ import static com.example.ziyang.potpan.Data.zzy_constants.*;
 public class zzy_main extends Activity implements View.OnTouchListener {
 
     private ListView listView1, listView2;
+    private ImageButton start, empty;
+    private GifImageView white, red, black,loading;
+
     private Handler myHandler;
-    int screenWidth, screenHeight;
-    int lastX, lastY;
-    private GifImageView white;
+    private int screenWidth, screenHeight;
+    private int lastX, lastY;
+
 
     private static String[] Material = new String[]{};
     private static String[] Seasoning = new String[]{};
@@ -55,6 +61,12 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         cll_exit.getInstance().addActivity(this);
         listView1 = (ListView) findViewById(R.id.listview1);
         listView2 = (ListView) findViewById(R.id.listview2);
+        start = (ImageButton) findViewById(R.id.start);
+        empty = (ImageButton) findViewById(R.id.empty);
+        white = (GifImageView) findViewById(R.id.white);
+        red = (GifImageView) findViewById(R.id.red);
+        black = (GifImageView) findViewById(R.id.black);
+        loading = (GifImageView) findViewById(R.id.loading);
 
         Display dis = this.getWindowManager().getDefaultDisplay();
         screenWidth = dis.getWidth();
@@ -64,6 +76,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         final String RecipeName = bundle.getString("recipename");
+        final int position = bundle.getInt("position") + 10;
 
         new Thread(new Runnable() {
             @Override
@@ -79,20 +92,71 @@ public class zzy_main extends Activity implements View.OnTouchListener {
             }
         }).start();
 
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                loading.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loading.setVisibility(View.INVISIBLE);
+                        switch (position) {
+                            case 10:
+                                Intent intent1 = new Intent();
+                                intent1.setClass(zzy_main.this, cll_f1.class);
+                                startActivity(intent1);
+                                break;
+                            case 11:
+                                Intent intent2 = new Intent();
+                                intent2.setClass(zzy_main.this, cll_f2.class);
+                                startActivity(intent2);
+                                break;
+                        }
+                    }
+                }, 3000);
+            }
+        });
+
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Message message = new Message();
-                message.obj = position;
-                message.what = 2;
-                myHandler.sendMessage(message);
+                switch (position) {
+                    case 0:
+                        red.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                red.setVisibility(View.INVISIBLE);
+                                black.setVisibility(View.VISIBLE);
+                            }
+                        }, 3000);
+
+                        break;
+                    case 1:
+                        red.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                red.setVisibility(View.INVISIBLE);
+                                black.setVisibility(View.VISIBLE);
+                            }
+                        }, 3000);
+
+                        break;
+                }
             }
         });
 
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                white = (GifImageView) findViewById(R.id.white);
+//                switch (position){
+//                    case 0:
+//                        break;
+//                    case 1:
+//                        break;
+//                };
                 white.setVisibility(View.VISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -124,15 +188,16 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                         }
                         zzy_data.setD(material);
                         zzy_data.setE(seasoning);
+
                         String[] materiallist = zzy_data.getD();
                         String[] seasoninglist = zzy_data.getE();
 
                         //MaterialDB 获取
-                        MaterialDB materialdb = new MaterialDB(zzy_main.this, "materialdb", null, 1);
+                        MaterialDB materialdb = new MaterialDB(zzy_main.this);
                         SQLiteDatabase materialread = materialdb.getReadableDatabase();
 
                         //SeasoningDB 获取
-                        SeasoningDB seasoningdb = new SeasoningDB(zzy_main.this, "seasoningdb", null, 1);
+                        SeasoningDB seasoningdb = new SeasoningDB(zzy_main.this);
                         SQLiteDatabase seasoningread = seasoningdb.getReadableDatabase();
 
                         //Material 读取
@@ -169,8 +234,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                     case 2:
                         int position = (int) msg.obj;
                         String url = Material[position];
-                        System.out.println(url);
-                        System.out.println(position);
                         ImageView imageview = new ImageView(zzy_main.this);
                         RelativeLayout processLayout = (RelativeLayout) findViewById(R.id.processLayout);
                         ImageLoader imageLoader = ImageLoader.getInstance();
@@ -276,10 +339,6 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         }
     }
 
-    static class ViewHolder {
-        ImageView imageview;
-    }
-
     //第二个适配器！！！
     private static class ImageAdapter2 extends BaseAdapter {
 
@@ -333,4 +392,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         }
     }
 
+    static class ViewHolder {
+        ImageView imageview;
+    }
 }

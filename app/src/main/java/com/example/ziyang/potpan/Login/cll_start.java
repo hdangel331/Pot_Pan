@@ -33,11 +33,11 @@ public class cll_start extends Activity {
         cll_exit.getInstance().addActivity(this);
 
         //MaterialDB 获取
-        MaterialDB materialdb = new MaterialDB(this, "materialdb", null, 1);
+        MaterialDB materialdb = new MaterialDB(this);
         SQLiteDatabase materialwrite = materialdb.getWritableDatabase();
         SQLiteDatabase materialread1 = materialdb.getReadableDatabase();
         //SeasoningDB 获取
-        SeasoningDB seasoningdb = new SeasoningDB(this, "seasoningdb", null, 1);
+        SeasoningDB seasoningdb = new SeasoningDB(this);
         SQLiteDatabase seasoningwrite = seasoningdb.getWritableDatabase();
         SQLiteDatabase seasoningread1 = seasoningdb.getReadableDatabase();
 

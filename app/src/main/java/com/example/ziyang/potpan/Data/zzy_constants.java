@@ -24,10 +24,9 @@ public final class zzy_constants {
             "http://i2.buimg.com/9a2dc98717401a96.png",    //虾shrimp
             "http://i2.buimg.com/b86da1ffbe8739c0.png",    //生菜lettuce
             "http://i2.buimg.com/217e8e9548ecc629.png	",    //玉米corn
-            "http://i2.buimg.com/c47e649d5955bb35.jpg",    //蛋egg
+            "http://i2.buimg.com/e02a3c309d93d349.png",    //蛋egg //// 要改的
             "http://i2.buimg.com/79f7762c317bc527.png",    //南瓜pumpkin
             "http://i2.buimg.com/54beb337af2e4dbc.png",    //韭菜leek
-            "http://i2.buimg.com/320eb7c892960763.png",    //白菜chinese cabbage
             "http://i2.buimg.com/3498a0e1fdf01867.png",    //芹菜celery
             "http://i2.buimg.com/f1a2e9b97c551d2d.png",    //土豆potato
             "http://i2.buimg.com/838a983b37b77cc2.png",    //鱼fish
@@ -48,7 +47,6 @@ public final class zzy_constants {
             "egg",
             "pumpkin",
             "leek",
-            "chinese cabbage",
             "celery",
             "potato",
             "fish",
@@ -63,20 +61,20 @@ public final class zzy_constants {
     };
 
     public static final String[] SEASONING = new String[]{
-            "http://i3.buimg.com/00bccaaf111cc5aa.png",    //soy sauce
-            "http://i3.buimg.com/a6ac892607a7c056.png",    //salt
-            "http://i3.buimg.com/84b0a0d880bff449.png",    //tsaoko
-            "http://i3.buimg.com/7726163354fd00b2.png",    //shallot
-            "http://i3.buimg.com/e0f9f0db383ccb74.png",    //curry
-            "http://i3.buimg.com/6f11d8c08fd260a2.png",    //star anise
-            "http://i3.buimg.com/68cd60630f6b9ef6.png",    //onion
-            "http://i3.buimg.com/ca629336b2827dea.png",    //cinnamon
-            "http://i3.buimg.com/72c576b76d0ddb58.png",    //rosemary
-            "http://i3.buimg.com/f88e315322ef8f77.png",    //cumin
-            "http://i3.buimg.com/60ea03d4b4c5d0d8.png",    //sugar
-            "http://i3.buimg.com/fe9ba31decb30472.png",    //ginger
-            "http://i3.buimg.com/387ed18ed50ed1ab.png",    //chilli
-            "http://i3.buimg.com/88067903db5341b3.png"    //garlic
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png",
+            "http://i2.buimg.com/e02a3c309d93d349.png"
     };
 
     public static final String[] SEASONINGNAME = new String[]{

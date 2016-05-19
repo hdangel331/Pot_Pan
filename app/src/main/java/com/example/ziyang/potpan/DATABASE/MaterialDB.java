@@ -4,9 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Ziyang on 2016/4/13.
- */
+
 public class MaterialDB extends SQLiteOpenHelper {
 
     public static final String TABLE_NAME = "MaterialDB";
@@ -14,7 +12,7 @@ public class MaterialDB extends SQLiteOpenHelper {
     public static final String MATERIALNAME = "materialname";
     public static final String MATERIALURL = "materialurl";
 
-    public MaterialDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public MaterialDB(Context context) {
         super(context, "MaterialDB", null, 1);
     }
 

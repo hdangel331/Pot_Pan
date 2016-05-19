@@ -29,7 +29,6 @@ public class wxx_vp3 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), wxx_main.class);
-
                 startActivity(i);
             }
         });

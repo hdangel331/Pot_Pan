@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.Login.cll_exit;
 
 /**
@@ -29,6 +30,7 @@ public class cll_f2 extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(cll_f2.this, wxx_main.class);
+                intent.putExtra("useraccount", zzy_data.getA());
                 startActivity(intent);
             }
         });

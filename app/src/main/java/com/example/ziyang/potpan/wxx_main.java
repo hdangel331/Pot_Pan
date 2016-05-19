@@ -142,6 +142,7 @@ public class wxx_main extends Activity {
                 String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
                 intent.putExtra("recipename", Name[position]);
+                intent.putExtra("position",position);
                 intent.setClass(wxx_main.this, zzy_main.class);
                 startActivity(intent);
             }

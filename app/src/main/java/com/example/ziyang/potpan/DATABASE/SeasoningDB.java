@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Ziyang on 2016/4/13.
- */
 public class SeasoningDB extends SQLiteOpenHelper {
 
     public static final String TABLE_NAME = "SeasoningDB";
@@ -14,7 +11,7 @@ public class SeasoningDB extends SQLiteOpenHelper {
     public static final String SEASONINGNAME = "seasoningname";
     public static final String SEASONINGURL = "seasoningurl";
 
-    public SeasoningDB(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public SeasoningDB(Context context) {
         super(context, "SeasoningDB", null, 1);
     }
 
