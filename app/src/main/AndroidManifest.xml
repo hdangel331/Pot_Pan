@@ -45,22 +45,22 @@
 
         <activity
             android:name=".Info.wxx_feedback"
-            android:label="wangxiaoxuan2"
+            android:label="wangxiaoxuan3"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".Info.wxx_AboutUsActivity"
-            android:label="wangxiaoxuan2"
+            android:label="wangxiaoxuan4"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".Info.wxx_AboutUs22"
-            android:label="wangxiaoxuan2"
+            android:label="wangxiaoxuan5"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".Info.wxx_submitsuccess"
-            android:label="wangxiaoxuan2"
+            android:label="wangxiaoxuan6"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
