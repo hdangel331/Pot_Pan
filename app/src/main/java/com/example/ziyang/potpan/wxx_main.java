@@ -126,6 +126,50 @@ public class wxx_main extends Activity {
                 }
             }
         });
+
+        myHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        List<String[]> list = new ArrayList<String[]>();
+                        String info = (String) msg.obj;
+                        String[] str1 = info.split("#");
+                        for (int i = 0; i < str1.length; i++) {
+                            if (str1[i].length() > 0) {
+                                list.add(str1[i].split("η"));
+                            }
+                        }
+                        String[] name = new String[list.size()];
+                        String[] url = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            String[] str = list.get(i);
+                            name[i] = str[0];
+                            url[i] = str[1];
+                        }
+                        zzy_data.setB(name);
+                        zzy_data.setC(url);
+
+                        String[] a = zzy_data.getC();
+                        String[] b = zzy_data.getB();
+
+                        //初始化
+                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
+                        ImageLoader.getInstance().init(config);
+                        imageAdapter = new ImageAdapter(wxx_main.this);
+                        gridview.setAdapter(imageAdapter);
+                        break;
+                    case 2:
+                        Toast.makeText(getApplicationContext(), "Delete Success",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(getApplicationContext(), "Delete Fail",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+        };
     }
 
     private void showPopupWindow(View view) {
@@ -295,49 +339,18 @@ public class wxx_main extends Activity {
             }
         });
         thread1.start();
+    }
 
-        myHandler = new Handler() {
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 1:
-                        List<String[]> list = new ArrayList<String[]>();
-                        String info = (String) msg.obj;
-                        String[] str1 = info.split("#");
-                        for (int i = 0; i < str1.length; i++) {
-                            if (str1[i].length() > 0) {
-                                list.add(str1[i].split("η"));
-                            }
-                        }
-                        String[] name = new String[list.size()];
-                        String[] url = new String[list.size()];
-                        for (int i = 0; i < list.size(); i++) {
-                            String[] str = list.get(i);
-                            name[i] = str[0];
-                            url[i] = str[1];
-                        }
-                        zzy_data.setB(name);
-                        zzy_data.setC(url);
-
-                        String[] a = zzy_data.getC();
-                        String[] b = zzy_data.getB();
-
-                        //初始化
-                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
-                        ImageLoader.getInstance().init(config);
-                        imageAdapter = new ImageAdapter(wxx_main.this);
-                        gridview.setAdapter(imageAdapter);
-                        break;
-                    case 2:
-                        Toast.makeText(getApplicationContext(), "Delete Success",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getApplicationContext(), "Delete Fail",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                super.handleMessage(msg);
-            }
-        };
+    @Override
+    protected void onDestroy() {
+        if (thread1 != null) {
+            thread1.interrupt();// 中断线程
+            thread1 = null;
+        }
+        if (thread2 != null) {
+            thread2.interrupt();// 中断线程
+            thread2 = null;
+        }
+        super.onDestroy();
     }
 }
