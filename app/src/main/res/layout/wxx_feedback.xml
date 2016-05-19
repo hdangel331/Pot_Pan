@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/wxx_11">
+    android:background="@drawable/wxx_11"
+    android:orientation="vertical">
 
 
     <TextView
@@ -19,10 +19,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/cll_bg"
         android:orientation="vertical"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:background="@drawable/cll_bg">
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/feedback_title"
@@ -32,7 +32,7 @@
             android:layout_marginTop="10dp"
             android:text="Welcome your valuable Suggestions and opinions, your advice is helpful to improve our service."
             android:textColor="@color/feedback_title"
-            android:textSize="19dp"/>
+            android:textSize="19dp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -49,24 +49,30 @@
                 android:entries="@array/feedback_type"
                 android:focusable="true" />
         </LinearLayout>
-        <RelativeLayout android:layout_width="fill_parent"
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-            <EditText android:id="@+id/Feedback_content"
+
+            <EditText
+                android:id="@+id/Feedback_content"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:maxEms="10"
-                android:minEms="10"
-                android:hint="Please enter your feedback (100 words)"
+                android:layout_marginBottom="50dip"
                 android:gravity="top"
-                android:layout_marginBottom="50dip"/>
-            <Button android:id="@+id/feedback_submit"
+                android:hint="Please enter your feedback (100 words)"
+                android:maxEms="10"
+                android:minEms="10" />
+
+            <Button
+                android:id="@+id/feedback_submit"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:text="Submit"
-                android:textSize="19dp"
-                android:background="@drawable/cll_bg3"
+                android:layout_alignParentBottom="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_alignParentBottom="true"/>
+                android:background="@drawable/cll_bg3"
+                android:text="Submit"
+                android:textSize="19dp" />
         </RelativeLayout>
-      </LinearLayout>
     </LinearLayout>
+</LinearLayout>

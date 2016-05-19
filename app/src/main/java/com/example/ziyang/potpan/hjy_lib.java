@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ziyang.potpan.Data.zzy_data;
+import com.example.ziyang.potpan.Login.cll_exit;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,8 +28,7 @@ import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ziyang.potpan.zzy_constants.ADD_RECIPEFROMLIB;
-import static com.example.ziyang.potpan.zzy_constants.GET_LIB;
+import static com.example.ziyang.potpan.Data.zzy_constants.*;
 
 public class hjy_lib extends Activity {
 
@@ -135,10 +136,7 @@ public class hjy_lib extends Activity {
         private LayoutInflater inflater;
         private static String[] library = zzy_data.getG();
         private static String[] name = zzy_data.getF();
-//        private static final String[] library = zzy_constants.library;
-//        private static final String[] name = new String[]{"diyige","dierge","disange","disige","diwuge","diliuge","diqige","dibage"};
         private DisplayImageOptions options;
-
 
         ListViewAdapter(Context context) {
             inflater = LayoutInflater.from(context);

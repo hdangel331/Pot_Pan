@@ -5,11 +5,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-/**
- * Created by Ziyang on 2016/5/11.
- */
 public class IOUtil {
-    //v2版本的新方法，代替din.writeUTF();发送字符串
+
     public static void writeStr(DataOutputStream dout, String str) throws IOException {
         try {
             dout.writeInt(str.length());

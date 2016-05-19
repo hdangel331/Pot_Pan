@@ -22,6 +22,8 @@ import android.widget.RelativeLayout;
 
 import com.example.ziyang.potpan.DATABASE.MaterialDB;
 import com.example.ziyang.potpan.DATABASE.SeasoningDB;
+import com.example.ziyang.potpan.Data.zzy_data;
+import com.example.ziyang.potpan.Login.cll_exit;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,7 +35,7 @@ import java.util.List;
 
 import pl.droidsonroids.gif.GifImageView;
 
-import static com.example.ziyang.potpan.zzy_constants.*;
+import static com.example.ziyang.potpan.Data.zzy_constants.*;
 
 public class zzy_main extends Activity implements View.OnTouchListener {
 
@@ -97,7 +99,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                     public void run() {
                         white.setVisibility(View.INVISIBLE);
                     }
-                },2500);
+                }, 2500);
             }
         });
 

@@ -1,9 +1,7 @@
 package com.example.ziyang.potpan.util;
 
-/**
- * Created by Ziyang on 2016/5/11.
- */
 public class MyConverter {
+
     private final static String[] hex =
             {
                     "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0a", "0b", "0c", "0d", "0e", "0f",
@@ -23,6 +21,7 @@ public class MyConverter {
                     "e0", "e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "ea", "eb", "ec", "ed", "ee", "ef",
                     "f0", "f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "fa", "fb", "fc", "fd", "fe", "ff"
             };
+
     private final static byte[] val =
             {
                     0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f,
@@ -42,7 +41,6 @@ public class MyConverter {
                     0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f,
                     0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f, 0x3f
             };
-
 
     public static String escape(String s) {
         StringBuffer sbuf = new StringBuffer();
@@ -71,7 +69,6 @@ public class MyConverter {
         }
         return sbuf.toString();
     }
-
 
     public static String unescape(String s) {
         StringBuffer sbuf = new StringBuffer();
