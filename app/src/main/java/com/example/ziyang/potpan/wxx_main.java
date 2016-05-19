@@ -63,6 +63,8 @@ public class wxx_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_main);
+
+        System.out.println("create");
         gridview = (GridView) findViewById(R.id.gridview);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
@@ -79,6 +81,7 @@ public class wxx_main extends Activity {
         Bundle bundle = intent.getExtras();
         final String ACCOUNT = bundle.getString("useraccount");
         zzy_data.setA(ACCOUNT);
+        System.out.println(ACCOUNT);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,7 +89,7 @@ public class wxx_main extends Activity {
                 String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
                 intent.putExtra("recipename", Name[position]);
-                intent.putExtra("position",position);
+                intent.putExtra("position", position);
                 intent.setClass(wxx_main.this, zzy_main.class);
                 startActivity(intent);
             }
@@ -161,6 +164,7 @@ public class wxx_main extends Activity {
                 intent.putExtra("account", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_lib.class);
                 startActivity(intent);
+                onDestroy();
             }
         });
         final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
@@ -224,12 +228,14 @@ public class wxx_main extends Activity {
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
 
-        private static String[] Recipes = zzy_data.getC();
-        private static String[] Name = zzy_data.getB();
+        private static String[] Recipes;
+        private static String[] Name;
         private LayoutInflater inflater;
         private DisplayImageOptions options;
 
-        ImageAdapter(Context context) {
+        public ImageAdapter(String[] recipe, String[] name, Context context) {
+            Recipes = recipe;
+            Name = name;
             inflater = LayoutInflater.from(context);
             options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.drawable.zzy_loading)
@@ -242,6 +248,10 @@ public class wxx_main extends Activity {
                     .build();
         }
 
+        public void refresh(String[] recipe, String[] name){
+            Recipes = recipe;
+            Name = name;
+        }
         @Override
         public int getCount() {
             return Recipes.length;
@@ -287,6 +297,13 @@ public class wxx_main extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("resume");
+
+        //初始化
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
+        ImageLoader.getInstance().init(config);
+        imageAdapter = new ImageAdapter(zzy_data.getC(),zzy_data.getB(),wxx_main.this);
+        gridview.setAdapter(imageAdapter);
 
         thread1 = new Thread(new Runnable() {
             @Override
@@ -307,6 +324,7 @@ public class wxx_main extends Activity {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case 1:
+                        System.out.println("case1");
                         List<String[]> list = new ArrayList<String[]>();
                         String info = (String) msg.obj;
                         String[] str1 = info.split("#");
@@ -324,16 +342,21 @@ public class wxx_main extends Activity {
                         }
                         zzy_data.setB(name);
                         zzy_data.setC(url);
-
-                        //初始化
-                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
-                        ImageLoader.getInstance().init(config);
-                        imageAdapter = new ImageAdapter(wxx_main.this);
-                        gridview.setAdapter(imageAdapter);
+                        imageAdapter.refresh(zzy_data.getC(),zzy_data.getB());
+                        imageAdapter.notifyDataSetChanged();
                         break;
                     case 2:
                         Toast.makeText(getApplicationContext(), "Delete Success",
                                 Toast.LENGTH_SHORT).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent();
+                                intent.setClass(wxx_main.this, wxx_main.class);
+                                intent.putExtra("useraccount", zzy_data.getA());
+                                startActivity(intent);
+                            }
+                        }, 1000);
                         break;
                     case 3:
                         Toast.makeText(getApplicationContext(), "Delete Fail",
@@ -343,5 +366,11 @@ public class wxx_main extends Activity {
                 super.handleMessage(msg);
             }
         };
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("destroy");
     }
 }
