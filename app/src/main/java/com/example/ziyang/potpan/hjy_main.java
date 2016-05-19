@@ -20,15 +20,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ziyang.potpan.Data.zzy_data;
+import com.example.ziyang.potpan.Login.cll_exit;
 import com.example.ziyang.potpan.util.SocketClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ziyang.potpan.zzy_constants.ADD_MATERIAL;
-import static com.example.ziyang.potpan.zzy_constants.ADD_SEASONING;
-import static com.example.ziyang.potpan.zzy_constants.GET_CONTENTBYNAME;
-import static com.example.ziyang.potpan.zzy_constants.UPDATE_RECIPE;
+import static com.example.ziyang.potpan.Data.zzy_constants.*;
 
 public class hjy_main extends Activity {
 
@@ -36,7 +35,7 @@ public class hjy_main extends Activity {
     private EditText recipeName;
     private TextView outputRecipeName, outputMaterials, outputSeasons;
     private Context mContext = null;
-    private Button cancelRecipe, createRecipe,changeMaterial, changeSeasoning;
+    private Button cancelRecipe, createRecipe, changeMaterial, changeSeasoning;
 
     private Handler myHandler;
     private Thread thread1;
@@ -140,7 +139,7 @@ public class hjy_main extends Activity {
 
         cancelRecipe = (Button) findViewById(R.id.cancelRecipe);
         createRecipe = (Button) findViewById(R.id.createRecipe);
-        changeMaterial= (Button) findViewById(R.id.changeMaterial);
+        changeMaterial = (Button) findViewById(R.id.changeMaterial);
         changeSeasoning = (Button) findViewById(R.id.changeSeasoning);
 
         cancelRecipe.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +165,7 @@ public class hjy_main extends Activity {
                             Message message = new Message();
                             message.what = 4;
                             myHandler.sendMessage(message);
-                        }else {
+                        } else {
                             Message message = new Message();
                             message.what = 2;
                             myHandler.sendMessage(message);
@@ -197,7 +196,7 @@ public class hjy_main extends Activity {
                             Message message = new Message();
                             message.what = 5;
                             myHandler.sendMessage(message);
-                        }else {
+                        } else {
                             Message message = new Message();
                             message.what = 2;
                             myHandler.sendMessage(message);
@@ -228,7 +227,7 @@ public class hjy_main extends Activity {
                             Message message = new Message();
                             message.what = 6;
                             myHandler.sendMessage(message);
-                        }else {
+                        } else {
                             Message message = new Message();
                             message.what = 2;
                             myHandler.sendMessage(message);

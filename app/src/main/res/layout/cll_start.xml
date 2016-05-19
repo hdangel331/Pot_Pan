@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -10,7 +9,6 @@
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:text="Welcome"
@@ -30,4 +28,5 @@
         android:textColor="#ffffffff"
         android:textSize="100px"
         android:textStyle="bold|italic" />
+
 </RelativeLayout>

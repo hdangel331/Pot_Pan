@@ -8,7 +8,6 @@
     android:gravity="center_vertical"
     android:stretchColumns="0,3">
 
-
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +25,6 @@
             android:textSize="70px"
             android:textStyle="bold" />
     </TableRow>
-
 
     <TableRow android:layout_marginTop="50px">
 

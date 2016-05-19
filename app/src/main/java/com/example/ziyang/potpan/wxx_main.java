@@ -24,6 +24,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ziyang.potpan.Data.zzy_data;
+import com.example.ziyang.potpan.Info.wxx_AboutUs22;
+import com.example.ziyang.potpan.Info.wxx_example;
+import com.example.ziyang.potpan.Info.wxx_feedback;
+import com.example.ziyang.potpan.Login.cll_exit;
+import com.example.ziyang.potpan.Login.cll_main;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -34,8 +40,8 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ziyang.potpan.zzy_constants.DELETE_RECIPE;
-import static com.example.ziyang.potpan.zzy_constants.GET_RECIPEBYACCOUNT;
+import static com.example.ziyang.potpan.Data.zzy_constants.DELETE_RECIPE;
+import static com.example.ziyang.potpan.Data.zzy_constants.GET_RECIPEBYACCOUNT;
 
 public class wxx_main extends Activity {
 
@@ -68,6 +74,11 @@ public class wxx_main extends Activity {
         });
         cll_exit.getInstance().addActivity(this);
 
+        //获取账户
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String ACCOUNT = bundle.getString("useraccount");
+        zzy_data.setA(ACCOUNT);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -275,17 +286,12 @@ public class wxx_main extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        //获取账户
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        final String ACCOUNT = bundle.getString("useraccount");
-        zzy_data.setA(ACCOUNT);
 
         thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 StringBuffer submitContent = new StringBuffer();//定义服务器
-                submitContent.append(GET_RECIPEBYACCOUNT + ACCOUNT);//将信息添加到字符串中
+                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());//将信息添加到字符串中
                 SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
                 String readinfo = SocketClient.readinfo;
                 Message message = new Message();
@@ -317,9 +323,6 @@ public class wxx_main extends Activity {
                         }
                         zzy_data.setB(name);
                         zzy_data.setC(url);
-
-                        String[] a = zzy_data.getC();
-                        String[] b = zzy_data.getB();
 
                         //初始化
                         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();

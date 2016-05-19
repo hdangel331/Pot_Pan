@@ -7,45 +7,43 @@
     android:stretchColumns="0,3">
 
     <TextView
-    android:id="@+id/textView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:gravity="center"
-    android:layout_marginTop="150dp"
-    android:text="Have you learned how to use this app? "
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    android:textColor="#ffffff"
-    android:textSize="70px"
-    android:textStyle="bold" />
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:gravity="center"
+        android:text="Have you learned how to use this app? "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffff"
+        android:textSize="70px"
+        android:textStyle="bold" />
 
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:text="You can come back to review anytime!"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
         android:textSize="70px"
-        android:textStyle="bold"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
+        android:textStyle="bold" />
 
 
     <Button
+        android:id="@+id/vpbackbutton2"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="Finish"
-        android:textSize="40px"
-        android:id="@+id/vpbackbutton2"
-        android:background="@drawable/cll_bg3"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_marginBottom="66dp"
+        android:background="@drawable/cll_bg3"
+        android:text="Finish"
+        android:textSize="40px" />
 
 </RelativeLayout>

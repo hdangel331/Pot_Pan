@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by CandiesCLL on 2016/5/19.
- */
-public class cll_f1 extends Activity{
+import com.example.ziyang.potpan.Login.cll_exit;
+
+public class cll_f1 extends Activity {
+
     private Button back;
     private Button Quit;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_f1);
@@ -38,9 +39,9 @@ public class cll_f1 extends Activity{
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         cll_exit.getInstance().exit();
-                                    } }
+                                    }
+                                }
                         )
-
                         .setNegativeButton("No", null)
                         .show();
             }

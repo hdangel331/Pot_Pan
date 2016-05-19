@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
         <activity
-            android:name=".cll_start"
+            android:name=".Login.cll_start"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -26,79 +26,77 @@
         <activity
             android:name=".hjy_main"
             android:label="hongjingye1"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
         <activity
             android:name=".hjy_lib"
             android:label="hongjingye2"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".wxx_main"
             android:label="wangxiaoxuan1"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
-        <activity android:name=".wxx_example"
-            android:label="wangxiaoxuan2"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
-        <activity android:name=".wxx_feedback"
-            android:label="wangxiaoxuan2"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
-        <activity android:name=".wxx_AboutUsActivity"
+        <activity
+            android:name=".Info.wxx_example"
             android:label="wangxiaoxuan2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
-        <activity android:name=".wxx_AboutUs22"
+        <activity
+            android:name=".Info.wxx_feedback"
             android:label="wangxiaoxuan2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
-
-
-
-        <activity android:name=".wxx_submitsuccess"
+        <activity
+            android:name=".Info.wxx_AboutUsActivity"
             android:label="wangxiaoxuan2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
+        <activity
+            android:name=".Info.wxx_AboutUs22"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity
+            android:name=".Info.wxx_submitsuccess"
+            android:label="wangxiaoxuan2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
             android:name=".zzy_main"
             android:label="zhangziyang"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".cll_cp"
+            android:name=".Login.cll_cp"
             android:label="cll1"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        <activity
-            android:name=".cll_cp2"
-            android:label="cll2"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        <activity
-            android:name=".cll_cu"
-            android:label="cll3"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        <activity
-            android:name=".cll_reset"
-            android:label="cll4"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        <activity
-            android:name=".cll_retrieve"
-            android:label="cll5"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
-        <activity
-            android:name=".cll_main"
-            android:label="cll6"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        </activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
+        <activity
+            android:name=".Login.cll_cp2"
+            android:label="cll2"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity
+            android:name=".Login.cll_cu"
+            android:label="cll3"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity
+            android:name=".Login.cll_reset"
+            android:label="cll4"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity
+            android:name=".Login.cll_retrieve"
+            android:label="cll5"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+
+        <activity
+            android:name=".Login.cll_main"
+            android:label="cll6"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
     </application>
 

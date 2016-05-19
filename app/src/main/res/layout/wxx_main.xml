@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/mainmenubackground">
 
-
         <GridView
             android:id="@+id/gridview"
             android:layout_width="match_parent"
@@ -27,23 +26,23 @@
             android:id="@+id/Text"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="18dp"
             android:text="Click here to add recipe "
             android:textColor="@color/black"
-            android:textSize="30dp"
-            android:layout_marginTop="18dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="30dp" />
 
         <Button
             android:id="@+id/ButtonLast"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/wxx_plus"
             android:layout_alignTop="@+id/Text"
-            android:layout_toRightOf="@+id/Text"
             android:layout_marginRight="5dp"
-            android:layout_toEndOf="@+id/Text"></Button>
+            android:layout_toEndOf="@+id/Text"
+            android:layout_toRightOf="@+id/Text"
+            android:background="@drawable/wxx_plus"></Button>
 
     </RelativeLayout>
 
@@ -56,10 +55,8 @@
         android:background="@color/wxx"
         android:choiceMode="singleChoice"
         android:divider="@android:color/white"
-        android:dividerHeight="0dp"
-        >
+        android:dividerHeight="0dp">
 
-        </ListView>
-
+    </ListView>
 
 </android.support.v4.widget.DrawerLayout>
