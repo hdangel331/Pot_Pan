@@ -36,7 +36,7 @@ public class hjy_main extends Activity {
     private EditText recipeName;
     private TextView outputRecipeName, outputMaterials, outputSeasons;
     private Context mContext = null;
-    private Button cancelRecipe, createRecipe, changeMaterial, changeSeasoning;
+    private Button cancelRecipe, createRecipe;
 
     private Handler myHandler;
     private Thread thread1;
@@ -140,9 +140,6 @@ public class hjy_main extends Activity {
 
         cancelRecipe = (Button) findViewById(R.id.cancelRecipe);
         createRecipe = (Button) findViewById(R.id.createRecipe);
-        changeMaterial = (Button) findViewById(R.id.changeMaterial);
-        changeSeasoning = (Button) findViewById(R.id.changeSeasoning);
-
         cancelRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,68 +174,6 @@ public class hjy_main extends Activity {
                     }
                 });
                 thread1.start();
-            }
-        });
-
-        changeMaterial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String name = outputRecipeName.getText().toString();
-                final String[] materiallist = outputMaterials.getText().toString().split("; ");
-                thread2 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        System.out.println("2");
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(ADD_MATERIAL + name);
-                        for (int i = 0; i < materiallist.length; i++) {
-                            submitContent.append(ADD_MATERIAL + materiallist[i]);//将信息添加到字符串中
-                        }
-                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
-                        String readinfo = SocketClient.readinfo;
-                        if (readinfo.equals("ok")) {
-                            Message message = new Message();
-                            message.what = 5;
-                            myHandler.sendMessage(message);
-                        } else {
-                            Message message = new Message();
-                            message.what = 2;
-                            myHandler.sendMessage(message);
-                        }
-                    }
-                });
-                thread2.start();
-            }
-        });
-
-        changeSeasoning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String name = outputRecipeName.getText().toString();
-                final String[] seasoninglist = outputSeasons.getText().toString().split("; ");
-                thread3 = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        System.out.println("3");
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(ADD_SEASONING + name);
-                        for (int i = 0; i < seasoninglist.length; i++) {
-                            submitContent.append(ADD_SEASONING + seasoninglist[i]);//将信息添加到字符串中
-                        }
-                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
-                        String readinfo = SocketClient.readinfo;
-                        if (readinfo.equals("ok")) {
-                            Message message = new Message();
-                            message.what = 6;
-                            myHandler.sendMessage(message);
-                        } else {
-                            Message message = new Message();
-                            message.what = 2;
-                            myHandler.sendMessage(message);
-                        }
-                    }
-                });
-                thread3.start();
             }
         });
 

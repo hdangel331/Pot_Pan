@@ -144,39 +144,6 @@
 
 
             </TableRow>
-
-            <TextView
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/changeMaterial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_weight="1"
-                    android:background="@drawable/cll_bg3"
-                    android:text="changeMaterial"
-                    android:textAlignment="center"
-                    android:textSize="40px"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/changeSeasoning"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_weight="1"
-                    android:background="@drawable/cll_bg3"
-                    android:text="changeSeasoning"
-                    android:textAlignment="center"
-                    android:textSize="40px"
-                    android:textStyle="bold" />
-            </TableRow>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

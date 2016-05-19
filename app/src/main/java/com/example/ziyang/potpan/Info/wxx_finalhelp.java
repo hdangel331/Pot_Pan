@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.wxx_main;
 
@@ -26,7 +27,7 @@ public class wxx_finalhelp extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),wxx_main.class);
-
+                i.putExtra("useraccount", zzy_data.getA());
                 startActivity(i);
 
             }

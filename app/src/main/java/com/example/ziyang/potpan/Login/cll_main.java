@@ -20,6 +20,8 @@ import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.example.ziyang.potpan.wxx_main;
 
+import pl.droidsonroids.gif.GifImageView;
+
 import static com.example.ziyang.potpan.Data.zzy_constants.*;
 
 public class cll_main extends Activity {
@@ -32,8 +34,6 @@ public class cll_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_main);
-
-        System.out.println("666666");
         cll_exit.getInstance().addActivity(this);
 
         //绑定

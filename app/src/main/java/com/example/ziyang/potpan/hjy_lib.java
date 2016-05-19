@@ -106,6 +106,8 @@ public class hjy_lib extends Activity {
                             String[] str = list.get(i);
                             name[i] = str[0];
                             url[i] = str[1];
+                            System.out.println(str[0]);
+                            System.out.println(str[1]);
                         }
                         zzy_data.setF(name);
                         zzy_data.setG(url);

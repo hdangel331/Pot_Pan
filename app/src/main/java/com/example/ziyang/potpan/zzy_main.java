@@ -44,7 +44,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
 
     private ListView listView1, listView2;
     private ImageButton start, empty;
-    private GifImageView white, red, black,loading;
+    private GifImageView white, red, black, loading, putegg, twoegg, bacon,steak;
 
     private Handler myHandler;
     private int screenWidth, screenHeight;
@@ -67,6 +67,10 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         red = (GifImageView) findViewById(R.id.red);
         black = (GifImageView) findViewById(R.id.black);
         loading = (GifImageView) findViewById(R.id.loading);
+        putegg = (GifImageView) findViewById(R.id.putegg);
+        twoegg = (GifImageView) findViewById(R.id.twoegg);
+        bacon = (GifImageView) findViewById(R.id.bacon);
+        steak = (GifImageView) findViewById(R.id.steak);
 
         Display dis = this.getWindowManager().getDefaultDisplay();
         screenWidth = dis.getWidth();
@@ -77,6 +81,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         Bundle bundle = intent.getExtras();
         final String RecipeName = bundle.getString("recipename");
         final int position = bundle.getInt("position") + 10;
+        System.out.println(position);
 
         new Thread(new Runnable() {
             @Override
@@ -118,38 +123,27 @@ public class zzy_main extends Activity implements View.OnTouchListener {
             }
         });
 
-        empty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                black.setVisibility(View.INVISIBLE);
-            }
-        });
-
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
+            public void onItemClick(AdapterView<?> parent, View view, int Position, long id) {
+                switch (Position) {
                     case 0:
-                        red.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                red.setVisibility(View.INVISIBLE);
-                                black.setVisibility(View.VISIBLE);
-                            }
-                        }, 3000);
+                        if (position == 10) {
+                            putegg.setVisibility(View.VISIBLE);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    putegg.setVisibility(View.INVISIBLE);
+                                    twoegg.setVisibility(View.VISIBLE);
+                                }
+                            }, 3000);
+                        } else {
+                            steak.setVisibility(View.VISIBLE);
+                        }
 
                         break;
                     case 1:
-                        red.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                red.setVisibility(View.INVISIBLE);
-                                black.setVisibility(View.VISIBLE);
-                            }
-                        }, 3000);
-
+                        bacon.setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -158,19 +152,27 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                switch (position){
-//                    case 0:
-//                        break;
-//                    case 1:
-//                        break;
-//                };
-                white.setVisibility(View.VISIBLE);
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        white.setVisibility(View.INVISIBLE);
-                    }
-                }, 2500);
+                switch (position) {
+                    case 0:
+                        white.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                white.setVisibility(View.INVISIBLE);
+                            }
+                        }, 2500);
+                        break;
+                    case 1:
+                        red.setVisibility(View.VISIBLE);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                red.setVisibility(View.INVISIBLE);
+                            }
+                        }, 2500);
+                        break;
+                }
+                ;
             }
         });
 

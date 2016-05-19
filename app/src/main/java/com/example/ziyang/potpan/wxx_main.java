@@ -40,6 +40,8 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
+
 import static com.example.ziyang.potpan.Data.zzy_constants.DELETE_RECIPE;
 import static com.example.ziyang.potpan.Data.zzy_constants.GET_RECIPEBYACCOUNT;
 
@@ -58,16 +60,24 @@ public class wxx_main extends Activity {
     private Thread thread1;
     private Thread thread2;
     private ImageAdapter imageAdapter;
+    private GifImageView loading1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_main);
 
-        System.out.println("create");
+        loading1= (GifImageView) findViewById(R.id.loading1);
         gridview = (GridView) findViewById(R.id.gridview);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
+
+        loading1.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                loading1.setVisibility(View.INVISIBLE);
+            }
+        }, 1000);
         buttonlast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,11 +91,16 @@ public class wxx_main extends Activity {
         Bundle bundle = intent.getExtras();
         final String ACCOUNT = bundle.getString("useraccount");
         zzy_data.setA(ACCOUNT);
-        System.out.println(ACCOUNT);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                loading1.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        loading1.setVisibility(View.INVISIBLE);
+                    }
+                }, 1000);
                 String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
                 intent.putExtra("recipename", Name[position]);
@@ -150,6 +165,12 @@ public class wxx_main extends Activity {
         designRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading1.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        loading1.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
                 Intent intent = new Intent();
                 intent.putExtra("recipename", "");
                 intent.putExtra("accountname", zzy_data.getA());
@@ -160,6 +181,12 @@ public class wxx_main extends Activity {
         addRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading1.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        loading1.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
                 Intent intent = new Intent();
                 intent.putExtra("account", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_lib.class);
@@ -183,6 +210,12 @@ public class wxx_main extends Activity {
         editRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loading1.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        loading1.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
                 String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
                 intent.putExtra("recipename", Name[position]);
@@ -297,7 +330,6 @@ public class wxx_main extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("resume");
 
         //初始化
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
@@ -356,7 +388,7 @@ public class wxx_main extends Activity {
                                 intent.putExtra("useraccount", zzy_data.getA());
                                 startActivity(intent);
                             }
-                        }, 1000);
+                        }, 500);
                         break;
                     case 3:
                         Toast.makeText(getApplicationContext(), "Delete Fail",
@@ -371,6 +403,5 @@ public class wxx_main extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("destroy");
     }
 }
