@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -258,6 +259,12 @@ public class hjy_main extends Activity {
                             outputMaterials.append(str[0] + "; ");
                             outputSeasons.append(str[1] + "; ");
                         }
+                        String checkNullS = outputMaterials.getText().toString();
+                        String deltedNullS = checkNullS.replace("null; ","");
+                        outputMaterials.setText(deltedNullS);
+                        String checkNullX = outputSeasons.getText().toString();
+                        String delterNullX = checkNullX.replace("null; ","");
+                        outputSeasons.setText(delterNullX);
                         break;
                     case 2:
                         Toast.makeText(mContext, "Change Success", Toast.LENGTH_SHORT).show();
