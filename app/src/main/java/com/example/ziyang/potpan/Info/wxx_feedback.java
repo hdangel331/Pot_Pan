@@ -45,12 +45,7 @@ public class wxx_feedback extends Activity {
                     intent = intent.setClass(wxx_feedback.this, wxx_submitsuccess.class);
                     startActivity(intent);
                 }
-//                Intent intent = new Intent();
-//                intent = intent.setClass(wxx_feedback.this,wxx_submitsuccess.class);
-//                startActivity(intent);
             }
         });
     }
-
-
 }
