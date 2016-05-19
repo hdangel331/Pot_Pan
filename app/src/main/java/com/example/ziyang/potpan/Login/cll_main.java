@@ -32,6 +32,8 @@ public class cll_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cll_main);
+
+        System.out.println("666666");
         cll_exit.getInstance().addActivity(this);
 
         //绑定
@@ -73,6 +75,7 @@ public class cll_main extends Activity {
                                 intent.setClass(cll_main.this, wxx_main.class);
                                 intent.putExtra("useraccount", UserAccount);
                                 startActivity(intent);
+                                onDestroy();
                                 break;
                             case 2:
                                 Toast.makeText(getApplicationContext(), "Wrong Account or Password",
@@ -129,5 +132,10 @@ public class cll_main extends Activity {
         retrive.setText(spannableString2);
         retrive.setMovementMethod(LinkMovementMethod.getInstance());
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

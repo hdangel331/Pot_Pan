@@ -153,14 +153,17 @@ public class hjy_main extends Activity {
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String name = outputRecipeName.getText().toString();
                 thread1 = new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        final String name = outputRecipeName.getText().toString();
+                        final String materiallist = outputMaterials.getText().toString();
+                        final String seasoninglist = outputSeasons.getText().toString();
                         System.out.println("1");
                         StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(UPDATE_RECIPE + AccountName + UPDATE_RECIPE + RecipeName + UPDATE_RECIPE + name);//将信息添加到字符串中
+                        submitContent.append(UPDATE_RECIPE + AccountName + "; " + RecipeName + "; " + name + "; " + UPDATE_RECIPE + name + "; " +materiallist + UPDATE_RECIPE + name + "; " + seasoninglist);//将信息添加到字符串中
                         SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                        System.out.println(submitContent.toString());
                         String readinfo = SocketClient.readinfo;
                         if (readinfo.equals("ok")) {
                             Message message = new Message();
@@ -256,6 +259,12 @@ public class hjy_main extends Activity {
                             outputMaterials.append(str[0] + "; ");
                             outputSeasons.append(str[1] + "; ");
                         }
+                        String checkNullS = outputMaterials.getText().toString();
+                        String deltedNullS = checkNullS.replace("null; ","");
+                        outputMaterials.setText(deltedNullS);
+                        String checkNullX = outputSeasons.getText().toString();
+                        String delterNullX = checkNullX.replace("null; ","");
+                        outputSeasons.setText(delterNullX);
                         break;
                     case 2:
                         Toast.makeText(mContext, "Change Success", Toast.LENGTH_SHORT).show();

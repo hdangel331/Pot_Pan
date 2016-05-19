@@ -63,6 +63,8 @@ public class wxx_main extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_main);
+
+        System.out.println("create");
         gridview = (GridView) findViewById(R.id.gridview);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
@@ -79,62 +81,7 @@ public class wxx_main extends Activity {
         Bundle bundle = intent.getExtras();
         final String ACCOUNT = bundle.getString("useraccount");
         zzy_data.setA(ACCOUNT);
-
-        thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                StringBuffer submitContent = new StringBuffer();//定义服务器
-                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());//将信息添加到字符串中
-                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
-                String readinfo = SocketClient.readinfo;
-                Message message = new Message();
-                message.obj = readinfo;
-                message.what = 1;
-                myHandler.sendMessage(message);
-            }
-        });
-        thread1.start();
-
-        myHandler = new Handler() {
-            public void handleMessage(Message msg) {
-                switch (msg.what) {
-                    case 1:
-                        List<String[]> list = new ArrayList<String[]>();
-                        String info = (String) msg.obj;
-                        String[] str1 = info.split("#");
-                        for (int i = 0; i < str1.length; i++) {
-                            if (str1[i].length() > 0) {
-                                list.add(str1[i].split("η"));
-                            }
-                        }
-                        String[] name = new String[list.size()];
-                        String[] url = new String[list.size()];
-                        for (int i = 0; i < list.size(); i++) {
-                            String[] str = list.get(i);
-                            name[i] = str[0];
-                            url[i] = str[1];
-                        }
-                        zzy_data.setB(name);
-                        zzy_data.setC(url);
-
-                        //初始化
-                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
-                        ImageLoader.getInstance().init(config);
-                        imageAdapter = new ImageAdapter(wxx_main.this);
-                        gridview.setAdapter(imageAdapter);
-                        break;
-                    case 2:
-                        Toast.makeText(getApplicationContext(), "Delete Success",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                    case 3:
-                        Toast.makeText(getApplicationContext(), "Delete Fail",
-                                Toast.LENGTH_SHORT).show();
-                        break;
-                }
-                super.handleMessage(msg);
-            }
-        };
+        System.out.println(ACCOUNT);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -142,7 +89,7 @@ public class wxx_main extends Activity {
                 String[] Name = zzy_data.getB();
                 Intent intent = new Intent();
                 intent.putExtra("recipename", Name[position]);
-                intent.putExtra("position",position);
+                intent.putExtra("position", position);
                 intent.setClass(wxx_main.this, zzy_main.class);
                 startActivity(intent);
             }
@@ -217,6 +164,7 @@ public class wxx_main extends Activity {
                 intent.putExtra("account", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_lib.class);
                 startActivity(intent);
+                onDestroy();
             }
         });
         final PopupWindow popupWindow = new PopupWindow(contentView, ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT, true);
@@ -280,12 +228,14 @@ public class wxx_main extends Activity {
     //GridView适配器
     private static class ImageAdapter extends BaseAdapter {
 
-        private static String[] Recipes = zzy_data.getC();
-        private static String[] Name = zzy_data.getB();
+        private static String[] Recipes;
+        private static String[] Name;
         private LayoutInflater inflater;
         private DisplayImageOptions options;
 
-        ImageAdapter(Context context) {
+        public ImageAdapter(String[] recipe, String[] name, Context context) {
+            Recipes = recipe;
+            Name = name;
             inflater = LayoutInflater.from(context);
             options = new DisplayImageOptions.Builder()
                     .showImageOnLoading(R.drawable.zzy_loading)
@@ -298,6 +248,10 @@ public class wxx_main extends Activity {
                     .build();
         }
 
+        public void refresh(String[] recipe, String[] name){
+            Recipes = recipe;
+            Name = name;
+        }
         @Override
         public int getCount() {
             return Recipes.length;
@@ -343,61 +297,80 @@ public class wxx_main extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        System.out.println("resume");
 
-//        thread1 = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                StringBuffer submitContent = new StringBuffer();//定义服务器
-//                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());//将信息添加到字符串中
-//                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
-//                String readinfo = SocketClient.readinfo;
-//                Message message = new Message();
-//                message.obj = readinfo;
-//                message.what = 1;
-//                myHandler.sendMessage(message);
-//            }
-//        });
-//        thread1.start();
-//
-//        myHandler = new Handler() {
-//            public void handleMessage(Message msg) {
-//                switch (msg.what) {
-//                    case 1:
-//                        List<String[]> list = new ArrayList<String[]>();
-//                        String info = (String) msg.obj;
-//                        String[] str1 = info.split("#");
-//                        for (int i = 0; i < str1.length; i++) {
-//                            if (str1[i].length() > 0) {
-//                                list.add(str1[i].split("η"));
-//                            }
-//                        }
-//                        String[] name = new String[list.size()];
-//                        String[] url = new String[list.size()];
-//                        for (int i = 0; i < list.size(); i++) {
-//                            String[] str = list.get(i);
-//                            name[i] = str[0];
-//                            url[i] = str[1];
-//                        }
-//                        zzy_data.setB(name);
-//                        zzy_data.setC(url);
-//
-//                        //初始化
-//                        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
-//                        ImageLoader.getInstance().init(config);
-//                        imageAdapter = new ImageAdapter(wxx_main.this);
-//                        gridview.setAdapter(imageAdapter);
-//                        break;
-//                    case 2:
-//                        Toast.makeText(getApplicationContext(), "Delete Success",
-//                                Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case 3:
-//                        Toast.makeText(getApplicationContext(), "Delete Fail",
-//                                Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
-//                super.handleMessage(msg);
-//            }
-//        };
+        //初始化
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
+        ImageLoader.getInstance().init(config);
+        imageAdapter = new ImageAdapter(zzy_data.getC(),zzy_data.getB(),wxx_main.this);
+        gridview.setAdapter(imageAdapter);
+
+        thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                StringBuffer submitContent = new StringBuffer();//定义服务器
+                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());//将信息添加到字符串中
+                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                String readinfo = SocketClient.readinfo;
+                Message message = new Message();
+                message.obj = readinfo;
+                message.what = 1;
+                myHandler.sendMessage(message);
+            }
+        });
+        thread1.start();
+
+        myHandler = new Handler() {
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        System.out.println("case1");
+                        List<String[]> list = new ArrayList<String[]>();
+                        String info = (String) msg.obj;
+                        String[] str1 = info.split("#");
+                        for (int i = 0; i < str1.length; i++) {
+                            if (str1[i].length() > 0) {
+                                list.add(str1[i].split("η"));
+                            }
+                        }
+                        String[] name = new String[list.size()];
+                        String[] url = new String[list.size()];
+                        for (int i = 0; i < list.size(); i++) {
+                            String[] str = list.get(i);
+                            name[i] = str[0];
+                            url[i] = str[1];
+                        }
+                        zzy_data.setB(name);
+                        zzy_data.setC(url);
+                        imageAdapter.refresh(zzy_data.getC(),zzy_data.getB());
+                        imageAdapter.notifyDataSetChanged();
+                        break;
+                    case 2:
+                        Toast.makeText(getApplicationContext(), "Delete Success",
+                                Toast.LENGTH_SHORT).show();
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent();
+                                intent.setClass(wxx_main.this, wxx_main.class);
+                                intent.putExtra("useraccount", zzy_data.getA());
+                                startActivity(intent);
+                            }
+                        }, 1000);
+                        break;
+                    case 3:
+                        Toast.makeText(getApplicationContext(), "Delete Fail",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+        };
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("destroy");
     }
 }
