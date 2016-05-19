@@ -58,7 +58,9 @@ public final class zzy_constants {
             "http://img0.ph.126.net/wSY8Z7t4HWLKhH7oMhlO8Q==/6598222054904433930.png",    //培根bacon
             "http://img2.ph.126.net/Q4hk9iYKStBiuMjNQroW5A==/6598111004230033553.png",    //番茄tomato
             "http://img1.ph.126.net/5RxBOB9ijazP6BK0pnNhpQ==/4841932549478142844.png",    //鸡腿drumstick
-            "http://img2.ph.126.net/36uIyW2qR7Iow9_2j9ljFg==/6598098909602122856.png"    //胡萝卜carrot
+            "http://img2.ph.126.net/36uIyW2qR7Iow9_2j9ljFg==/6598098909602122856.png",    //胡萝卜carrot
+            "http://img0.ph.126.net/Z1vs6nAH_4xM0er5KljpDg==/1999879709631131925.png",    //米饭rice
+            "http://img0.ph.126.net/UyEm5LlnW8pSe1sfo5f1aQ==/6598220955392806152.png"     //苦瓜balsamPear
     };
 
     public static final String[] MATERIALNAME = new String[]{
@@ -78,7 +80,9 @@ public final class zzy_constants {
             "bacon",
             "tomato",
             "drumstick",
-            "carrot"
+            "carrot",
+            "rice",
+            "balsamPear"
     };
 
     public static final String[] SEASONING = new String[]{
