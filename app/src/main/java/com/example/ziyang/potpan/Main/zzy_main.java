@@ -1,4 +1,4 @@
-package com.example.ziyang.potpan;
+package com.example.ziyang.potpan.Main;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,13 +25,13 @@ import com.example.ziyang.potpan.DATABASE.MaterialDB;
 import com.example.ziyang.potpan.DATABASE.SeasoningDB;
 import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.Login.cll_exit;
+import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 

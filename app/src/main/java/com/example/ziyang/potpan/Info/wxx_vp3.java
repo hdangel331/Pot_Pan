@@ -10,7 +10,7 @@ import android.widget.Button;
 
 import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.R;
-import com.example.ziyang.potpan.wxx_main;
+import com.example.ziyang.potpan.Main.wxx_main;
 
 public class wxx_vp3 extends Fragment {
 

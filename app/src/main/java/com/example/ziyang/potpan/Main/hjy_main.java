@@ -1,4 +1,4 @@
-package com.example.ziyang.potpan;
+package com.example.ziyang.potpan.Main;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,12 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.Login.cll_exit;
+import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
 
 import java.util.ArrayList;

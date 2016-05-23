@@ -18,9 +18,7 @@ import android.widget.Toast;
 
 import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
-import com.example.ziyang.potpan.wxx_main;
-
-import pl.droidsonroids.gif.GifImageView;
+import com.example.ziyang.potpan.Main.wxx_main;
 
 import static com.example.ziyang.potpan.Data.zzy_constants.*;
 

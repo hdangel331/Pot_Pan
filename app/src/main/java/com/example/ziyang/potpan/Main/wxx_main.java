@@ -1,4 +1,4 @@
-package com.example.ziyang.potpan;
+package com.example.ziyang.potpan.Main;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -30,6 +30,7 @@ import com.example.ziyang.potpan.Info.wxx_example;
 import com.example.ziyang.potpan.Info.wxx_feedback;
 import com.example.ziyang.potpan.Login.cll_exit;
 import com.example.ziyang.potpan.Login.cll_main;
+import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

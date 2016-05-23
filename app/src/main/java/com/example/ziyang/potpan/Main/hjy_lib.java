@@ -1,4 +1,4 @@
-package com.example.ziyang.potpan;
+package com.example.ziyang.potpan.Main;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.Login.cll_exit;
+import com.example.ziyang.potpan.R;
 import com.example.ziyang.potpan.util.SocketClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

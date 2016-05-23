@@ -1,4 +1,4 @@
-package com.example.ziyang.potpan;
+package com.example.ziyang.potpan.Main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.ziyang.potpan.Data.zzy_data;
 import com.example.ziyang.potpan.Login.cll_exit;
+import com.example.ziyang.potpan.R;
 
 import pl.droidsonroids.gif.GifImageView;
 

@@ -24,17 +24,17 @@
         </activity>
 
         <activity
-            android:name=".hjy_main"
+            android:name=".Main.hjy_main"
             android:label="hongjingye1"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".hjy_lib"
+            android:name=".Main.hjy_lib"
             android:label="hongjingye2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".wxx_main"
+            android:name=".Main.wxx_main"
             android:label="wangxiaoxuan1"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
@@ -64,17 +64,17 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".zzy_main"
+            android:name=".Main.zzy_main"
             android:label="zhangziyang"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".cll_f1"
+            android:name=".Main.cll_f1"
             android:label="cllf1"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
         <activity
-            android:name=".cll_f2"
+            android:name=".Main.cll_f2"
             android:label="cllf2"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
 
