@@ -43,32 +43,35 @@ import java.util.List;
 
 import pl.droidsonroids.gif.GifImageView;
 
-import static com.example.ziyang.potpan.Data.zzy_constants.DELETE_RECIPE;
-import static com.example.ziyang.potpan.Data.zzy_constants.GET_RECIPEBYACCOUNT;
+import static com.example.ziyang.potpan.Data.zzy_constants.*;
 
 public class wxx_main extends Activity {
 
     private GridView gridview;
     private Button buttonlast;
     private Context mContext = null;
-
-    //侧滑变量
-    private ListView listview;
-    private ArrayList<String> menulist;
-    private ArrayAdapter<String> adapter;
-
     private Handler myHandler;
     private Thread thread1;
     private Thread thread2;
     private ImageAdapter imageAdapter;
     private GifImageView loading1;
 
+    private ListView listview;
+    private ArrayList<String> menulist;
+    private ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wxx_main);
 
-        loading1= (GifImageView) findViewById(R.id.loading1);
+        //get account
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String ACCOUNT = bundle.getString("useraccount");
+        zzy_data.setA(ACCOUNT);
+
+        loading1 = (GifImageView) findViewById(R.id.loading1);
         gridview = (GridView) findViewById(R.id.gridview);
         mContext = this;
         buttonlast = (Button) findViewById(R.id.ButtonLast);
@@ -87,11 +90,14 @@ public class wxx_main extends Activity {
         });
         cll_exit.getInstance().addActivity(this);
 
-        //获取账户
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        final String ACCOUNT = bundle.getString("useraccount");
-        zzy_data.setA(ACCOUNT);
+        listview = (ListView) findViewById(R.id.left_drawer);
+        menulist = new ArrayList<String>();
+        menulist.add("About Pot&Pan");//Functions
+        menulist.add("Help");//界面搞完截图弄上去,how to use this app
+        menulist.add("Feedback");
+        menulist.add("Log out");
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menulist);
+        listview.setAdapter(adapter);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,7 +117,6 @@ public class wxx_main extends Activity {
             }
         });
 
-        //在这里写长按事件
         gridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -120,16 +125,6 @@ public class wxx_main extends Activity {
             }
         });
 
-
-        //策划界面布局填充
-        listview = (ListView) findViewById(R.id.left_drawer);
-        menulist = new ArrayList<String>();
-        menulist.add("About Pot&Pan");//Functions
-        menulist.add("Help");//界面搞完截图弄上去,how to use this app
-        menulist.add("Feedback");
-        menulist.add("Log out");
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menulist);
-        listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -138,21 +133,25 @@ public class wxx_main extends Activity {
                         Intent intent = new Intent();
                         intent.setClass(wxx_main.this, wxx_AboutUs22.class);
                         startActivity(intent);
+                        wxx_main.this.finish();
                         break;
                     case 1:
                         Intent intent1 = new Intent();
                         intent1.setClass(wxx_main.this, wxx_example.class);
                         startActivity(intent1);
+                        wxx_main.this.finish();
                         break;
                     case 2:
                         Intent intent2 = new Intent();
                         intent2.setClass(wxx_main.this, wxx_feedback.class);
                         startActivity(intent2);
+                        wxx_main.this.finish();
                         break;
                     case 3:
                         Intent intent3 = new Intent();
                         intent3.setClass(wxx_main.this, cll_main.class);
                         startActivity(intent3);
+                        wxx_main.this.finish();
                         break;
                 }
             }
@@ -177,6 +176,7 @@ public class wxx_main extends Activity {
                 intent.putExtra("accountname", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_main.class);
                 startActivity(intent);
+                wxx_main.this.finish();
             }
         });
         addRecipe.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +192,7 @@ public class wxx_main extends Activity {
                 intent.putExtra("account", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_lib.class);
                 startActivity(intent);
+                wxx_main.this.finish();
                 onDestroy();
             }
         });
@@ -223,6 +224,7 @@ public class wxx_main extends Activity {
                 intent.putExtra("accountname", zzy_data.getA());
                 intent.setClass(wxx_main.this, hjy_main.class);
                 startActivity(intent);
+                wxx_main.this.finish();
             }
         });
         deleteRecipe.setOnClickListener(new View.OnClickListener() {
@@ -232,9 +234,9 @@ public class wxx_main extends Activity {
                     @Override
                     public void run() {
                         String[] Name = zzy_data.getB();
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(DELETE_RECIPE + zzy_data.getA() + DELETE_RECIPE + Name[position]);//将信息添加到字符串中
-                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                        StringBuffer submitContent = new StringBuffer();
+                        submitContent.append(DELETE_RECIPE + zzy_data.getA() + DELETE_RECIPE + Name[position]);
+                        SocketClient.ConnectSevert(submitContent.toString());
                         String readinfo = SocketClient.readinfo;
                         if (readinfo.equals("ok")) {
                             Message message = new Message();
@@ -259,7 +261,7 @@ public class wxx_main extends Activity {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
     }
 
-    //GridView适配器
+    //GridView adapter
     private static class ImageAdapter extends BaseAdapter {
 
         private static String[] Recipes;
@@ -282,10 +284,11 @@ public class wxx_main extends Activity {
                     .build();
         }
 
-        public void refresh(String[] recipe, String[] name){
+        public void refresh(String[] recipe, String[] name) {
             Recipes = recipe;
             Name = name;
         }
+
         @Override
         public int getCount() {
             return Recipes.length;
@@ -332,18 +335,18 @@ public class wxx_main extends Activity {
     protected void onResume() {
         super.onResume();
 
-        //初始化
+        //Add adapter
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(wxx_main.this).build();
         ImageLoader.getInstance().init(config);
-        imageAdapter = new ImageAdapter(zzy_data.getC(),zzy_data.getB(),wxx_main.this);
+        imageAdapter = new ImageAdapter(zzy_data.getC(), zzy_data.getB(), wxx_main.this);
         gridview.setAdapter(imageAdapter);
 
         thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                StringBuffer submitContent = new StringBuffer();//定义服务器
-                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());//将信息添加到字符串中
-                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                StringBuffer submitContent = new StringBuffer();
+                submitContent.append(GET_RECIPEBYACCOUNT + zzy_data.getA());
+                SocketClient.ConnectSevert(submitContent.toString());
                 String readinfo = SocketClient.readinfo;
                 Message message = new Message();
                 message.obj = readinfo;
@@ -375,7 +378,7 @@ public class wxx_main extends Activity {
                         }
                         zzy_data.setB(name);
                         zzy_data.setC(url);
-                        imageAdapter.refresh(zzy_data.getC(),zzy_data.getB());
+                        imageAdapter.refresh(zzy_data.getC(), zzy_data.getB());
                         imageAdapter.notifyDataSetChanged();
                         break;
                     case 2:
@@ -388,6 +391,7 @@ public class wxx_main extends Activity {
                                 intent.setClass(wxx_main.this, wxx_main.class);
                                 intent.putExtra("useraccount", zzy_data.getA());
                                 startActivity(intent);
+                                wxx_main.this.finish();
                             }
                         }, 500);
                         break;
@@ -399,10 +403,5 @@ public class wxx_main extends Activity {
                 super.handleMessage(msg);
             }
         };
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

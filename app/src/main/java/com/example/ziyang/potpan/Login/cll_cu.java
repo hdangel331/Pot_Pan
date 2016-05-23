@@ -118,6 +118,7 @@ public class cll_cu extends Activity {
                                 Intent intent = new Intent();
                                 intent.setClass(cll_cu.this, cll_cp.class);
                                 startActivity(intent);
+                                cll_cu.this.finish();
                                 break;
                             case 2:
                                 Toast.makeText(getApplicationContext(), "Please enter correct information",
@@ -139,6 +140,7 @@ public class cll_cu extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(cll_cu.this, cll_main.class);
                 startActivity(intent);
+                cll_cu.this.finish();
             }
         });
     }

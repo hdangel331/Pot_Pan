@@ -44,6 +44,7 @@ public class cll_f1 extends Activity {
                 intent.setClass(cll_f1.this, wxx_main.class);
                 intent.putExtra("useraccount", zzy_data.getA());
                 startActivity(intent);
+                cll_f1.this.finish();
             }
         });
 

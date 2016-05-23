@@ -39,9 +39,7 @@ public class hjy_main extends Activity {
     private Button cancelRecipe, createRecipe;
 
     private Handler myHandler;
-    private Thread thread1;
-    private Thread thread2;
-    private Thread thread3;
+    private Thread thread;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +50,7 @@ public class hjy_main extends Activity {
         hjy_adapter adapter = new hjy_adapter(this);
         hjy_dadpter_seasons adapters = new hjy_dadpter_seasons(this);
 
-        //获取账户
+        //Get account
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         final String RecipeName = bundle.getString("recipename");
@@ -70,15 +68,18 @@ public class hjy_main extends Activity {
         outputRecipeName = (TextView) findViewById(R.id.outputName);
         outputMaterials = (TextView) findViewById(R.id.outputMaterials);
         outputSeasons = (TextView) findViewById(R.id.outputSeasons);
+        cancelRecipe = (Button) findViewById(R.id.cancelRecipe);
+        createRecipe = (Button) findViewById(R.id.createRecipe);
+
         recipeName.setText(RecipeName);
         outputRecipeName.setText(RecipeName);
         if (RecipeName != null && RecipeName.length() != 0) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    StringBuffer submitContent = new StringBuffer();//定义服务器
-                    submitContent.append(GET_CONTENTBYNAME + RecipeName);//将信息添加到字符串中
-                    SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                    StringBuffer submitContent = new StringBuffer();
+                    submitContent.append(GET_CONTENTBYNAME + RecipeName);
+                    SocketClient.ConnectSevert(submitContent.toString());
                     String readinfo = SocketClient.readinfo;
                     Message message = new Message();
                     message.obj = readinfo;
@@ -124,6 +125,7 @@ public class hjy_main extends Activity {
                 }
             }
         });
+
         galleryS.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -138,42 +140,43 @@ public class hjy_main extends Activity {
             }
         });
 
-        cancelRecipe = (Button) findViewById(R.id.cancelRecipe);
-        createRecipe = (Button) findViewById(R.id.createRecipe);
         cancelRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent();
+                intent.setClass(hjy_main.this, wxx_main.class);
+                intent.putExtra("useraccount", AccountName);
+                startActivity(intent);
+                hjy_main.this.finish();
             }
         });
 
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                thread1 = new Thread(new Runnable() {
+                thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         final String name = outputRecipeName.getText().toString();
                         final String materiallist = outputMaterials.getText().toString();
                         final String seasoninglist = outputSeasons.getText().toString();
                         System.out.println("1");
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(UPDATE_RECIPE + AccountName + "; " + RecipeName + "; " + name + "; " + UPDATE_RECIPE + name + "; " +materiallist + UPDATE_RECIPE + name + "; " + seasoninglist);//将信息添加到字符串中
-                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
-                        System.out.println(submitContent.toString());
+                        StringBuffer submitContent = new StringBuffer();
+                        submitContent.append(UPDATE_RECIPE + AccountName + "; " + RecipeName + "; " + name + "; " + UPDATE_RECIPE + name + "; " + materiallist + UPDATE_RECIPE + name + "; " + seasoninglist);
+                        SocketClient.ConnectSevert(submitContent.toString());
                         String readinfo = SocketClient.readinfo;
                         if (readinfo.equals("ok")) {
                             Message message = new Message();
-                            message.what = 4;
+                            message.what = 2;
                             myHandler.sendMessage(message);
                         } else {
                             Message message = new Message();
-                            message.what = 2;
+                            message.what = 3;
                             myHandler.sendMessage(message);
                         }
                     }
                 });
-                thread1.start();
+                thread.start();
             }
         });
 
@@ -202,22 +205,17 @@ public class hjy_main extends Activity {
                         outputSeasons.setText(delterNullX);
                         break;
                     case 2:
-                        Toast.makeText(mContext, "Change Success", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
                         zzy_data.setI(2);
-                        thread1 = null;
                         Intent intent = new Intent();
                         intent.setClass(hjy_main.this, wxx_main.class);
                         intent.putExtra("useraccount", AccountName);
                         startActivity(intent);
+                        hjy_main.this.finish();
                         break;
-                    case 5:
-                        thread2 = null;
+                    case 3:
+                        Toast.makeText(mContext, "Fail", Toast.LENGTH_SHORT).show();
                         break;
-                    case 6:
-                        thread3 = null;
-                        break;
+
                 }
                 super.handleMessage(msg);
             }

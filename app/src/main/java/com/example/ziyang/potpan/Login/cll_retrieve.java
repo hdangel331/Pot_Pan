@@ -43,11 +43,10 @@ public class cll_retrieve extends Activity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(GET_EMAILBYACCOUNT + UserAccount);//将员工信息添加到字符串中
-                        SocketClient.ConnectSevert(submitContent.toString());//将员工信息传给服务器
+                        StringBuffer submitContent = new StringBuffer();
+                        submitContent.append(GET_EMAILBYACCOUNT + UserAccount);
+                        SocketClient.ConnectSevert(submitContent.toString());
                         String readinfo = SocketClient.readinfo;
-                        System.out.println(readinfo);
                         if (readinfo.equals(UserEmail)) {
                             Message message = new Message();
                             message.what = 1;
@@ -67,6 +66,7 @@ public class cll_retrieve extends Activity {
                                 Intent intent = new Intent();
                                 intent.setClass(cll_retrieve.this, cll_reset.class);
                                 startActivity(intent);
+                                cll_retrieve.this.finish();
                                 break;
                             case 2:
                                 Toast.makeText(getApplicationContext(), "Wrong Account or Email",

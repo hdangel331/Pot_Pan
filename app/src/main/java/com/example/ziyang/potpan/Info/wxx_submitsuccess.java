@@ -27,6 +27,7 @@ public class wxx_submitsuccess extends Activity {
                 intent.setClass(wxx_submitsuccess.this, wxx_main.class);
                 intent.putExtra("useraccount", zzy_data.getA());
                 startActivity(intent);
+                wxx_submitsuccess.this.finish();
             }
         });
     }

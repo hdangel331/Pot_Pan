@@ -36,7 +36,7 @@ public class cll_f2 extends Activity {
             public void run() {
                 makesteak.setVisibility(View.INVISIBLE);
             }
-        }, 3000);
+        }, 4000);
 
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +46,7 @@ public class cll_f2 extends Activity {
                 intent.setClass(cll_f2.this, wxx_main.class);
                 intent.putExtra("useraccount", zzy_data.getA());
                 startActivity(intent);
+                cll_f2.this.finish();
             }
         });
 

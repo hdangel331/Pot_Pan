@@ -32,9 +32,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 import static com.example.ziyang.potpan.Data.zzy_constants.*;
@@ -43,12 +46,11 @@ public class zzy_main extends Activity implements View.OnTouchListener {
 
     private ListView listView1, listView2;
     private ImageButton start, empty;
-    private GifImageView white, red, black, loading, putegg, twoegg, bacon,steak;
+    private GifImageView white, loading;
 
     private Handler myHandler;
     private int screenWidth, screenHeight;
     private int lastX, lastY;
-
 
     private static String[] Material = new String[]{};
     private static String[] Seasoning = new String[]{};
@@ -63,31 +65,24 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         start = (ImageButton) findViewById(R.id.start);
         empty = (ImageButton) findViewById(R.id.empty);
         white = (GifImageView) findViewById(R.id.white);
-        red = (GifImageView) findViewById(R.id.red);
-        black = (GifImageView) findViewById(R.id.black);
         loading = (GifImageView) findViewById(R.id.loading);
-        putegg = (GifImageView) findViewById(R.id.putegg);
-        twoegg = (GifImageView) findViewById(R.id.twoegg);
-        bacon = (GifImageView) findViewById(R.id.bacon);
-        steak = (GifImageView) findViewById(R.id.steak);
 
         Display dis = this.getWindowManager().getDefaultDisplay();
         screenWidth = dis.getWidth();
         screenHeight = dis.getHeight();
 
-        //获取账户
+        //get account
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         final String RecipeName = bundle.getString("recipename");
         final int position = bundle.getInt("position") + 10;
-        System.out.println(position);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                StringBuffer submitContent = new StringBuffer();//定义服务器
-                submitContent.append(GET_CONTENTBYNAME + RecipeName);//将信息添加到字符串中
-                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                StringBuffer submitContent = new StringBuffer();
+                submitContent.append(GET_CONTENTBYNAME + RecipeName);
+                SocketClient.ConnectSevert(submitContent.toString());
                 String readinfo = SocketClient.readinfo;
                 Message message = new Message();
                 message.obj = readinfo;
@@ -110,11 +105,13 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                                 Intent intent1 = new Intent();
                                 intent1.setClass(zzy_main.this, cll_f1.class);
                                 startActivity(intent1);
+                                zzy_main.this.finish();
                                 break;
                             case 11:
                                 Intent intent2 = new Intent();
                                 intent2.setClass(zzy_main.this, cll_f2.class);
                                 startActivity(intent2);
+                                zzy_main.this.finish();
                                 break;
                         }
                     }
@@ -122,56 +119,39 @@ public class zzy_main extends Activity implements View.OnTouchListener {
             }
         });
 
+        empty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(zzy_main.this, zzy_main.class);
+                intent.putExtra("recipename", RecipeName);
+                intent.putExtra("position", position - 10);
+                startActivity(intent);
+                zzy_main.this.finish();
+            }
+        });
+
         listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int Position, long id) {
-                switch (Position) {
-                    case 0:
-                        if (position == 10) {
-                            putegg.setVisibility(View.VISIBLE);
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    putegg.setVisibility(View.INVISIBLE);
-                                    twoegg.setVisibility(View.VISIBLE);
-                                }
-                            }, 3000);
-                        } else {
-                            steak.setVisibility(View.VISIBLE);
-                        }
-
-                        break;
-                    case 1:
-                        bacon.setVisibility(View.VISIBLE);
-                        break;
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int Pos, long id) {
+                Message message = new Message();
+                message.obj = Pos;
+                message.what = 2;
+                myHandler.sendMessage(message);
             }
         });
 
         listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        white.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                white.setVisibility(View.INVISIBLE);
-                            }
-                        }, 2500);
-                        break;
-                    case 1:
-                        red.setVisibility(View.VISIBLE);
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                red.setVisibility(View.INVISIBLE);
-                            }
-                        }, 2500);
-                        break;
-                }
-                ;
+
+                white.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        white.setVisibility(View.INVISIBLE);
+                    }
+                }, 2500);
             }
         });
 
@@ -200,15 +180,15 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                         String[] materiallist = zzy_data.getD();
                         String[] seasoninglist = zzy_data.getE();
 
-                        //MaterialDB 获取
+                        //MaterialDB get
                         MaterialDB materialdb = new MaterialDB(zzy_main.this);
                         SQLiteDatabase materialread = materialdb.getReadableDatabase();
 
-                        //SeasoningDB 获取
+                        //SeasoningDB get
                         SeasoningDB seasoningdb = new SeasoningDB(zzy_main.this);
                         SQLiteDatabase seasoningread = seasoningdb.getReadableDatabase();
 
-                        //Material 读取
+                        //Material read
                         List<String> list1 = new ArrayList<String>();
                         for (int i = 0; i < materiallist.length; i++) {
                             Cursor c1 = materialread.query("MaterialDB", new String[]{"materialurl"}, "materialname=?", new String[]{materiallist[i]}, null, null, null);
@@ -220,7 +200,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                         }
                         Material = list1.toArray(new String[list1.size()]);
 
-                        //Material 读取
+                        //Material read
                         List<String> list2 = new ArrayList<String>();
                         for (int i = 0; i < seasoninglist.length; i++) {
                             Cursor c2 = seasoningread.query("SeasoningDB", new String[]{"seasoningurl"}, "seasoningname=?", new String[]{seasoninglist[i]}, null, null, null);
@@ -232,26 +212,31 @@ public class zzy_main extends Activity implements View.OnTouchListener {
                         }
                         Seasoning = list2.toArray(new String[list2.size()]);
 
-                        //初始化
+                        //Add adapter
                         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(zzy_main.this).build();
                         ImageLoader.getInstance().init(config);
                         listView1.setAdapter(new ImageAdapter1(zzy_main.this));
                         listView2.setAdapter(new ImageAdapter2(zzy_main.this));
-
                         break;
                     case 2:
-                        int position = (int) msg.obj;
-                        String url = Material[position];
-                        ImageView imageview = new ImageView(zzy_main.this);
-                        RelativeLayout processLayout = (RelativeLayout) findViewById(R.id.processLayout);
-                        ImageLoader imageLoader = ImageLoader.getInstance();
-                        imageLoader.displayImage("http://i2.buimg.com/c47e649d5955bb35.jpg", imageview);
-                        RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        lp1.leftMargin = 400;
-                        lp1.topMargin = 600;
-                        processLayout.addView(imageview, lp1);
-                        imageview.setClickable(true);
-                        imageview.setOnTouchListener(zzy_main.this);
+                        int pos = (int) msg.obj;
+                        String[] materialname = zzy_data.getD();
+                        String prefix = materialname[pos];
+                        String postfix = ".gif";
+                        String name = prefix + postfix;
+                        try {
+                            RelativeLayout process = (RelativeLayout) findViewById(R.id.processLayout);
+                            RelativeLayout.LayoutParams lp1 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            Random random = new Random();
+                            lp1.leftMargin = random.nextInt(430);
+                            lp1.topMargin = random.nextInt(350);
+                            GifDrawable gifdrawable = new GifDrawable(getAssets(), name); // Only if it exists in assets file
+                            GifImageView gif = new GifImageView(zzy_main.this);
+                            gif.setImageDrawable(gifdrawable);
+                            process.addView(gif, lp1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         break;
                 }
                 super.handleMessage(msg);
@@ -296,7 +281,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
     }
 
 
-    //第一个适配器！！！
+    //First Adapter
     private static class ImageAdapter1 extends BaseAdapter {
 
         private LayoutInflater inflater;
@@ -347,7 +332,7 @@ public class zzy_main extends Activity implements View.OnTouchListener {
         }
     }
 
-    //第二个适配器！！！
+    //Second Adapter
     private static class ImageAdapter2 extends BaseAdapter {
 
         private LayoutInflater inflater;

@@ -73,7 +73,6 @@ public class cll_main extends Activity {
                                 intent.setClass(cll_main.this, wxx_main.class);
                                 intent.putExtra("useraccount", UserAccount);
                                 startActivity(intent);
-                                onDestroy();
                                 break;
                             case 2:
                                 Toast.makeText(getApplicationContext(), "Wrong Account or Password",
@@ -130,10 +129,5 @@ public class cll_main extends Activity {
         retrive.setText(spannableString2);
         retrive.setMovementMethod(LinkMovementMethod.getInstance());
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

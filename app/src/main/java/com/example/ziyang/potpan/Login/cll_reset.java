@@ -75,6 +75,7 @@ public class cll_reset extends Activity {
                                     Intent intent = new Intent();
                                     intent.setClass(cll_reset.this, cll_cp2.class);
                                     startActivity(intent);
+                                    cll_reset.this.finish();
                                     break;
                                 case 2:
                                     Toast.makeText(getApplicationContext(), "Error Account",

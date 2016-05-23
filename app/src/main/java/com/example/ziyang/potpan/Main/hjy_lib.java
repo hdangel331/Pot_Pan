@@ -51,9 +51,9 @@ public class hjy_lib extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                StringBuffer submitContent = new StringBuffer();//定义服务器
-                submitContent.append(GET_LIB);//将信息添加到字符串中
-                SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                StringBuffer submitContent = new StringBuffer();
+                submitContent.append(GET_LIB);
+                SocketClient.ConnectSevert(submitContent.toString());
                 String readinfo = SocketClient.readinfo;
                 Message message = new Message();
                 message.obj = readinfo;
@@ -71,9 +71,9 @@ public class hjy_lib extends Activity {
                         String[] Name = zzy_data.getF();
                         String[] Url = zzy_data.getG();
 
-                        StringBuffer submitContent = new StringBuffer();//定义服务器
-                        submitContent.append(ADD_RECIPEFROMLIB + ACCOUNT + ADD_RECIPEFROMLIB + Name[position] + ADD_RECIPEFROMLIB + Url[position]);//将信息添加到字符串中
-                        SocketClient.ConnectSevert(submitContent.toString());//将信息传给服务器
+                        StringBuffer submitContent = new StringBuffer();
+                        submitContent.append(ADD_RECIPEFROMLIB + ACCOUNT + ADD_RECIPEFROMLIB + Name[position] + ADD_RECIPEFROMLIB + Url[position]);
+                        SocketClient.ConnectSevert(submitContent.toString());
                         String readinfo = SocketClient.readinfo;
                         if (readinfo.equals("ok")) {
                             Message message = new Message();
@@ -122,6 +122,7 @@ public class hjy_lib extends Activity {
                         intent.putExtra("useraccount", ACCOUNT);
                         intent.setClass(hjy_lib.this, wxx_main.class);
                         startActivity(intent);
+                        hjy_lib.this.finish();
                         break;
                     case 3:
                         Toast.makeText(getApplicationContext(), "This recipe already exists.",
