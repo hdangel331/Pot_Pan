@@ -45,7 +45,7 @@ public final class zzy_constants {
             "http://img1.ph.126.net/dbhLzGWfb_aDGfnQIx-3eg==/4830392075432277124.png",    //shrimp
             "http://img2.ph.126.net/UjohW6qlQ5Z20T_kvQzghg==/6598238547578841257.png",    //lettuce
             "http://img1.ph.126.net/XVpPddNT8nlJxC5U9ceY_w==/6598186870532343652.png",    //corn
-            "http://img3.douban.com/view/note/large/public/p9618462.jpg",    //egg
+            "http://img3.douban.com/view/note/large/public/p9618462.jpg",                     //egg
             "http://img2.ph.126.net/HBG4HfiRhjhRW_nZiCYydw==/4914271618492052636.png",    //pumpkin
             "http://img1.ph.126.net/Mkv-a6LDkZBXfUUvtFlYKQ==/4851784173662903215.png",    //leek
             "http://img1.ph.126.net/TVBYtN2EDyr6uFTnVeMWHQ==/4858539573103958926.png",    //celery

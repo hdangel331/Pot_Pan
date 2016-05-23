@@ -60,12 +60,12 @@ public class DesignRecipe extends Activity {
         final String AccountName = bundle.getString("accountname");
 
         final String materials[] = {
-                "bacon", "balsam pear", "beef", "carrot", "celery", "checken", "checken breast",
-                "chinese cabbage", "corn", "drumstick", "egg", "eggplant", "fish", "leek",
+                "bacon", "balsam pear", "beef", "carrot", "celery", "checken",
+                 "corn", "drumstick", "egg", "eggplant", "fish", "leek",
                 "lettuce", "tomato", "mushroom", "potapo", "pumpkin", "rice", "shrimp"};
         final String seasons[] = {
                 "chilli", "cinnamon", "cumin", "curry", "garlic", "ginger", "onion",
-                "rosemary", "salt", "shallot", "soy sauce", "star anise", "sugar", "tsaoko"};
+                "rosemary", "salt", "shallot", "soy sauce", "sugar", "tsaoko"};
 
         recipeName = (EditText) findViewById(R.id.editRecipeName);
         outputRecipeName = (TextView) findViewById(R.id.outputName);
@@ -236,8 +236,6 @@ public class DesignRecipe extends Activity {
                 R.drawable.hjy_carrot,
                 R.drawable.hjy_celery,
                 R.drawable.hjy_checken,
-                R.drawable.hjy_checkenbreast,
-                R.drawable.hjy_chinesecabbage,
                 R.drawable.hjy_corn,
                 R.drawable.hjy_drumstick,
                 R.drawable.hjy_egg,
@@ -298,7 +296,6 @@ public class DesignRecipe extends Activity {
                 R.drawable.hjy_s_salt,
                 R.drawable.hjy_s_shallot,
                 R.drawable.hjy_s_soysauce,
-                R.drawable.hjy_s_staranise,
                 R.drawable.hjy_s_sugar,
                 R.drawable.hjy_s_tsaoko,};
 
