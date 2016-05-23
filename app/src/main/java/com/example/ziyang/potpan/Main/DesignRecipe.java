@@ -91,7 +91,7 @@ public class DesignRecipe extends Activity {
                 }
             }).start();
         }
-
+        //dynamic changes the textview according edittext
         recipeName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -114,7 +114,8 @@ public class DesignRecipe extends Activity {
         galleryS.setAdapter(adapters);
         galleryM.setSelection(4);
         galleryS.setSelection(4);
-
+        //set gallery click listener
+        //judge the output, make sure no repeated data
         galleryM.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,7 +129,8 @@ public class DesignRecipe extends Activity {
                 }
             }
         });
-
+        //set gallery click listener
+        //judge the output, make sure no repeated data
         galleryS.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -142,7 +144,7 @@ public class DesignRecipe extends Activity {
                 }
             }
         });
-
+        //go back to previous interface
         cancelRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +155,7 @@ public class DesignRecipe extends Activity {
                 DesignRecipe.this.finish();
             }
         });
-
+        //send recipe data to database
         createRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -224,7 +226,7 @@ public class DesignRecipe extends Activity {
             }
         };
     }
-
+    //Adapter for materials gallery
     public class hjy_adapter extends BaseAdapter {
         private Context ctx;
         private int[] images = {
@@ -281,7 +283,7 @@ public class DesignRecipe extends Activity {
             return view;
         }
     }
-
+    //Adapter for seasons gallery
     public class hjy_dadpter_seasons extends BaseAdapter {
         private Context ctx;
         private int[] images = {

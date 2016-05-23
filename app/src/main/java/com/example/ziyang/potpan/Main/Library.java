@@ -46,7 +46,7 @@ public class Library extends Activity {
         listView = (ListView) findViewById(R.id.list);
         cll_exit.getInstance().addActivity(this);
 
-        //获取账户
+        //Get Account
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         final String ACCOUNT = bundle.getString("account");
@@ -64,7 +64,7 @@ public class Library extends Activity {
                 myHandler.sendMessage(message);
             }
         }).start();
-
+        //set list item click listener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
