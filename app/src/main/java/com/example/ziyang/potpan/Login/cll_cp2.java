@@ -27,6 +27,7 @@ public class cll_cp2 extends Activity {
                 Intent intent = new Intent();
                 intent.setClass(cll_cp2.this, cll_main.class);
                 startActivity(intent);
+                cll_cp2.this.finish();
             }
         });
 

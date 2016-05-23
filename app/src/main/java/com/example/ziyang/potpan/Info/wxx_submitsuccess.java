@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.example.ziyang.potpan.Login.cll_exit;
 import com.example.ziyang.potpan.R;
-import com.example.ziyang.potpan.wxx_main;
+import com.example.ziyang.potpan.Main.wxx_main;
 import com.example.ziyang.potpan.Data.zzy_data;
 
 public class wxx_submitsuccess extends Activity {
@@ -27,6 +27,7 @@ public class wxx_submitsuccess extends Activity {
                 intent.setClass(wxx_submitsuccess.this, wxx_main.class);
                 intent.putExtra("useraccount", zzy_data.getA());
                 startActivity(intent);
+                wxx_submitsuccess.this.finish();
             }
         });
     }

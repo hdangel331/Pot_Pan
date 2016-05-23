@@ -17,7 +17,6 @@ public class SocketClient {
     public static byte[] data = null;
     static String getinfo;
 
-    //发送字符串
     public static void ConnectSevert(String info) {
         try {
             InetAddress serverAddr = InetAddress.getByName(IP);
@@ -36,7 +35,7 @@ public class SocketClient {
         try {
             din = new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
-            info = MyConverter.escape(info);//编码
+            info = MyConverter.escape(info);
             dout.writeInt(info.length());
             dout.write(info.getBytes());
             getinfo = din.readUTF();
@@ -48,7 +47,7 @@ public class SocketClient {
         } catch (Exception e) {
             if (!s.isClosed() && s.isConnected()) {
                 readinfo = SOCKET_IOERROR;
-                System.out.println("读取数据超时...");
+                System.out.println("Over Time...");
             }
             return;
         } finally {

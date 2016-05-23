@@ -96,4 +96,12 @@
         android:layout_marginTop="450dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loading1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/loading1"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

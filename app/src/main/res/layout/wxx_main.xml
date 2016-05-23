@@ -44,6 +44,13 @@
             android:layout_toRightOf="@+id/Text"
             android:background="@drawable/wxx_plus"></Button>
 
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/loading1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/loading1"
+            android:visibility="invisible" />
+
     </RelativeLayout>
 
     <!--The navigation view-->
